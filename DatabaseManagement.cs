@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-public static class DatabaseManager
+public class DatabaseManager
 {
 	private void nonQueryToDB(string connectionString, string commandText) 
 	{
