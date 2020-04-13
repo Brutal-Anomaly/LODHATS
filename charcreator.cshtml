@@ -1,0 +1,624 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+   
+
+}
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-5">
+                        <div class="card-header" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
+                            <h2>Character Info</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseOne" >
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputCharacterName">Character Name</label>
+                                    <input type="text" class="form-control" id="inputCharacterName" placeholder="Character Name">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputClass">Class</label>
+                                    <input type="text" class="form-control" id="inputClass" placeholder="Class Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputLevel">Level</label>
+                                    <input type="text" class="form-control" id="inputLevel" placeholder="Level">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputRace">Race</label>
+                                    <input type="text" class="form-control" id="inputRace" placeholder="Race Name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputAlignment">Alignment</label>
+                                    <input type="text" class="form-control" id="inputAlignment" placeholder="Alignment">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputExperiencePoints">Experience Points</label>
+                                    <input type="text" class="form-control" id="inputExperiencePoints" placeholder="Experience Points">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputPlayerName">Player Name</label>
+                                    <input type="text" class="form-control" id="inputPlayerName" placeholder="Player Name">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseTwo" aria-expanded="true">
+                            <h2>Stats</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseTwo" >
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputStrength">Strength</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputStrength" placeholder="Strength">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputDexterity">Dexterity</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputDexterity" placeholder="Dexterity">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputIntelligence">Intelligence</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputIntelligence" placeholder="Intelligence">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputSpeed">Speed</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputSpeed" placeholder="Speed">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputInspiration">Inspiration</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputInspiration" placeholder="Inspiration">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputConstitution">Constitution</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputConstitution" placeholder="Constitution">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputWisdom">Wisdom</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputWisdom" placeholder="Wisdom">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputCharisma">Charisma</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputCharisma" placeholder="Charisma">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label for="inputProficiencyBonus">Proficiency Bonus</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputProficiencyBonus" placeholder="Proficiency Bonus">
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="inputPassivePerception">Passive Perception</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputPassivePerception" placeholder="Passive Perception">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <button type="button" id="btnRandom" class="btn btn-primary">Random</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header"class="card-header" data-toggle="collapse" href="#collapseThree" aria-expanded="true">
+                            <h2>Saving Throws</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseThree">
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputStrengthSave">Strength</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputStrengthSave" placeholder="Strength">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputDexteritySave">Dexterity</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputDexteritySave" placeholder="Dexterity">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputIntelligenceSave">Intelligence</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputIntelligenceSave" placeholder="Intelligence">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputWisdomSave">Wisdom</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputWisdomSave" placeholder="Wisdom">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputConstitutionSave">Constitution</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputConstitutionSave" placeholder="Constitution">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputCharismaSave">Charisma</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputCharismaSave" placeholder="Charisma">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseFour" aria-expanded="true"
+>
+                            <h2>Skills</h2>
+                            
+                        </div>
+                        <div class="card-body collapse show" id="collapseFour">
+                            <div class="form-row">
+                                <h4 class="card-title">Strength</h4>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-check" style="margin-top: 25px;">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkAthletics" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="inputAthletics">Athletics</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputAthletics" placeholder="Athletics">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <h4 class="card-title">Intelligence</h4>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkArcana" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputArcana">Arcana</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputArcana" placeholder="Arcana">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkHistory" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputHistory">History</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputHistory" placeholder="History">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkInvestigation" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputInvestigation">Investigation</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputInvestigation" placeholder="Investigation">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkNature" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputNature">Nature</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputNature" placeholder="Nature">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkReligion" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputReligion">Religion</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputReligion" placeholder="Religion">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <h4 class="card-title">Dexterity</h4>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkAcrobatics" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputAcrobatics">Acrobatics</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputAcrobatics" placeholder="Acrobatics">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkSleightofHand" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputSleightofHand">Sleight of Hand</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputSleightofHand" placeholder="Sleight of Hand">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkStealth" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputStealth">Stealth</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputStealth" placeholder="Stealth">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <h4 class="card-title">Wisdom</h4>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkAnimalHandling" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputAnimalHandling">Animal Handling</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputAnimalHandling" placeholder="Animal Handling">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkInsight" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputInsight">Insight</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputInsight" placeholder="Insight">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkMedicine" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputMedicine">Medicine</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputMedicine" placeholder="Medicine">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkPerception" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputPerception">Perception</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputPerception" placeholder="Perception">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkSurvival" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputSurvival">Survival</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputSurvival" placeholder="Survival">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <h4 class="card-title">Charisma</h4>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkDeception" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputDeception">Deception</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputDeception" placeholder="Deception">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkIntimidation" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputIntimidation">Intimidation</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputIntimidation" placeholder="Intimidation">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkPerformance" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputPerformance">Performance</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputPerformance" placeholder="Performance">
+                                </div>
+                                <div class="form-check" style="margin-top: 25px;margin-left:5px">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkPersuasion" value="">
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inpuPersuasion">Persuasion</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputPersuasion" placeholder="Persuasion">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseFive" aria-expanded="true">
+                            <h2>Health & Armor</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseFive">
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputArmorClass">Armor Class</label>
+                                    <input type="text" class="form-control" id="inputArmorClass" placeholder="Armor Class">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputMaxHP">Max HP</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputMaxHP" placeholder="Max HP">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputTempHP">Temp HP</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputTempHP" placeholder="Temp HP">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inpuCurrentHP">Current HP</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inpuCurrentHP" placeholder="Current HP">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseSix" aria-expanded="true">
+                            <h2>Hit Dice</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseSix">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseSeven" aria-expanded="true"
+>
+                            <h2>Death Saves</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseSeven">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputSuccesses">Successes</label>
+                                    <input type="number" min="1" max="3" class="form-control" id="inputSuccesses" placeholder="Successes">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputFailures">Failures</label>
+                                    <input type="number" min="1" max="3" class="form-control" id="inputFailures" placeholder="Failures">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseEight" aria-expanded="true">
+                            <h2>Attacks & Spellcasting</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseEight">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseNine" aria-expanded="true"
+>
+                            <h2>Features & Traits</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseNine">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseTen" aria-expanded="true">
+                            <h2>Other Proficiencies & Languages</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseTen">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseEleven" aria-expanded="true">
+                            <h2>Inventory & Equipment</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseEleven">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseTwelve" aria-expanded="true">
+                            <h2>Stowed Items</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseTwelve">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseThirteen" aria-expanded="true"
+>
+                            <h2>Ideals</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseThirteen">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseFourteen" aria-expanded="true">
+                            <h2>Bonds</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseFourteen">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseFifteen" aria-expanded="true">
+                            <h2>Flaws</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseFifteen">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseSixteen" aria-expanded="true"
+>
+                            <h2>Character Appearance</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseSixteen" >
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseSeventeen" aria-expanded="true"
+>
+                            <h2>Character Backstory</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseSeventeen">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseEighteen" aria-expanded="true">
+                            <h2>Allies & Organizations</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseEighteen">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseNineteen" aria-expanded="true">
+                            <h2>SpellCasting</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseNineteen">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-3">
+                        <div class="card-header" data-toggle="collapse" href="#collapseTwenty" aria-expanded="true">
+                            <h2>Cantrips</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseTwenty">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+
+    </div>
+ <style>
+     .card-header:after {
+         font-family: 'FontAwesome';
+         content: "\f068";
+         float: right;
+     }
+
+    .card-header.collapsed:after {
+         /* symbol for "collapsed" panels */
+         content: "\f067";
+     }
+
+ </style>
