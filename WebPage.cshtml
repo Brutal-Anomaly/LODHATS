@@ -1,5 +1,51 @@
 ﻿@{
     Layout = "~/_SiteLayout.cshtml";
     Page.Title = "Web Page";
+
+
+    var db = Database.Open("MySQLDB");
+
+    var selectQueryString = "SELECT * FROM users";
+
+
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TEST</title>
+    <style>
+        table, th, td {
+            border: solid 1px #bbbbbb;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TEST</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>userID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>email</th>
+                <th>admin</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in db.Query(selectQueryString))
+            {
+            <tr>
+                <td>@row.userid</td>
+                <td>@row.firstname</td>
+                <td>@row.lastname</td>
+                <td>@row.email</td>
+                <td>@row.admin</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
