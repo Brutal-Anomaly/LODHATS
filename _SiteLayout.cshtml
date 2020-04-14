@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <title>@Page.Title - LODHATS</title>
-    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @*<link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />*@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="https://use.fontawesome.com/c488ab7941.js"></script>
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -38,7 +39,10 @@
                             <a class="nav-link" href="~/webpage">DB_TEST</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/create_char.cshtml">Character Creator</a>
+                            <a class="nav-link" href="~/charcreator.cshtml">Character Creator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/create_char.cshtml">Character Creator 2</a>
                         </li>
                     </ul>
                     <div class="float-right">
@@ -46,7 +50,7 @@
                             if (IsPost)
                             {
                                 <text>
-                               <label id="welcomename">Hello, Andrew</label>
+                                    <label id="welcomename">Hello, Andrew</label>
                                 </text>
                             }
 
@@ -99,10 +103,8 @@
                         <label for="pwd">Password:</label>
                         <input type="password" class="form-control" placeholder="Enter password" id="pwd">
                     </div>
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox"> Remember me
-                        </label>
+                    <div class="form-group">
+                        <a href="~/createAccount.cshtml">Create Account</a>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-danger" id="loginsubmit">Login</button>
@@ -117,7 +119,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        
+
 
     });
 
