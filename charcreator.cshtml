@@ -13,15 +13,27 @@
                         </div>
                         <div class="card-body collapse show" id="collapseOne" >
                             <div class="form-row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-6">
                                     <label for="inputCharacterName">Character Name</label>
                                     <input type="text" class="form-control" id="inputCharacterName" placeholder="Character Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPlayerName">Player Name</label>
+                                    <input type="text" class="form-control" id="inputPlayerName" placeholder="Player Name">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputClass">Class</label>
-                                    <input type="text" class="form-control" id="inputClass" placeholder="Class Name">
+                                    <label for="selectClass">Class:</label>
+                                    <select class="form-control" id="selectClass" placeholder="Select Class">
+                                        <option>Select class...</option>
+                                        <option>Mage</option>
+                                        <option>Warrior</option>
+                                        <option>Paladin</option>
+                                        <option>Druid</option>
+                                        <option>Cleric</option>
+                                        <option>Bard</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputLevel">Level</label>
@@ -30,12 +42,31 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="inputRace">Race</label>
-                                    <input type="text" class="form-control" id="inputRace" placeholder="Race Name">
+                                    <label for="selectRace">Race:</label>
+                                    <select class="form-control" id="selectRace">
+                                        <option>Select Race...</option>
+                                        <option>Human</option>
+                                        <option>Orc</option>
+                                        <option>High Elf</option>
+                                        <option>Wood Elf</option>
+                                        <option>Dark Elf</option>
+                                        <option>Dwarf</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputAlignment">Alignment</label>
-                                    <input type="text" class="form-control" id="inputAlignment" placeholder="Alignment">
+                                    <label for="selectAlignment">Alignment:</label>
+                                    <select class="form-control" id="selectAlignment">
+                                        <option>Select Alignment...</option>
+                                        <option>Lawful Good</option>
+                                        <option>Neutral Good</option>
+                                        <option>Chaotic Good</option>
+                                        <option>Lawful Neutral</option>
+                                        <option>Neutral</option>
+                                        <option>Chaotic Neutral</option>
+                                        <option>Lawful Evil</option>
+                                        <option>Neutral Evil</option>
+                                        <option>Chaotic Evil</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputExperiencePoints">Experience Points</label>
@@ -43,12 +74,51 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="inputPlayerName">Player Name</label>
-                                    <input type="text" class="form-control" id="inputPlayerName" placeholder="Player Name">
+                                <div class="form-group col-md-3">
+                                    <label for="selelectEyeColor">Eye Color:</label>
+                                    <select class="form-control" id="selectEyeColor">
+                                        <option>Select Eye Color...</option>
+                                        <option>Blue</option>
+                                        <option>Green</option>
+                                        <option>Brown</option>
+                                        <option>Hazel</option>
+                                        <option>Red</option>
+                                        <option>Yellow</option>
+                                        <option>Black</option>
+                                    </select>
                                 </div>
-                            </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputAge">Age</label>
+                                    <input type="number" min="1" class="form-control" id="inputAge" placeholder="Age">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="selelectSkinColor">Skin Color:</label>
+                                    <select class="form-control" id="selectSkinColor">
+                                        <option>Select Skin Color...</option>
+                                        <option>Blue</option>
+                                        <option>Green</option>
+                                        <option>Brown</option>
+                                        <option>White</option>
+                                        <option>Red</option>
+                                        <option>Yellow</option>
+                                        <option>Black</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="selelectHairColor">Hair Color:</label>
+                                    <select class="form-control" id="selecthairColor">
+                                        <option>Select Hair Color...</option>
+                                        <option>Blue</option>
+                                        <option>Green</option>
+                                        <option>Brown</option>
+                                        <option>White</option>
+                                        <option>Red</option>
+                                        <option>Yellow</option>
+                                        <option>Black</option>
+                                    </select>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,62 +167,12 @@
                                     <input type="number" min="0" max="100" class="form-control" id="inputCharisma" placeholder="Charisma">
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-5">
-                                    <label for="inputProficiencyBonus">Proficiency Bonus</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputProficiencyBonus" placeholder="Proficiency Bonus">
-                                </div>
-                                <div class="form-group col-md-5">
-                                    <label for="inputPassivePerception">Passive Perception</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputPassivePerception" placeholder="Passive Perception">
-                                </div>
-                            </div>
+                            
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <button type="button" id="btnRandom" class="btn btn-primary">Random</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header"class="card-header" data-toggle="collapse" href="#collapseThree" aria-expanded="true">
-                            <h2>Saving Throws</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseThree">
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="inputStrengthSave">Strength</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputStrengthSave" placeholder="Strength">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="inputDexteritySave">Dexterity</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputDexteritySave" placeholder="Dexterity">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="inputIntelligenceSave">Intelligence</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputIntelligenceSave" placeholder="Intelligence">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="inputWisdomSave">Wisdom</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputWisdomSave" placeholder="Wisdom">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputConstitutionSave">Constitution</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputConstitutionSave" placeholder="Constitution">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputCharismaSave">Charisma</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputCharismaSave" placeholder="Charisma">
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -362,246 +382,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseFive" aria-expanded="true">
-                            <h2>Health & Armor</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseFive">
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="inputArmorClass">Armor Class</label>
-                                    <input type="text" class="form-control" id="inputArmorClass" placeholder="Armor Class">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="inputMaxHP">Max HP</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputMaxHP" placeholder="Max HP">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="inputTempHP">Temp HP</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputTempHP" placeholder="Temp HP">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="inpuCurrentHP">Current HP</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inpuCurrentHP" placeholder="Current HP">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseSix" aria-expanded="true">
-                            <h2>Hit Dice</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseSix">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseSeven" aria-expanded="true"
->
-                            <h2>Death Saves</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseSeven">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputSuccesses">Successes</label>
-                                    <input type="number" min="1" max="3" class="form-control" id="inputSuccesses" placeholder="Successes">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputFailures">Failures</label>
-                                    <input type="number" min="1" max="3" class="form-control" id="inputFailures" placeholder="Failures">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseEight" aria-expanded="true">
-                            <h2>Attacks & Spellcasting</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseEight">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseNine" aria-expanded="true"
->
-                            <h2>Features & Traits</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseNine">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseTen" aria-expanded="true">
-                            <h2>Other Proficiencies & Languages</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseTen">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseEleven" aria-expanded="true">
-                            <h2>Inventory & Equipment</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseEleven">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseTwelve" aria-expanded="true">
-                            <h2>Stowed Items</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseTwelve">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseThirteen" aria-expanded="true"
->
-                            <h2>Ideals</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseThirteen">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseFourteen" aria-expanded="true">
-                            <h2>Bonds</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseFourteen">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseFifteen" aria-expanded="true">
-                            <h2>Flaws</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseFifteen">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseSixteen" aria-expanded="true"
->
-                            <h2>Character Appearance</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseSixteen" >
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseSeventeen" aria-expanded="true"
->
-                            <h2>Character Backstory</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseSeventeen">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseEighteen" aria-expanded="true">
-                            <h2>Allies & Organizations</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseEighteen">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseNineteen" aria-expanded="true">
-                            <h2>SpellCasting</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseNineteen">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseTwenty" aria-expanded="true">
-                            <h2>Cantrips</h2>
-                        </div>
-                        <div class="card-body collapse show" id="collapseTwenty">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
 
 
