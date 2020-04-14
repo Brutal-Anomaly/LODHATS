@@ -3,18 +3,19 @@
 public class Character
 {
 	//constants
-	private const string[] NAMES = new string[] { "Dian", "Nese", "Falledrick", "Mae", "Valhein", "Dol", "Earl", "Cedria", "Azulei", "Yun", "Cybel", "Ina", "Foolly", "Skili", "Juddol", "Janver", "Viska", "Hirschendy", "Silka", "Hellsturn", "Essa", "Mykonos", "Fenton", "Tyrena", "Inqoul", "Mankov", "Derilia", "Hexema", "Wyton", "Kaedum", "Gouram", "Libertia", "Berasailles", "Juxta", "Tae’hr", "Comtol", "Gherak", "Hest", "Qony", "Masamka", "Twyll", "Tenos", "Axim", "Westrynda", "Saphros", "Olkham", "Handok", "Kemetra", "Yos", "Wentingle", "Ames", "Molosh", "Inkov", "Phasasia", "Ziedinghal", "Bregul", "Eishvack", "Lora", "Krenting", "Symbole", "Elignoir", "Keligkrul", "Qwey", "Vindinglag", "Kusakira", "Weme", "Fayd", "Rushvita", "Vulkor", "Amers", "Ortos", "Vanius", "Chandellia", "Lilikol", "Catca", "Cormus", "Yuela", "Ariban", "Tryton", "Fesscha", "Opalul", "Zakzos", "Hortimer", "Anklos", "Dushasiez", "Polop", "Mektal", "Orinphus", "Denatra", "Elkazzi", "Dyne", "Domos", "Letryal", "Manniv", "Sylestia", "Esnol", "Fasafuros", "Ghanfer", "Kahnite", "Sweyda", "Uylis", "Retenia", "Bassos", "Arkensval", "Impelos", "Grandius", "Fulcrux", "Lassahein", "Edsveda", "Earakun", "Fous", "Maas", "Basenphal", "Jubidya", "Divya", "Kosunten", "Ordayius", "Dozzer", "Gangher", "Escha", "Manchul", "Kempos", "Kulo", "Urtench", "Kesta", "Helahona", "Ryte", "Falcia", "Umannos", "Urkensvall", "Fedra", "Bulkensar", "Comia", "Tyul", "Lasendarl" };
-	private const string[] GENDER = new string[] { "Male", "Female" };
-	private const string[] BACKGROUND = new string[] { "Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan", "Guild Merchang", "Hermit", "Knight", "Noble", "Outlander", "Pirate", "Sage", "Sailor", "Soldier", "Spy", "Urchin", "Thug", "Priest", "Bounty Hunter", "Artisan", "Commoner", " Jester", "Minstrel" };
-	private const string[] ALIGNMENT = new string[] { "Lawful Good", "Lawful Nuetral", "Lawful Evil", "Nuetral Good", "True Nuetral", "Nuetral Evil", "Chaotic Good", "Chaotic Nuetral", "Chaotic Evil" };
-	private const string[] CLASS = new string[] { "Barbarian", "Fighter", "Paladin", "Bard", "Sorcerer", "Warlock", "Cleric", "Druid", "Monk", "Ranger", "Rogue", "Wizard" };
-	private const string[] RACE = new string[] { "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Orc of Exandria", "Aarakocra", "Genasi", "Goliath", "Aasimar", "Bugbear", "Firbolg", "Goblin", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Orc", "Tabaxi", "Triton", "Yuan-ti Pureblood", "Feral Tiefling", "Tortle", "Changeling", "Kalashtar", "Orc of Eberron", "Shifter", "Warforged", "Gith", "Centaur", "Loxodon", "Minotaur", "Simic Hybrid", "Vedalken", "Verdan", "Locathah", "Grung" };
-	private const string[] EYECOLOR = new string[] { "Blue", "Green", "Hazel", "Brown", "Black", "Purple", "Yellow" };
-	private const string[] SKINCOLOR = new string[] { "White", "Tan", "Olive", "Oriental", "Brown", "Black" };
-	private const string[] HAIRCOLOR = new string[] { "Blonde", "Dirty blonde", "Brunette", "Black", "Ginger", "Strawberry" };
+	private readonly string[] NAMES = { "Dian", "Nese", "Falledrick", "Mae", "Valhein", "Dol", "Earl", "Cedria", "Azulei", "Yun", "Cybel", "Ina", "Foolly", "Skili", "Juddol", "Janver", "Viska", "Hirschendy", "Silka", "Hellsturn", "Essa", "Mykonos", "Fenton", "Tyrena", "Inqoul", "Mankov", "Derilia", "Hexema", "Wyton", "Kaedum", "Gouram", "Libertia", "Berasailles", "Juxta", "Tae’hr", "Comtol", "Gherak", "Hest", "Qony", "Masamka", "Twyll", "Tenos", "Axim", "Westrynda", "Saphros", "Olkham", "Handok", "Kemetra", "Yos", "Wentingle", "Ames", "Molosh", "Inkov", "Phasasia", "Ziedinghal", "Bregul", "Eishvack", "Lora", "Krenting", "Symbole", "Elignoir", "Keligkrul", "Qwey", "Vindinglag", "Kusakira", "Weme", "Fayd", "Rushvita", "Vulkor", "Amers", "Ortos", "Vanius", "Chandellia", "Lilikol", "Catca", "Cormus", "Yuela", "Ariban", "Tryton", "Fesscha", "Opalul", "Zakzos", "Hortimer", "Anklos", "Dushasiez", "Polop", "Mektal", "Orinphus", "Denatra", "Elkazzi", "Dyne", "Domos", "Letryal", "Manniv", "Sylestia", "Esnol", "Fasafuros", "Ghanfer", "Kahnite", "Sweyda", "Uylis", "Retenia", "Bassos", "Arkensval", "Impelos", "Grandius", "Fulcrux", "Lassahein", "Edsveda", "Earakun", "Fous", "Maas", "Basenphal", "Jubidya", "Divya", "Kosunten", "Ordayius", "Dozzer", "Gangher", "Escha", "Manchul", "Kempos", "Kulo", "Urtench", "Kesta", "Helahona", "Ryte", "Falcia", "Umannos", "Urkensvall", "Fedra", "Bulkensar", "Comia", "Tyul", "Lasendarl" };
+	private readonly string[] GENDER = { "Male", "Female" };
+	private readonly string[] BACKGROUND = { "Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan", "Guild Merchang", "Hermit", "Knight", "Noble", "Outlander", "Pirate", "Sage", "Sailor", "Soldier", "Spy", "Urchin", "Thug", "Priest", "Bounty Hunter", "Artisan", "Commoner", " Jester", "Minstrel" };
+	private readonly string[] ALIGNMENT = { "Lawful Good", "Lawful Nuetral", "Lawful Evil", "Nuetral Good", "True Nuetral", "Nuetral Evil", "Chaotic Good", "Chaotic Nuetral", "Chaotic Evil" };
+	private readonly string[] CLASS = { "Barbarian", "Fighter", "Paladin", "Bard", "Sorcerer", "Warlock", "Cleric", "Druid", "Monk", "Ranger", "Rogue", "Wizard" };
+	private readonly string[] RACE = { "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Orc of Exandria", "Aarakocra", "Genasi", "Goliath", "Aasimar", "Bugbear", "Firbolg", "Goblin", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Orc", "Tabaxi", "Triton", "Yuan-ti Pureblood", "Feral Tiefling", "Tortle", "Changeling", "Kalashtar", "Orc of Eberron", "Shifter", "Warforged", "Gith", "Centaur", "Loxodon", "Minotaur", "Simic Hybrid", "Vedalken", "Verdan", "Locathah", "Grung" };
+	private readonly string[] EYECOLOR = { "Blue", "Green", "Hazel", "Brown", "Black", "Purple", "Yellow" };
+	private readonly string[] SKINCOLOR = { "White", "Tan", "Olive", "Oriental", "Brown", "Black" };
+	private readonly string[] HAIRCOLOR = { "Blonde", "Dirty blonde", "Brunette", "Black", "Ginger", "Strawberry" };
 
 	// member data
 	private int characterID;
+	private int userID;
 	private string characterName;
 	private string characterGender;
 	private string characterClass;
@@ -52,8 +53,9 @@ public class Character
 	private string skinColor;
 	private string hairColor;
 	//constructor
-	public Character(string characterName, string characterGender, string characterClass, string characterRace, int characterLevel, string background, string alignment, int exp, int dex, int constitution, int intelligence, int proficiencyBonus, int savingThrowsStrength, int savingThrowsDex, int savingThrowsConstitution, int savingThrowsIntelligence, int savingThrowsWisdom, int savingThrowsCharisma, int skillsAcrobatics, int skillsAnimalHandling, int skillsArcana, int skillsAthletics, int skillsDeception, int skillsHistory, int skillsInsight, int skillsIntimidation, int skillsInvestigation, int skillsMedicine, int skillsNature, int skillsPerception, int skillsPerformance, int skillsPersuasion, int skillsReligion, int skillsSleightOfHand, int skillsStealth, int skillsSurvival, int passiveWisdom, string otherProficiencies, int armorClass, int initiative, int speed, int hitPointMaximum, int hitPointCurrent, int hitPointTemp, string attacksAndSpellCasting, string equipment, string personalityTraits, string ideals, string bonds, string flaws, string featuresAndsTraits, string characterAppearance, string characterBackstory, string alliesAndOrganizations, string stowedItems, int age, float height, float weight, string eyeColor, string skinColor, string hairColor, string spellCastingClass, string spellCastingAbilities, string spellSaveDC, int spellAttackBonus, string canitrips0, string canitrips1, string canitrips2, string canitrips3, string canitrips4, string canitrips5, string canitrips6, string canitrips7, string canitrips8, string canitrips9)
+	public Character(int userID, string characterName, string characterGender, string characterClass, string characterRace, int characterLevel, string background, string alignment, int exp, int dex, int constitution, int intelligence, int proficiencyBonus, int savingThrowsStrength, int savingThrowsDex, int savingThrowsConstitution, int savingThrowsIntelligence, int savingThrowsWisdom, int savingThrowsCharisma, int skillsAcrobatics, int skillsAnimalHandling, int skillsArcana, int skillsAthletics, int skillsDeception, int skillsHistory, int skillsInsight, int skillsIntimidation, int skillsInvestigation, int skillsMedicine, int skillsNature, int skillsPerception, int skillsPerformance, int skillsPersuasion, int skillsReligion, int skillsSleightOfHand, int skillsStealth, int skillsSurvival, int passiveWisdom, string otherProficiencies, int armorClass, int initiative, int speed, int hitPointMaximum, int hitPointCurrent, int hitPointTemp, string attacksAndSpellCasting, string equipment, string personalityTraits, string ideals, string bonds, string flaws, string featuresAndsTraits, string characterAppearance, string characterBackstory, string alliesAndOrganizations, string stowedItems, int age, float height, float weight, string eyeColor, string skinColor, string hairColor, string spellCastingClass, string spellCastingAbilities, string spellSaveDC, int spellAttackBonus, string canitrips0, string canitrips1, string canitrips2, string canitrips3, string canitrips4, string canitrips5, string canitrips6, string canitrips7, string canitrips8, string canitrips9)
 	{
+		this.userID = userID;
 		this.characterName = characterName;
 		this.characterGender = characterGender;
 		this.characterClass = characterClass;
@@ -91,45 +93,45 @@ public class Character
 	//member functions
 	public void generateRandomAttributes() 
 	{
+		Die die = new Die();
 
-		characterName = NAMES[Die.roll(NAMES.Length)];
-		characterGender = GENDER[Die.roll(GENDER.Length)];
-		characterClass = CLASS[Die.roll(CLASS.Length)];
-		characterRace = RACE[Die.roll(RACE.Length)];
-		background = BACKGROUND[Die.roll(BACKGROUND.Length)];
-		alignment = ALIGNMENT[Die.roll(ALIGNMENT.Length)];
-		eyeColor = EYECOLOR[Die.roll(EYECOLOR.Length)];
-		skinColor = SKINCOLOR[Die.roll(SKINCOLOR.Length)];
-		hairColor = HAIRCOLOR[Die.roll(HAIRCOLOR.Length)];
+		characterName = NAMES[die.roll(NAMES.Length)];
+		characterGender = GENDER[die.roll(GENDER.Length)];
+		characterClass = CLASS[die.roll(CLASS.Length)];
+		characterRace = RACE[die.roll(RACE.Length)];
+		background = BACKGROUND[die.roll(BACKGROUND.Length)];
+		alignment = ALIGNMENT[die.roll(ALIGNMENT.Length)];
+		eyeColor = EYECOLOR[die.roll(EYECOLOR.Length)];
+		skinColor = SKINCOLOR[die.roll(SKINCOLOR.Length)];
+		hairColor = HAIRCOLOR[die.roll(HAIRCOLOR.Length)];
 
-		characterLevel = Die.roll(20);
-		strength = Die.roll(20);
-		dex = Die.roll(20);
-		constitution = Die.roll(20);
-		intelligence = Die.roll(20);
-		wisdom = Die.roll(20);
-		charisma = Die.roll(20);
-		inspiration = Die.roll(20);
-		age = Die.roll(70);
-		savingThrowsWisdom = Die.roll(20);
-		skillsAcrobatics = Die.roll(20);
-		skillsAnimalHandling = Die.roll(20);
-		skillsArcana = Die.roll(20);
-		skillsAthletics = Die.roll(20);
-		skillsDeception = Die.roll(20);
-		skillsHistory = Die.roll(20);
-		skillsInsight = Die.roll(20);
-		skillsIntimidation = Die.roll(20);
-		skillsInvestigation = Die.roll(20);
-		skillsMedicine = Die.roll(20);
-		skillsNature = Die.roll(20);
-		skillsPerception = Die.roll(20);
-		skillsPerformance = Die.roll(20);
-		skillsPersuasion = Die.roll(20);
-		skillsReligion = Die.roll(20);
-		skillsSleightOfHand = Die.roll(20);
-		skillsStealth = Die.roll(20);
-		skillsSurvival = Die.roll(20);
+		characterLevel = die.roll(20);
+		strength = die.roll(20);
+		dex = die.roll(20);
+		constitution = die.roll(20);
+		intelligence = die.roll(20);
+		wisdom = die.roll(20);
+		charisma = die.roll(20);
+		inspiration = die.roll(20);
+		age = die.roll(70);
+		skillsAcrobatics = die.roll(20);
+		skillsAnimalHandling = die.roll(20);
+		skillsArcana = die.roll(20);
+		skillsAthletics = die.roll(20);
+		skillsDeception = die.roll(20);
+		skillsHistory = die.roll(20);
+		skillsInsight = die.roll(20);
+		skillsIntimidation = die.roll(20);
+		skillsInvestigation = die.roll(20);
+		skillsMedicine = die.roll(20);
+		skillsNature = die.roll(20);
+		skillsPerception = die.roll(20);
+		skillsPerformance = die.roll(20);
+		skillsPersuasion = die.roll(20);
+		skillsReligion = die.roll(20);
+		skillsSleightOfHand = die.roll(20);
+		skillsStealth = die.roll(20);
+		skillsSurvival = die.roll(20);
 	}
 
 	//Dont know if we will need this. probably can do this with form handling.

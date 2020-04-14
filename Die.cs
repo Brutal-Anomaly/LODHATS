@@ -1,10 +1,11 @@
 ﻿using System;
 
-public static class Die
+public class Die
 {
 	// member functions
-	public static int roll(int max) 
+	public int roll(int max) 
 	{
-		return Random.Next(0, max + 1); 
+		Random rand = new Random();
+		return rand.Next(0, max + 1); 
 	}
 }

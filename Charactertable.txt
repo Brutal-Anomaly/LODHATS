@@ -1,5 +1,6 @@
 CREATE TABLE `character` (
   `characterid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
   `charactername` varchar(100) NOT NULL,
   `charactergender` varchar(45) NOT NULL,
   `characterclass` varchar(45) NOT NULL,

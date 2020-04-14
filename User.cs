@@ -9,12 +9,10 @@ public class User
 	private string firstName;
 	private string lastName;
 	private string email;
-	private int[] characterIDs;
-	private int[] partyIDs;
 	private bool admin;
 
 	//constructor
-	public User(int userID, string password, string username, string firstName, string lastName, string email, int[] characterIDs, int[] partyIDs, bool admin)
+	public User(int userID, string password, string username, string firstName, string lastName, string email, bool admin)
 	{
 		this.userID = userID;
 		this.password = password;
@@ -22,8 +20,6 @@ public class User
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.characterIDs = characterIDs;
-		this.partyIDs = partyIDs;
 		this.admin = admin;
 	}
 
@@ -51,16 +47,6 @@ public class User
 	public string getEmail()
 	{
 		return email;
-	}
-
-	public int[] getCharacterIDs()
-	{
-		return characterIDs;
-	}
-
-	public int[] getPartyIDs()
-	{
-		return partyIDs;
 	}
 
 	public bool checkPassword(string password) 
