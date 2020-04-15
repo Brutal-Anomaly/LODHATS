@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    var db = Database.Open("MySQLDB");
+
+    //Assuming the username is stored in a session
+    //var username = (string)Session["username"];
+
+    //Get userid from the db by using the username
+    var username = "Bobbita";
+
+    var userid_query = "SELECT userid FROM users WHERE username ='" + username + "'";
+
+    var userid = db.QueryValue(userid_query);
+
+    var char_query = "SELECT * from character WHERE userid ='" + userid + "'";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account</title>
+</head>
+<body>
+    <h1>&nbsp;</h1>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-dark">
+                <h3 style="color:white">Account Information</h3>
+            </div>
+            <div class="card-body bg-secondary">
+                <div class="row">
+                    <div class="col-sm-10 offset-md-1 col-md-8">
+                        <h5 style="color:white">Username: @username</h5>
+                    </div>                
+                    <div class="col-sm-2">
+                        <h5 style="color:white">UserID: @userid</h5>
+                    </div>
+                </div>
+            </div>
+        </div>          
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-dark">
+                        <h3 style="color:white">Characters</h3>
+                    </div>
+                    <div class="card-body bg-secondary">
+                        <div class="form-row">
+                            <table class="table col-sm-12 table-hover table-dark table-borderless table-striped rounded">
+                                <thead class="">
+                                <td></td>
+                                <td>Name</td>
+                                <td>Gender</td>
+                                <td>Level</td>
+                                <td>Class</td>
+                                <td></td></thead>
+                                <tbody class="">
+                                    <!--for loop for character table-->
+                                    @foreach (var row in db.Query(char_query))
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td>@row.charactername</td>
+                                            <td>@row.charactergender</td>
+                                            <td>@row.characterlevel</td>
+                                            <td>@row.characterclass</td>
+                                            <td><button type="button" class="btn-sm"><a href="charcreator.cshtml?characterid=@row.characterid">View Details</a></button></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+</body>
+
+</html>
