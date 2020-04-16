@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    var db = Database.Open("MySQLDB");
+    var characterid = Request.Form["characterid"];
+
+    Validation.RequireField("partyname", "Party name is a required field.");
+    Validation.RequireField("partypassword", "Party password is a required field.");    
+
+    if (IsPost)
+    {
+        if(Validation.IsValid())
+        {
+            var partyname = Request.Form["partyname"];
+            var partypassword = Request.Form["partypassword"];    
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Join a Party</h1>
+    <h3>Use the Party Name and Party Password to join your friends.</h3>    
+    <div class="container-fluid">
+        <form method="post" id="party_form">
+            <div class="row">                
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="partyid">Party Name:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="Party Name" id="partyname" name="partyname" value="" />
+                            @*Html.ValidationMessage("partyname")*@
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <br />
+            <div class="row">                
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="partypassword">Party Password:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="Party Password" id="partypassword" name="partypassword" value="" />
+                            @*Html.ValidationMessage("partypassword")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            @Html.ValidationSummary("Party join or creation was unsuccessful. Please correct the errors and try again.")
+            <br />
+            <div class="form-row">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <button type="button" class="btn-sm"><a href="partycreator.cshtml?characterid=@characterid">Create Party</a></button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn-sm">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    
+
+
+
+</body>
+</html>
