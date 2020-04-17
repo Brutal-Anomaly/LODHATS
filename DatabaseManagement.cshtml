@@ -34,8 +34,7 @@
         var db = Database.Open("users");
         var commandText = "INSERT INTO users (userid, password, username, firstname, lastname, email, admin)" +
                              "VALUES (@0, @1, @2, @3, @4, @5, @6)";
-        db.Execute(commandText, user.getUserID(), user.getPassword(), user.getUsername(), user.getFirstName(), user.getLastName(),
-                    user.getEmail(), user.isAdmin());
+        db.Execute(commandText, user.getUserID(), user.getPassword(), user.getEmail(), user.isAdmin());
     }
 
     public void addCharacter(Character character)
@@ -92,7 +91,7 @@
             email = row.email;
             admin = row.admin;
         }
-        return new User(userID, password, username, first, last, email, admin);
+        return new User(userID, password, email, admin);
     }
 
     public User[] getUsers()
@@ -112,7 +111,7 @@
             string email = row.email;
             bool admin = row.admin;
 
-            userList.Add(new User(id, password, username, first, last, email, admin));
+            userList.Add(new User(id, password, email, admin));
         }
 
         User[] users = userList.ToArray();
