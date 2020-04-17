@@ -6,9 +6,9 @@
     //var username = (string)Session["username"];
 
     //Get userid from the db by using the username
-    var username = "Bobbita";
+    var email = "asdf@hotmail.com";
 
-    var userid_query = "SELECT userid FROM users WHERE username ='" + username + "'";
+    var userid_query = "SELECT userid FROM users WHERE email ='" + email + "'";
 
     var userid = db.QueryValue(userid_query);
 
@@ -126,7 +126,7 @@
             <div class="card-body bg-secondary">
                 <div class="row">
                     <div class="col-sm-10 offset-md-1 col-md-8">
-                        <h5 style="color:white">Username: @username</h5>
+                        <h5 style="color:white">Email: @email</h5>
                     </div>
                     <div class="col-sm-2">
                         <h5 style="color:white">UserID: @userid</h5>
