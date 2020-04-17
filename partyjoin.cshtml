@@ -12,7 +12,7 @@
     /*
      * 
      * 
-     * Reminder: Add automatic partyid update to character table when a user joins a party
+     * Reminder: Add redirect to party view after joining a party
      * 
      * 
      */
@@ -60,13 +60,17 @@
 
             //Adds a member to the party
             //var update_member_query = "UPDATE party SET m1=@0 WHERE partyname=@1";  THIS WORKS
-            var update_member_query = "UPDATE party SET "+empty_slot+"=@0 WHERE partyname=@1"; //I have no clue why this works
+            var update_member_query = "UPDATE party SET " + empty_slot + "=@0 WHERE partyname=@1"; //I have no clue why this works
             db.Execute(update_member_query, characterid, partyname);
 
-            /* Creates an entierly new row
-            var insert_member_query = "INSERT INTO party (partyname, leader, '"+ empty_slot +"', partypassword) VALUES (@0, @1, @2, @3)";
-            db.Execute(insert_member_query, partyname, leader, characterid, partypassword);
-            */
+            //Gets partyid from database
+            var partyid_query = "SELECT partyid FROM party WHERE partyname='" + partyname + "'";
+            var partyid = db.QueryValue(partyid_query);
+
+            //Updates partyid in character database for character
+            var update_char_partyid = "UPDATE character SET partyid='" + partyid + "' WHERE characterid='" + characterid +"'";
+            db.Query(update_char_partyid);
+            
 
         }
     }
@@ -116,7 +120,7 @@
                 <div class="col-sm-8">
                     <div class="row">
                         <div class="col-sm-5">
-                            <!--<button type="button" class="btn-sm"><a href="partycreator.cshtml?characterid=@characterid">Create Party</a></button>-->
+                            <button type="button" class="btn-sm"><a href="partycreator.cshtml?characterid=@characterid" class="btn-sm" role="button">Create Party</a></button>
                             @if(add_error)
                             {
                                 <p style="color:red">ERROR: Cannot add member.</p>
