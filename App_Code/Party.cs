@@ -4,15 +4,17 @@ public class Party
 {	
 	//member data
 	private int partyID;
+	private string name;
 	private int DM;
 	private int[] users;
 	private int[] characters;
 	private string[] inventory;
 
 	//constructor
-	public Party(int ID, int dmID, int[] userIDs, int[] characterIDs, string[] inv)
+	public Party(int ID, string _name, int dmID, int[] userIDs, int[] characterIDs, string[] inv)
 	{
 		partyID = ID;
+		name = _name;
 		DM = dmID;
 		users = userIDs;
 		characters = characterIDs;
@@ -23,6 +25,11 @@ public class Party
 	public int getPartyID() 
 	{
 		return partyID;
+	}
+
+	public string getName() 
+	{
+		return name;
 	}
 
 	public int getDM() 

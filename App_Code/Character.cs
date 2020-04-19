@@ -52,7 +52,12 @@ public class Character
 	private string eyeColor;
 	private string skinColor;
 	private string hairColor;
-	//constructor
+
+	//constructors
+	public Character() 
+	{
+	
+	}
 	public Character(int characterID, int userID, string characterName, string characterGender, string characterClass, string characterRace, int characterLevel, string background, string alignment, int strength, int dex, int constitution, int intelligence, int wisdom, int skillsAcrobatics, int skillsAnimalHandling, int skillsArcana, int skillsAthletics, int skillsDeception, int skillsHistory, int skillsInsight, int skillsIntimidation, int skillsInvestigation, int skillsMedicine, int skillsNature, int skillsPerception, int skillsPerformance, int skillsPersuasion, int skillsReligion, int skillsSleightOfHand, int skillsStealth, int skillsSurvival, int age, string eyeColor, string skinColor, string hairColor)
 	{
 		this.characterID = characterID;
@@ -284,15 +289,15 @@ public class Character
 	{
 		Die die = new Die();
 
-		characterName = NAMES[die.roll(NAMES.Length)];
-		characterGender = GENDER[die.roll(GENDER.Length)];
-		characterClass = CLASS[die.roll(CLASS.Length)];
-		characterRace = RACE[die.roll(RACE.Length)];
-		background = BACKGROUND[die.roll(BACKGROUND.Length)];
-		alignment = ALIGNMENT[die.roll(ALIGNMENT.Length)];
-		eyeColor = EYECOLOR[die.roll(EYECOLOR.Length)];
-		skinColor = SKINCOLOR[die.roll(SKINCOLOR.Length)];
-		hairColor = HAIRCOLOR[die.roll(HAIRCOLOR.Length)];
+		characterName = NAMES[die.roll(NAMES.Length -1)];
+		characterGender = GENDER[die.roll(GENDER.Length -1)];
+		characterClass = CLASS[die.roll(CLASS.Length -1)];
+		characterRace = RACE[die.roll(RACE.Length -1)];
+		background = BACKGROUND[die.roll(BACKGROUND.Length -1)];
+		alignment = ALIGNMENT[die.roll(ALIGNMENT.Length -1)];
+		eyeColor = EYECOLOR[die.roll(EYECOLOR.Length -1)];
+		skinColor = SKINCOLOR[die.roll(SKINCOLOR.Length -1)];
+		hairColor = HAIRCOLOR[die.roll(HAIRCOLOR.Length -1)];
 
 		characterLevel = die.roll(20);
 		strength = die.roll(20);

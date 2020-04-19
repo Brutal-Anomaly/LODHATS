@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    var rollnum = "";
+    var modifier = "";
+
+    if (IsPost)
+    {
+        modifier = Request.Form["modifier"];
+        Die die = new Die();
+        if (!Request.Form["D-20"].IsEmpty())
+        {
+            rollnum = die.roll(20).ToString();
+        } else if (!Request.Form["D-12"].IsEmpty())
+        {
+            rollnum = die.roll(12).ToString();
+        } else if (!Request.Form["D-10"].IsEmpty())
+        {
+            rollnum = die.roll(10).ToString();
+        } else if (!Request.Form["D-8"].IsEmpty())
+        {
+            rollnum = die.roll(8).ToString();
+        }
+    }
+}
+<div class="jumbotron vertical-center">
+    <h1 class="text-center">DICE</h1>
+    <p class="text-center">For official dice rules and regulations click <a href="https://dnd.wizards.com/rules-introduction">here</a></p>
+</div>
+<form class="form-group" method="POST">
+    <div class="form-row d-flex justify-content-center">
+        <label class="form-inline">
+            <input type="image" name="D-20" id="D-20" src="~/Images/dice-twenty-faces-twenty.png" class="img-thumbnail rounded" alt="D-20"/>
+            <input type="image" name="D-12" src="~/Images/d12.png" class="img-thumbnail rounded" alt="D-12"/>
+        </label>
+    </div>
+    <div class="form-row d-flex justify-content-center">
+        <label class="form-inline">
+            <input type="image" name="D-10" src="~/Images/d10.png" class="img-thumbnail rounded" alt="D-10"/>
+            <input type="image" name="D-8" src="~/Images/dice-eight-faces-eight.png" class="img-thumbnail rounded"alt="D-8"/>
+        </label>
+    </div>
+    <div class="text-center">Please click a dice to generate a random die roll.</div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <label class="form-inline">
+            <input class="form-control" type="text" id="rollgenerated" placeholder="Roll Generated..." value="@rollnum" readonly>
+            +
+            <input type="number" min="0" max="20" class="form-control" name="modifier" id="modifier" value="@modifier" placeholder="Modifier">
+        </label>
+    </div>
+</form>
+
+
