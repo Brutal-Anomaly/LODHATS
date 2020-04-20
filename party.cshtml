@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/_SiteLayout.cshtml";
+
     //party passed from database party class created for testing purposes
     int[] userIds = { 0, 1 };
     int[] charIds = { 0, 1 };
@@ -23,6 +24,27 @@
     char2.generateRandomAttributes();
 
     Character[] characters = { char1, char2 };
+
+    //get userid from session
+    //if user id=dmid
+    var dm = false;
+    /*if (Session["username"] != null)
+    {
+        var username = (string)Session["username"];
+        <p>@username</p>
+
+    }
+    */
+    var testuserid = 0;
+    if (testuserid == party.getDM())
+    {
+        dm = true;
+    }
+    else
+    {
+        dm = false;
+    }
+
 }
 <head>
     <script src="https://kit.fontawesome.com/39a57a53c2.js" crossorigin="anonymous"></script>
@@ -81,8 +103,11 @@
                             <form>
                                 <div class="form-row">
                                     <!--   create popups      -->
-                                    <input class="form-control btn-dark" type="button" id="Add" name="Add" value="Add" data-toggle="modal" data-target="#addModal">
-                                    <input class="form-control btn-dark" type="button" id="Remove" name="Remove" value="Remove" data-toggle="modal" data-target="#removeModal">
+                                    @if (dm)
+                                    {
+                                        <input class="form-control btn-dark" type="button" id="Add" name="Add" value="Add" data-toggle="modal" data-target="#addModal">
+                                        <input class="form-control btn-dark" type="button" id="Remove" name="Remove" value="Remove" data-toggle="modal" data-target="#removeModal">
+                                    }
                                 </div>
                             </form>
                         </div>
@@ -124,7 +149,10 @@
                                                     Dungeon Master
                                                 </h4>
                                                 <div class="mt-5">
-                                                    <a href="#" data-toggle="modal" data-target="#settingsModal">Change</a>
+                                                    @if (dm)
+                                                    {
+                                                        <a href="#" data-toggle="modal" data-target="#settingsModal">Change</a>
+                                                    }
                                                     <br />
                                                 </div>
                                             </div>
@@ -327,7 +355,10 @@
                                                         Level: @x.getLevel()
                                                         <br />
                                                         <div class="mt-2">
-                                                            <a href="">Remove</a>
+                                                            @if (dm)
+                                                            {
+                                                                <a href="">Remove</a>
+                                                            }
                                                             <br />
                                                         </div>
                                                     </p>
@@ -468,7 +499,6 @@
         border-radius: 0px;
     }
 </style>
-
 
 
 <!---    Functions        -->

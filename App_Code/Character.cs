@@ -11,7 +11,7 @@ public class Character
 	private readonly string[] RACE = { "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Orc of Exandria", "Aarakocra", "Genasi", "Goliath", "Aasimar", "Bugbear", "Firbolg", "Goblin", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Orc", "Tabaxi", "Triton", "Yuan-ti Pureblood", "Feral Tiefling", "Tortle", "Changeling", "Kalashtar", "Orc of Eberron", "Shifter", "Warforged", "Gith", "Centaur", "Loxodon", "Minotaur", "Simic Hybrid", "Vedalken", "Verdan", "Locathah", "Grung" };
 	private readonly string[] EYECOLOR = { "Blue", "Green", "Hazel", "Brown", "Black", "Purple", "Yellow", "Red", "Grey"};
 	private readonly string[] SKINCOLOR = { "White", "Tan", "Olive", "Oriental", "Brown", "Black", "Blue", "Pink", "Green", "Red", "Yellow", "Grey"};
-	private readonly string[] HAIRCOLOR = { "Blonde", "Dirty blonde", "Brunette", "Black", "Ginger", "Strawberry", "Grey" };
+	private readonly string[] HAIRCOLOR = { "Blonde", "Dirty Blonde", "Brunette", "Black", "Ginger", "Strawberry", "Grey" , "N/A"};
 
 	// member data
 	private int characterID;
