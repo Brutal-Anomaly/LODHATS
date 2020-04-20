@@ -129,6 +129,7 @@
         string characterClass= "";
         string characterRace= "";
         int characterLevel= 0;
+        int exp = 0;
         string background= "";
         string alignment= "";
         int strength= 0;
@@ -136,6 +137,7 @@
         int constitution= 0;
         int intelligence= 0;
         int wisdom= 0;
+        int speed = 0;
         int charisma= 0;
         int inspiration= 0;
         int skillsAcrobatics= 0;
@@ -170,6 +172,7 @@
             characterClass = row.characterclass;
             characterRace = row.characterrace;
             characterLevel = row.characterlevel;
+            exp = row.exp;
             background = row.background;
             alignment = row.alignment;
             strength = row.strength;
@@ -177,6 +180,7 @@
             constitution = row.constitution;
             intelligence = row.intelligence;
             wisdom = row.wisdom;
+            speed = row.speed;
             charisma = row.charisma;
             inspiration = row.inspiration;
             skillsAcrobatics = row.skillsacrobatics;
@@ -202,7 +206,7 @@
             skinColor = row.skin;
             hairColor = row.hair;
         }
-        return new Character( characterID,  userID,  characterName,  characterGender,  characterClass,  characterRace,  characterLevel,  background,  alignment,  strength,  dex,  constitution,  intelligence,  wisdom,  skillsAcrobatics,  skillsAnimalHandling,  skillsArcana,  skillsAthletics,  skillsDeception,  skillsHistory,  skillsInsight,  skillsIntimidation,  skillsInvestigation,  skillsMedicine,  skillsNature,  skillsPerception,  skillsPerformance,  skillsPersuasion,  skillsReligion,  skillsSleightOfHand,  skillsStealth,  skillsSurvival,  age,  eyeColor,  skinColor, hairColor);
+        return new Character( characterID,  userID,  characterName,  characterGender,  characterClass,  characterRace,  characterLevel, exp, background,  alignment,  strength,  dex,  constitution,  intelligence,  wisdom,  speed, charisma, inspiration, skillsAcrobatics,  skillsAnimalHandling,  skillsArcana,  skillsAthletics,  skillsDeception,  skillsHistory,  skillsInsight,  skillsIntimidation,  skillsInvestigation,  skillsMedicine,  skillsNature,  skillsPerception,  skillsPerformance,  skillsPersuasion,  skillsReligion,  skillsSleightOfHand,  skillsStealth,  skillsSurvival,  age,  eyeColor,  skinColor, hairColor);
     }
 
     public Character[] getCharacters(int userID)
@@ -221,6 +225,7 @@
             string characterClass = row.characterclass;
             string characterRace = row.characterrace;
             int characterLevel = row.characterlevel;
+            int exp = row.exp;
             string background = row.background;
             string alignment = row.alignment;
             int strength = row.strength;
@@ -228,6 +233,7 @@
             int constitution = row.constitution;
             int intelligence = row.intelligence;
             int wisdom = row.wisdom;
+            int speed = row.speed;
             int charisma = row.charisma;
             int inspiration = row.inspiration;
             int skillsAcrobatics = row.skillsacrobatics;
@@ -253,7 +259,7 @@
             string skinColor = row.skin;
             string hairColor = row.hair;
 
-            charList.Add(new Character(characterID, userID, characterName, characterGender, characterClass, characterRace, characterLevel, background, alignment, strength, dex, constitution, intelligence, wisdom, skillsAcrobatics, skillsAnimalHandling, skillsArcana, skillsAthletics, skillsDeception, skillsHistory, skillsInsight, skillsIntimidation, skillsInvestigation, skillsMedicine, skillsNature, skillsPerception, skillsPerformance, skillsPersuasion, skillsReligion, skillsSleightOfHand, skillsStealth, skillsSurvival, age, eyeColor, skinColor, hairColor));
+            charList.Add(new Character(characterID, userID, characterName, characterGender, characterClass, characterRace, characterLevel, exp, background, alignment, strength, dex, constitution, intelligence, wisdom, speed, charisma, inspiration, skillsAcrobatics, skillsAnimalHandling, skillsArcana, skillsAthletics, skillsDeception, skillsHistory, skillsInsight, skillsIntimidation, skillsInvestigation, skillsMedicine, skillsNature, skillsPerception, skillsPerformance, skillsPersuasion, skillsReligion, skillsSleightOfHand, skillsStealth, skillsSurvival, age, eyeColor, skinColor, hairColor)); 
         }
         Character[] characters = charList.ToArray();
         return characters;

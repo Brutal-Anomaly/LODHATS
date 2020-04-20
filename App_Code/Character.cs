@@ -5,7 +5,7 @@ public class Character
 	//constants
 	private readonly string[] NAMES = { "Dian", "Nese", "Falledrick", "Mae", "Valhein", "Dol", "Earl", "Cedria", "Azulei", "Yun", "Cybel", "Ina", "Foolly", "Skili", "Juddol", "Janver", "Viska", "Hirschendy", "Silka", "Hellsturn", "Essa", "Mykonos", "Fenton", "Tyrena", "Inqoul", "Mankov", "Derilia", "Hexema", "Wyton", "Kaedum", "Gouram", "Libertia", "Berasailles", "Juxta", "Tae’hr", "Comtol", "Gherak", "Hest", "Qony", "Masamka", "Twyll", "Tenos", "Axim", "Westrynda", "Saphros", "Olkham", "Handok", "Kemetra", "Yos", "Wentingle", "Ames", "Molosh", "Inkov", "Phasasia", "Ziedinghal", "Bregul", "Eishvack", "Lora", "Krenting", "Symbole", "Elignoir", "Keligkrul", "Qwey", "Vindinglag", "Kusakira", "Weme", "Fayd", "Rushvita", "Vulkor", "Amers", "Ortos", "Vanius", "Chandellia", "Lilikol", "Catca", "Cormus", "Yuela", "Ariban", "Tryton", "Fesscha", "Opalul", "Zakzos", "Hortimer", "Anklos", "Dushasiez", "Polop", "Mektal", "Orinphus", "Denatra", "Elkazzi", "Dyne", "Domos", "Letryal", "Manniv", "Sylestia", "Esnol", "Fasafuros", "Ghanfer", "Kahnite", "Sweyda", "Uylis", "Retenia", "Bassos", "Arkensval", "Impelos", "Grandius", "Fulcrux", "Lassahein", "Edsveda", "Earakun", "Fous", "Maas", "Basenphal", "Jubidya", "Divya", "Kosunten", "Ordayius", "Dozzer", "Gangher", "Escha", "Manchul", "Kempos", "Kulo", "Urtench", "Kesta", "Helahona", "Ryte", "Falcia", "Umannos", "Urkensvall", "Fedra", "Bulkensar", "Comia", "Tyul", "Lasendarl" };
 	private readonly string[] GENDER = { "Male", "Female" };
-	private readonly string[] BACKGROUND = { "Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan", "Guild Merchang", "Hermit", "Knight", "Noble", "Outlander", "Pirate", "Sage", "Sailor", "Soldier", "Spy", "Urchin", "Thug", "Priest", "Bounty Hunter", "Artisan", "Commoner", " Jester", "Minstrel" };
+	private readonly string[] BACKGROUND = { "Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan", "Guild Merchant", "Hermit", "Knight", "Noble", "Outlander", "Pirate", "Sage", "Sailor", "Soldier", "Spy", "Urchin", "Thug", "Priest", "Bounty Hunter", "Artisan", "Commoner", " Jester", "Minstrel" };
 	private readonly string[] ALIGNMENT = { "Lawful Good", "Lawful Nuetral", "Lawful Evil", "Nuetral Good", "True Nuetral", "Nuetral Evil", "Chaotic Good", "Chaotic Nuetral", "Chaotic Evil" };
 	private readonly string[] CLASS = { "Barbarian", "Fighter", "Paladin", "Bard", "Sorcerer", "Warlock", "Cleric", "Druid", "Monk", "Ranger", "Rogue", "Wizard" };
 	private readonly string[] RACE = { "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Orc of Exandria", "Aarakocra", "Genasi", "Goliath", "Aasimar", "Bugbear", "Firbolg", "Goblin", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Orc", "Tabaxi", "Triton", "Yuan-ti Pureblood", "Feral Tiefling", "Tortle", "Changeling", "Kalashtar", "Orc of Eberron", "Shifter", "Warforged", "Gith", "Centaur", "Loxodon", "Minotaur", "Simic Hybrid", "Vedalken", "Verdan", "Locathah", "Grung" };
@@ -21,6 +21,7 @@ public class Character
 	private string characterClass;
 	private string characterRace;
 	private int characterLevel;
+	private int exp;
 	private string background;
 	private string alignment;
 	private int strength;
@@ -28,6 +29,7 @@ public class Character
 	private int constitution;
 	private int intelligence;
 	private int wisdom;
+	private int speed;
 	private int charisma;
 	private int inspiration;
 	private int skillsAcrobatics;
@@ -58,7 +60,7 @@ public class Character
 	{
 	
 	}
-	public Character(int characterID, int userID, string characterName, string characterGender, string characterClass, string characterRace, int characterLevel, string background, string alignment, int strength, int dex, int constitution, int intelligence, int wisdom, int skillsAcrobatics, int skillsAnimalHandling, int skillsArcana, int skillsAthletics, int skillsDeception, int skillsHistory, int skillsInsight, int skillsIntimidation, int skillsInvestigation, int skillsMedicine, int skillsNature, int skillsPerception, int skillsPerformance, int skillsPersuasion, int skillsReligion, int skillsSleightOfHand, int skillsStealth, int skillsSurvival, int age, string eyeColor, string skinColor, string hairColor)
+	public Character(int characterID, int userID, string characterName, string characterGender, string characterClass, string characterRace, int characterLevel, int exp, string background, string alignment, int strength, int dex, int constitution, int intelligence, int wisdom, int speed, int charisma, int inspiration, int skillsAcrobatics, int skillsAnimalHandling, int skillsArcana, int skillsAthletics, int skillsDeception, int skillsHistory, int skillsInsight, int skillsIntimidation, int skillsInvestigation, int skillsMedicine, int skillsNature, int skillsPerception, int skillsPerformance, int skillsPersuasion, int skillsReligion, int skillsSleightOfHand, int skillsStealth, int skillsSurvival, int age, string eyeColor, string skinColor, string hairColor)
 	{
 		this.characterID = characterID;
 		this.userID = userID;
@@ -67,13 +69,17 @@ public class Character
 		this.characterClass = characterClass;
 		this.characterRace = characterRace;
 		this.characterLevel = characterLevel;
+		this.exp = exp;
 		this.background = background;
 		this.alignment = alignment;
 		this.strength = strength;
 		this.dex = dex;
 		this.constitution = constitution;
 		this.intelligence = intelligence;
+		this.charisma = charisma;
+		this.inspiration = inspiration;
 		this.wisdom = wisdom;
+		this.speed = speed;
 		this.skillsAcrobatics = skillsAcrobatics;
 		this.skillsAnimalHandling = skillsAnimalHandling;
 		this.skillsArcana = skillsArcana;
@@ -134,6 +140,11 @@ public class Character
 		return characterLevel;
 	}
 
+	public int getEXP() 
+	{
+		return exp;
+	}
+
 	public string getBackground() 
 	{
 		return background;
@@ -179,6 +190,11 @@ public class Character
 		return inspiration;
 	}
 
+	public int getSpeed() 
+	{
+		return speed;
+	}
+
 	public int getAcrobatics()
 	{
 		return skillsAcrobatics;
@@ -217,6 +233,11 @@ public class Character
 	public int getIntimidation()
 	{
 		return skillsIntimidation;
+	}
+
+	public int getInvestigation() 
+	{
+		return skillsInvestigation;
 	}
 
 	public int getMedicine()
@@ -300,6 +321,69 @@ public class Character
 		hairColor = HAIRCOLOR[die.roll(HAIRCOLOR.Length -1)];
 
 		characterLevel = die.roll(20);
+		switch (characterLevel) {
+
+			case 1:
+				exp = 0;
+				break;
+			case 2:
+				exp = 300;
+				break;
+			case 3:
+				exp = 900;
+				break;
+			case 4:
+				exp = 2700;
+				break;
+			case 5:
+				exp = 6500;
+				break;
+			case 6:
+				exp = 14000;
+				break;
+			case 7:
+				exp = 23000;
+				break;
+			case 8:
+				exp = 34000;
+				break;
+			case 9:
+				exp = 48000;
+				break;
+			case 10:
+				exp = 64000;
+				break;
+			case 11:
+				exp = 85000;
+				break;
+			case 12:
+				exp = 100000;
+				break;
+			case 13:
+				exp = 120000;
+				break;
+			case 14:
+				exp = 140000;
+				break;
+			case 15:
+				exp = 165000;
+				break;
+			case 16:
+				exp = 195000;
+				break;
+			case 17:
+				exp = 225000;
+				break;
+			case 18:
+				exp = 265000;
+				break;
+			case 19:
+				exp = 305000;
+				break;
+			case 20:
+				exp = 355000;
+				break;
+		}
 		strength = die.roll(20);
 		dex = die.roll(20);
 		constitution = die.roll(20);

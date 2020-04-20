@@ -1,20 +1,129 @@
 ﻿@{
     Layout = "~/_SiteLayout.cshtml";
 
+    var random = "";
+    var readon = false;
+    var charid = "1";
+    var name = "";
+
+
+    //values passed into page
+    var charname = "";
+    var charclass = "";
+    var race = "";
+    var sex = "";
+    var alignment = "";
+    var background = "";
+    var level = "";
+    var exp = "";
+    var age = "";
+    var eyes = "";
+    var skin = "";
+    var hair = "";
+
+    var strength = "";
+    var dex = "";
+    var intelligence = "";
+    var speed = "";
+    var inspiration = "";
+    var constitution = "";
+    var wisdom = "";
+    var charisma = "";
+
+    var athletics = "";
+    var arcana = "";
+    var history = "";
+    var investigation = "";
+    var nature = "";
+    var religion = "";
+    var acrobatics = "";
+    var sleightofhand = "";
+    var stealth = "";
+    var animalhandling = "";
+    var insight = "";
+    var medicine = "";
+    var perception = "";
+    var survival = "";
+    var deception = "";
+    var intimidation = "";
+    var performance = "";
+    var persuasion = "";
+
     //if provided a character id, load character from db
 
-    var name = "";
+
+    //check user to enable or disable readonly (imitation cookie is created for testing purposes)
+    var cookie = "testuser";
+    //if character from id user = tst user
+    var userFromCharacter = "testuser";
+
+    if (cookie == userFromCharacter)
+    {
+        readon = false;
+    }
+    else { readon = true; }
+    //else
 
     //else create new
     Character character = new Character();
 
+    if (IsPost)
+    {
+        random = Request.Form["passingtorazor"];
+
+        if (random == "set")
+        {
+            character.generateRandomAttributes();
+
+            charname = character.getName();
+            charclass = character.getClass();
+            race = character.getRace();
+            sex = character.getGender();
+            alignment = character.getAlignment();
+            background = character.getBackground();
+            level = character.getLevel().ToString();
+            exp = character.getEXP().ToString();
+            age = character.getAge().ToString();
+            eyes = character.getEyes();
+            skin = character.getSkin();
+            hair = character.getHair();
+
+            strength = character.getStrength().ToString();
+            dex = character.getDex().ToString();
+            intelligence = character.getIntelligence().ToString();
+            speed = character.getSpeed().ToString();
+            inspiration = character.getInspiration().ToString();
+            constitution = character.getConstitution().ToString();
+            wisdom = character.getWisdom().ToString();
+            charisma = character.getCharisma().ToString();
+
+            athletics = character.getAthletics().ToString();
+            arcana = character.getArcana().ToString();
+            history = character.getHistory().ToString();
+            investigation = character.getInvestigation().ToString();
+            nature = character.getNature().ToString();
+            religion = character.getReligion().ToString();
+            acrobatics = character.getAcrobatics().ToString();
+            sleightofhand = character.getSleightOfHand().ToString();
+            stealth = character.getStealth().ToString();
+            animalhandling = character.getAnimalHandling().ToString();
+            insight = character.getInsight().ToString();
+            medicine = character.getMedicine().ToString();
+            perception = character.getPerception().ToString();
+            survival = character.getSurvival().ToString();
+            deception = character.getDeception().ToString();
+            intimidation = character.getIntimidation().ToString();
+            performance = character.getPerformance().ToString();
+            persuasion = character.getPersuasion().ToString();
+        }
+    }
 }
     <div class="jumbotron vertical-center">
         <h1 class="text-center text-capitalize text-lg-center">Character Sheet</h1>
         <p class="text-md-center">@name</p>
     </div>
     <div class="container">
-        <form>
+        <form method="post">
             <div class="row">
                 <div class="col-sm">
                     <div class="card mt-5">
@@ -25,157 +134,418 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCharacterName">Character Name</label>
-                                    <input type="text" class="form-control" id="inputCharacterName" placeholder="Character Name">
+                                    @if (readon || charid != "")
+                                    {
+                                        <input type="text" class="form-control" id="inputCharacterName" placeholder="Character Name" value="@charname" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control" id="inputCharacterName" placeholder="Character Name" value="@charname">
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="selectClass">Class:</label>
-                                    <select class="form-control" id="selectClass" placeholder="Select Class">
-                                        <option>Select class...</option>
-                                        <option>Barbarian</option>
-                                        <option>Bard</option>
-                                        <option>Cleric</option>
-                                        <option>Druid</option>
-                                        <option>Fighter</option>
-                                        <option>Monk</option>
-                                        <option>Paladin</option>
-                                        <option>Ranger</option>
-                                        <option>Rogue</option>
-                                        <option>Sorcerer</option>
-                                        <option>Warlock</option>
-                                        <option>Wizard</option>
-                                    </select>
+                                    @if (readon || charid != "")
+                                    {
+                                        <select class="form-control" id="selectClass" placeholder="Select Class" disabled>
+                                            <option>Select class...</option>
+                                            <option>Barbarian</option>
+                                            <option>Bard</option>
+                                            <option>Cleric</option>
+                                            <option>Druid</option>
+                                            <option>Fighter</option>
+                                            <option>Monk</option>
+                                            <option>Paladin</option>
+                                            <option>Ranger</option>
+                                            <option>Rogue</option>
+                                            <option>Sorcerer</option>
+                                            <option>Warlock</option>
+                                            <option>Wizard</option>
+                                        </select>
+                                    }
+                                    else
+                                    {
+
+                                        <select class="form-control" id="selectClass" placeholder="Select Class">
+                                            <option>Select class...</option>
+                                            <option>Barbarian</option>
+                                            <option>Bard</option>
+                                            <option>Cleric</option>
+                                            <option>Druid</option>
+                                            <option>Fighter</option>
+                                            <option>Monk</option>
+                                            <option>Paladin</option>
+                                            <option>Ranger</option>
+                                            <option>Rogue</option>
+                                            <option>Sorcerer</option>
+                                            <option>Warlock</option>
+                                            <option>Wizard</option>
+                                        </select>
+                                    }
                                 </div>
                                 <div class="form-group col-md-6">
+                                    <label for="selectSex">Character Sex</label>
+                                    @if (readon || charid != "")
+                                    {
+                                        <select class="form-control" id="selectSex" placeholder="Select Sex" disabled>
+                                            <option>Select Sex...</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control" id="selectSex" placeholder="Select Sex">
+                                            <option>Select Sex...</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
                                     <label for="inputLevel">Level</label>
-                                    <input type="number" min="0" class="form-control" id="inputLevel" placeholder="Level">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="1" max="20" class="form-control" id="inputLevel" placeholder="Level" value="@level" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="1" max="20" class="form-control" id="inputLevel" placeholder="Level" value="@level">
+                                    }
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputExperiencePoints">Experience Points</label>
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" class="form-control" id="inputExperiencePoints" placeholder="Experience Points" value="@exp" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" class="form-control" id="inputExperiencePoints" placeholder="Experience Points" value="@exp">
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="selectRace">Race:</label>
-                                    <select class="form-control" id="selectRace">
-                                        <option>Select Race...</option>
-                                        <option>Aarakocra</option>
-                                        <option>Aasimar</option>
-                                        <option>Bugbear</option>
-                                        <option>Centaur</option>
-                                        <option>Changeling</option>
-                                        <option>Dragonborn</option>
-                                        <option>Dwarf</option>
-                                        <option>Elf</option>
-                                        <option>Feral Tiefling</option>
-                                        <option>Firbolg</option>
-                                        <option>Genasi</option>
-                                        <option>Gith</option>
-                                        <option>Gnome</option>
-                                        <option>Goblin</option>
-                                        <option>Goliath</option>
-                                        <option>Grung</option>
-                                        <option>Half-Elf</option>
-                                        <option>Half-Orc</option>
-                                        <option>Halfling</option>
-                                        <option>Hobgoblin</option>
-                                        <option>Human</option>
-                                        <option>Kalashtar</option>
-                                        <option>Kenku</option>
-                                        <option>Kobold</option>
-                                        <option>Lizardfolk</option>
-                                        <option>Locathah</option>
-                                        <option>Loxodon</option>
-                                        <option>Minotaur</option>
-                                        <option>Orc of Eberron</option>
-                                        <option>Orc of Exandria</option>
-                                        <option>Orc</option>
-                                        <option>Shifter</option>
-                                        <option>Simic Hybrid</option>
-                                        <option>Tabaxi</option>
-                                        <option>Tiefling</option>
-                                        <option>Tortle</option>
-                                        <option>Triton</option>
-                                        <option>Vedalken</option>
-                                        <option>Verdan</option>
-                                        <option>Warforged</option>
-                                        <option>Yuan-ti Pureblood</option>
-                                    </select>
+                                    @if (readon || charid != "")
+                                    {
+                                        <select class="form-control" id="selectRace" disabled>
+                                            <option>Select Race...</option>
+                                            <option>Aarakocra</option>
+                                            <option>Aasimar</option>
+                                            <option>Bugbear</option>
+                                            <option>Centaur</option>
+                                            <option>Changeling</option>
+                                            <option>Dragonborn</option>
+                                            <option>Dwarf</option>
+                                            <option>Elf</option>
+                                            <option>Feral Tiefling</option>
+                                            <option>Firbolg</option>
+                                            <option>Genasi</option>
+                                            <option>Gith</option>
+                                            <option>Gnome</option>
+                                            <option>Goblin</option>
+                                            <option>Goliath</option>
+                                            <option>Grung</option>
+                                            <option>Half-Elf</option>
+                                            <option>Half-Orc</option>
+                                            <option>Halfling</option>
+                                            <option>Hobgoblin</option>
+                                            <option>Human</option>
+                                            <option>Kalashtar</option>
+                                            <option>Kenku</option>
+                                            <option>Kobold</option>
+                                            <option>Lizardfolk</option>
+                                            <option>Locathah</option>
+                                            <option>Loxodon</option>
+                                            <option>Minotaur</option>
+                                            <option>Orc of Eberron</option>
+                                            <option>Orc of Exandria</option>
+                                            <option>Orc</option>
+                                            <option>Shifter</option>
+                                            <option>Simic Hybrid</option>
+                                            <option>Tabaxi</option>
+                                            <option>Tiefling</option>
+                                            <option>Tortle</option>
+                                            <option>Triton</option>
+                                            <option>Vedalken</option>
+                                            <option>Verdan</option>
+                                            <option>Warforged</option>
+                                            <option>Yuan-ti Pureblood</option>
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control" id="selectRace">
+                                            <option>Select Race...</option>
+                                            <option>Aarakocra</option>
+                                            <option>Aasimar</option>
+                                            <option>Bugbear</option>
+                                            <option>Centaur</option>
+                                            <option>Changeling</option>
+                                            <option>Dragonborn</option>
+                                            <option>Dwarf</option>
+                                            <option>Elf</option>
+                                            <option>Feral Tiefling</option>
+                                            <option>Firbolg</option>
+                                            <option>Genasi</option>
+                                            <option>Gith</option>
+                                            <option>Gnome</option>
+                                            <option>Goblin</option>
+                                            <option>Goliath</option>
+                                            <option>Grung</option>
+                                            <option>Half-Elf</option>
+                                            <option>Half-Orc</option>
+                                            <option>Halfling</option>
+                                            <option>Hobgoblin</option>
+                                            <option>Human</option>
+                                            <option>Kalashtar</option>
+                                            <option>Kenku</option>
+                                            <option>Kobold</option>
+                                            <option>Lizardfolk</option>
+                                            <option>Locathah</option>
+                                            <option>Loxodon</option>
+                                            <option>Minotaur</option>
+                                            <option>Orc of Eberron</option>
+                                            <option>Orc of Exandria</option>
+                                            <option>Orc</option>
+                                            <option>Shifter</option>
+                                            <option>Simic Hybrid</option>
+                                            <option>Tabaxi</option>
+                                            <option>Tiefling</option>
+                                            <option>Tortle</option>
+                                            <option>Triton</option>
+                                            <option>Vedalken</option>
+                                            <option>Verdan</option>
+                                            <option>Warforged</option>
+                                            <option>Yuan-ti Pureblood</option>
+                                        </select>
+                                    }
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="selectBackground">Background:</label>
+                                    @if (readon || charid != "")
+                                    {
+                                        <select class="form-control" id="selectBackground" disabled>
+                                            <option>Select Background...</option>
+                                            <option>Acolyte</option>
+                                            <option>Artisan</option>
+                                            <option>Bounty Hunter</option>
+                                            <option>Commoner</option>
+                                            <option>Charlatan</option>
+                                            <option>Criminal</option>
+                                            <option>Entertainer</option>
+                                            <option>Folk Hero</option>
+                                            <option>Gladiator</option>
+                                            <option>Guild Artisan</option>
+                                            <option>Guild Merchant</option>
+                                            <option>Hermit</option>
+                                            <option>Jester</option>
+                                            <option>Knight</option>
+                                            <option>Minstrel</option>
+                                            <option>Noble</option>
+                                            <option>Outlander</option>
+                                            <option>Pirate</option>
+                                            <option>Priest</option>
+                                            <option>Sage</option>
+                                            <option>Sailor</option>
+                                            <option>Soldier</option>
+                                            <option>Spy</option>
+                                            <option>Thug</option>
+                                            <option>Urchin</option>
+                                            <option>N/A</option>
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control" id="selectBackground">
+                                            <option>Select Background...</option>
+                                            <option>Acolyte</option>
+                                            <option>Artisan</option>
+                                            <option>Bounty Hunter</option>
+                                            <option>Commoner</option>
+                                            <option>Charlatan</option>
+                                            <option>Criminal</option>
+                                            <option>Entertainer</option>
+                                            <option>Folk Hero</option>
+                                            <option>Gladiator</option>
+                                            <option>Guild Artisan</option>
+                                            <option>Guild Merchant</option>
+                                            <option>Hermit</option>
+                                            <option>Jester</option>
+                                            <option>Knight</option>
+                                            <option>Minstrel</option>
+                                            <option>Noble</option>
+                                            <option>Outlander</option>
+                                            <option>Pirate</option>
+                                            <option>Priest</option>
+                                            <option>Sage</option>
+                                            <option>Sailor</option>
+                                            <option>Soldier</option>
+                                            <option>Spy</option>
+                                            <option>Thug</option>
+                                            <option>Urchin</option>
+                                            <option>N/A</option>
+                                        </select>
+                                    }
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectAlignment">Alignment:</label>
-                                    <select class="form-control" id="selectAlignment">
-                                        <option>Select Alignment...</option>
-                                        <option>Lawful Good</option>
-                                        <option>Neutral Good</option>
-                                        <option>Chaotic Good</option>
-                                        <option>Lawful Neutral</option>
-                                        <option>Neutral</option>
-                                        <option>Chaotic Neutral</option>
-                                        <option>Lawful Evil</option>
-                                        <option>Neutral Evil</option>
-                                        <option>Chaotic Evil</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputExperiencePoints">Experience Points</label>
-                                    <input type="number" min="0" class="form-control" id="inputExperiencePoints" placeholder="Experience Points">
+                                    @if (readon)
+                                    {
+                                        <select class="form-control" id="selectAlignment" disabled>
+                                            <option>Select Alignment...</option>
+                                            <option>Lawful Good</option>
+                                            <option>Neutral Good</option>
+                                            <option>Chaotic Good</option>
+                                            <option>Lawful Neutral</option>
+                                            <option>Neutral</option>
+                                            <option>Chaotic Neutral</option>
+                                            <option>Lawful Evil</option>
+                                            <option>Neutral Evil</option>
+                                            <option>Chaotic Evil</option>
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control" id="selectAlignment">
+                                            <option>Select Alignment...</option>
+                                            <option>Lawful Good</option>
+                                            <option>Neutral Good</option>
+                                            <option>Chaotic Good</option>
+                                            <option>Lawful Neutral</option>
+                                            <option>Neutral</option>
+                                            <option>Chaotic Neutral</option>
+                                            <option>Lawful Evil</option>
+                                            <option>Neutral Evil</option>
+                                            <option>Chaotic Evil</option>
+                                        </select>
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="selelectEyeColor">Eye Color:</label>
-                                    <select class="form-control" id="selectEyeColor">
-                                        <option>Select Eye Color...</option>
-                                        <option>Black</option>
-                                        <option>Blue</option>
-                                        <option>Brown</option>
-                                        <option>Green</option>
-                                        <option>Grey</option>
-                                        <option>Hazel</option>
-                                        <option>Purple</option>
-                                        <option>Red</option>
-                                        <option>Yellow</option>
-                                    </select>
+                                    <div class="form-group col-md-3">
+                                        <label for="selelectEyeColor">Eye Color:</label>
+                                        @if (readon || charid != "")
+                                        {
+                                            <select class="form-control" id="selectEyeColor" disabled>
+                                                <option>Select Eye Color...</option>
+                                                <option>Black</option>
+                                                <option>Blue</option>
+                                                <option>Brown</option>
+                                                <option>Green</option>
+                                                <option>Grey</option>
+                                                <option>Hazel</option>
+                                                <option>Purple</option>
+                                                <option>Red</option>
+                                                <option>Yellow</option>
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <select class="form-control" id="selectEyeColor">
+                                                <option>Select Eye Color...</option>
+                                                <option>Black</option>
+                                                <option>Blue</option>
+                                                <option>Brown</option>
+                                                <option>Green</option>
+                                                <option>Grey</option>
+                                                <option>Hazel</option>
+                                                <option>Purple</option>
+                                                <option>Red</option>
+                                                <option>Yellow</option>
+                                            </select>
+                                        }
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputAge">Age</label>
+                                        @if (readon || charid != "")
+                                        {
+                                            <input type="number" min="1" class="form-control" id="inputAge" placeholder="Age" value="@age" readonly>
+                                        }
+                                        else
+                                        {
+                                            <input type="number" min="1" class="form-control" id="inputAge" placeholder="Age" value="@age">
+                                        }
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="selelectSkinColor">Skin Color:</label>
+                                        @if (readon || charid != "")
+                                        {
+                                            <select class="form-control" id="selectSkinColor" disabled>
+                                                <option>Select Skin Color...</option>
+                                                <option>Black</option>
+                                                <option>Blue</option>
+                                                <option>Brown</option>
+                                                <option>Green</option>
+                                                <option>Olive</option>
+                                                <option>Oriental</option>
+                                                <option>Pink</option>
+                                                <option>Red</option>
+                                                <option>Tan</option>
+                                                <option>Yellow</option>
+                                                <option>White</option>
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <select class="form-control" id="selectSkinColor">
+                                                <option>Select Skin Color...</option>
+                                                <option>Black</option>
+                                                <option>Blue</option>
+                                                <option>Brown</option>
+                                                <option>Green</option>
+                                                <option>Olive</option>
+                                                <option>Oriental</option>
+                                                <option>Pink</option>
+                                                <option>Red</option>
+                                                <option>Tan</option>
+                                                <option>Yellow</option>
+                                                <option>White</option>
+                                            </select>
+                                        }
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="selelectHairColor">Hair Color:</label>
+                                        @if (readon || charid != "")
+                                        {
+                                            <select class="form-control" id="selecthairColor" disabled>
+                                                <option>Select Hair Color...</option>
+                                                <option>Black</option>
+                                                <option>Blonde</option>
+                                                <option>Brunette</option>
+                                                <option>Dirty blonde</option>
+                                                <option>Ginger</option>
+                                                <option>Grey</option>
+                                                <option>Strawberry</option>
+                                                <option>White</option>
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <select class="form-control" id="selecthairColor">
+                                                <option>Select Hair Color...</option>
+                                                <option>Black</option>
+                                                <option>Blonde</option>
+                                                <option>Brunette</option>
+                                                <option>Dirty blonde</option>
+                                                <option>Ginger</option>
+                                                <option>Grey</option>
+                                                <option>Strawberry</option>
+                                                <option>White</option>
+                                            </select>
+                                        }
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="inputAge">Age</label>
-                                    <input type="number" min="1" class="form-control" id="inputAge" placeholder="Age">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="selelectSkinColor">Skin Color:</label>
-                                    <select class="form-control" id="selectSkinColor">
-                                        <option>Select Skin Color...</option>
-                                        <option>Black</option>
-                                        <option>Blue</option>
-                                        <option>Brown</option>
-                                        <option>Green</option>
-                                        <option>Olive</option>
-                                        <option>Oriental</option>
-                                        <option>Pink</option>
-                                        <option>Red</option>
-                                        <option>Tan</option>
-                                        <option>Yellow</option>
-                                        <option>White</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="selelectHairColor">Hair Color:</label>
-                                    <select class="form-control" id="selecthairColor">
-                                        <option>Select Hair Color...</option>
-                                        <option>Black</option>
-                                        <option>Blonde</option>
-                                        <option>Brunette</option>
-                                        <option>Dirty blonde</option>
-                                        <option>Ginger</option>
-                                        <option>Grey</option>
-                                        <option>Strawberry</option>
-                                        <option>White</option>
-                                    </select>
-                                </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
 
             <div class="row">
@@ -188,37 +558,95 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="inputStrength">Strength</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputStrength" placeholder="Strength">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputStrength" placeholder="Strength" value="@strength" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputStrength" placeholder="Strength" value="@strength">
+                                    }
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputDexterity">Dexterity</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputDexterity" placeholder="Dexterity">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputDexterity" placeholder="Dexterity" value="@dex" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputDexterity" placeholder="Dexterity" value="@dex">
+                                    }
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputIntelligence">Intelligence</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputIntelligence" placeholder="Intelligence">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputIntelligence" placeholder="Intelligence" value="@intelligence" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputIntelligence" placeholder="Intelligence" value="@intelligence">
+                                    }
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputSpeed">Speed</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputSpeed" placeholder="Speed">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputSpeed" placeholder="Speed" value="@speed" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputSpeed" placeholder="Speed" value="@speed">
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="inputInspiration">Inspiration</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputInspiration" placeholder="Inspiration">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputInspiration" placeholder="Inspiration" value="@inspiration" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputInspiration" placeholder="Inspiration" value="@inspiration">
+                                    }
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputConstitution">Constitution</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputConstitution" placeholder="Constitution">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputConstitution" placeholder="Constitution" value="@constitution" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputConstitution" placeholder="Constitution" value="@constitution">
+
+                                    }
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputWisdom">Wisdom</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputWisdom" placeholder="Wisdom">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputWisdom" placeholder="Wisdom" value="@wisdom" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputWisdom" placeholder="Wisdom" value="@wisdom">
+
+                                    }
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputCharisma">Charisma</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputCharisma" placeholder="Charisma">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputCharisma" placeholder="Charisma" value="@charisma" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputCharisma" placeholder="Charisma" value="@charisma">
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -240,12 +668,27 @@
                             <div class="form-row">
                                 <div class="form-check" style="margin-top: 25px;">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkAthletics" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkAthletics" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkAthletics" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputAthletics">Athletics</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputAthletics" placeholder="Athletics">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputAthletics" placeholder="Athletics" value="@athletics" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputAthletics" placeholder="Athletics" value="@athletics">
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
@@ -254,50 +697,130 @@
                             <div class="form-row">
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkArcana" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkArcana" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkArcana" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputArcana">Arcana</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputArcana" placeholder="Arcana">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputArcana" placeholder="Arcana" value="@arcana" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputArcana" placeholder="Arcana" value="@arcana">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkHistory" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkHistory" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkHistory" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputHistory">History</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputHistory" placeholder="History">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputHistory" placeholder="History" value="@history" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputHistory" placeholder="History" value="@history">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkInvestigation" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkInvestigation" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkInvestigation" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputInvestigation">Investigation</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputInvestigation" placeholder="Investigation">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputInvestigation" placeholder="Investigation" value="@investigation" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputInvestigation" placeholder="Investigation" value="@investigation">
+
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkNature" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkNature" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkNature" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputNature">Nature</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputNature" placeholder="Nature">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputNature" placeholder="Nature" value="@nature" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputNature" placeholder="Nature" value="@nature">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkReligion" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkReligion" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkReligion" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputReligion">Religion</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputReligion" placeholder="Religion">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputReligion" placeholder="Religion" value="@religion" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputReligion" placeholder="Religion" value="@religion">
+
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
@@ -306,30 +829,76 @@
                             <div class="form-row">
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkAcrobatics" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkAcrobatics" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkAcrobatics" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputAcrobatics">Acrobatics</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputAcrobatics" placeholder="Acrobatics">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputAcrobatics" placeholder="Acrobatics" value="@acrobatics" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputAcrobatics" placeholder="Acrobatics" value="@acrobatics">
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkSleightofHand" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkSleightofHand" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkSleightofHand" value="">
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputSleightofHand">Sleight of Hand</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputSleightofHand" placeholder="Sleight of Hand">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputSleightofHand" placeholder="Sleight of Hand" value="@sleightofhand" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputSleightofHand" placeholder="Sleight of Hand" value="@sleightofhand">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkStealth" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkStealth" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkStealth" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputStealth">Stealth</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputStealth" placeholder="Stealth">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputStealth" placeholder="Stealth" value="@stealth" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputStealth" placeholder="Stealth" value="@stealth">
+
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
@@ -338,50 +907,130 @@
                             <div class="form-row">
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkAnimalHandling" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkAnimalHandling" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkAnimalHandling" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputAnimalHandling">Animal Handling</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputAnimalHandling" placeholder="Animal Handling">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputAnimalHandling" placeholder="Animal Handling" value="@animalhandling" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputAnimalHandling" placeholder="Animal Handling" value="@animalhandling">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkInsight" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkInsight" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkInsight" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputInsight">Insight</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputInsight" placeholder="Insight">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputInsight" placeholder="Insight" value="@insight" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputInsight" placeholder="Insight" value="@insight">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkMedicine" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkMedicine" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkMedicine" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputMedicine">Medicine</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputMedicine" placeholder="Medicine">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputMedicine" placeholder="Medicine" value="@medicine" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputMedicine" placeholder="Medicine" value="@medicine">
+
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkPerception" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkPerception" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkPerception" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputPerception">Perception</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputPerception" placeholder="Perception">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputPerception" placeholder="Perception" value="@perception" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputPerception" placeholder="Perception" value="@perception">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkSurvival" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkSurvival" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkSurvival" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputSurvival">Survival</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputSurvival" placeholder="Survival">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputSurvival" placeholder="Survival" value="@survival" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputSurvival" placeholder="Survival" value="@survival">
+
+                                    }
                                 </div>
                             </div>
                             <div class="form-row">
@@ -390,39 +1039,102 @@
                             <div class="form-row">
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkDeception" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkDeception" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkDeception" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputDeception">Deception</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputDeception" placeholder="Deception">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputDeception" placeholder="Deception" value="@deception" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputDeception" placeholder="Deception" value="@deception">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkIntimidation" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkIntimidation" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkIntimidation" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputIntimidation">Intimidation</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputIntimidation" placeholder="Intimidation">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputIntimidation" placeholder="Intimidation" value="@intimidation" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputIntimidation" placeholder="Intimidation" value="@intimidation">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkPerformance" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkPerformance" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkPerformance" value="">
+
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputPerformance">Performance</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputPerformance" placeholder="Performance">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputPerformance" placeholder="Performance" value="@performance" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputPerformance" placeholder="Performance" value="@performance">
+
+                                    }
                                 </div>
                                 <div class="form-check" style="margin-top: 25px;margin-left:5px">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkPersuasion" value="">
+                                        @if (readon)
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkPersuasion" value="" onclick="return false;">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="form-check-input" id="chkPersuasion" value="">
+                                        }
                                     </label>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inpuPersuasion">Persuasion</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="inputPersuasion" placeholder="Persuasion">
+                                    @if (readon)
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputPersuasion" placeholder="Persuasion" value="@persuasion" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input type="number" min="0" max="100" class="form-control" id="inputPersuasion" placeholder="Persuasion" value="@persuasion">
+
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -431,9 +1143,16 @@
             </div>
 
 
-
-            <button type="submit" class="btn btn-primary">Create</button>
-            <button type="button" id="btnRandom" class="btn btn-primary">Random</button>
+            @if (!readon && charid =="")
+            {
+                <button type="submit" id="createbutton" class="btn btn-primary">Create</button> <!--redirect to characters page-->
+                <button type="submit" id="btnRandom" class="btn btn-primary">Random</button> <!--reload page with random attribute-->
+                <input type="hidden" name="passingtorazor" id="passingtorazor">
+            }
+            else if (!readon)
+            {
+                <button type="submit" id="updatebutton" class="btn btn-primary">Update</button>
+            }
         </form>
 
     </div>
@@ -455,7 +1174,10 @@
 
 <!--     JS       -->
 <script>
+    $('#createbutton').on('click', function () {
+        $('#passingtorazor').val('set');
+    });
     $('#btnRandom').on('click', function () {
-        $('#passingtorazor').val('20');
+        $('#passingtorazor').val('set');
     });
 </script>

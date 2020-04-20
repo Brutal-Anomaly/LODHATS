@@ -32,341 +32,348 @@
     <p class="text-md-center">Party&nbsp<a href="#" data-toggle="modal" data-target="#settingsModal"><i class="fa fa-wrench"></i></a></p>
 </div>
 
-<!--  INVENTORY   -->
-<div class="row">
-    <div class="col-sm">
-        <div class="card mt-5">
-            <div class="card-header" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
-                <h2><i class="fas fa-coins"></i>&nbspInventory</h2>
-            </div>
-            <div class="card-body collapse show" id="collapseOne">
-                <table class="table table-dark table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            int numrepeated = 1;
-                            int slot = 1;
-                            for (int i = 0; i < inventory.Length; i++)
-                            {
-                                if (i + 1 < inventory.Length && inventory[i] == inventory[i + 1])
-                                {
-                                    ++numrepeated;
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
 
-                                }
-                                else
-                                {
-
-                                    <tr>
-                                        <th scope="row">@slot</th>
-                                        <td>@inventory[i]</td>
-                                        <td>@numrepeated</td>
-                                    </tr>
-                                    numrepeated = 1;
-                                    slot += 1;
-                                }
-                            }
-                        }
-                    </tbody>
-                </table>
-                <form>
-                    <div class="form-row">
-                        <!--   create popups      -->
-                        <input class="form-control btn-dark" type="button" id="Add" name="Add" value="Add" data-toggle="modal" data-target="#addModal">
-                        <input class="form-control btn-dark" type="button" id="Remove" name="Remove" value="Remove" data-toggle="modal" data-target="#removeModal">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--  MEMBERS   -->
-<div class="row">
-    <div class="col-sm">
-        <div class="card mt-5">
-            <div class="card-header" data-toggle="collapse" href="#collapseTwo" aria-expanded="true">
-                <h2><i class="fas fa-users"></i>&nbspMembers</h2>
-            </div>
-            <div class="card-body collapse show" id="collapseTwo">
-                <div class="form-row">
-                    <br />
-                    <h2 class="text-center">Dungeon Master</h2>
-                    <br />
-                </div>
-                <div class="form-row mt-1">
-                    <div class="col-xs-12 card bg-dark">
-                        <div class="well well-sm">
-                            <div class="row-cols-sm-1">
-                                @{
-                                    //get user from database
-                                    <br />
-                                    <h4 class="text-center">@user1.getEmail()</h4>
-                                    <hr class="new5" />
-                                    <br />
-                                }
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <img src="~/Images/rule-book.png" class="img-thumbnail img-fluid w-75" />
-                                </div>
-                                <div class="col-sm-6">
-                                    <h4>
-                                        Dungeon Master
-                                    </h4>
-                                    <div class="mt-5">
-                                        <a href="#" data-toggle="modal" data-target="#settingsModal">Change</a>
-                                        <br />
-                                    </div>
-                                </div>
-                            </div>
+            <!--  INVENTORY   -->
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-5">
+                        <div class="card-header" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
+                            <h2><i class="fas fa-coins"></i>&nbspInventory</h2>
                         </div>
-                    </div>
-                </div>
-                <div class="form-row mt-3 mb-2">
-                    <br />
-                    <h2 class="text-center">Party Members <small>@users.Length/10</small> </h2>
-                    <br>
-                </div>
-                <div class="form-row">
-
-                    <!--  Characters slots  -->
-                    @foreach (var x in characters)
-                    {
-                        <div class="col-xs-12 card bg-dark mr-2">
-                            <div class="well well-sm">
-                                <div class="row-cols-sm-1">
+                        <div class="card-body collapse show" id="collapseOne">
+                            <table class="table table-dark table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Item Name</th>
+                                        <th scope="col">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     @{
-                                        var userId = x.getUser();
-                                        //get user from database
-                                        <br />
-                                        <h4 class="text-center">@user1.getEmail()</h4>
-                                        <hr class="new5" />
-                                        <br />
-                                    }
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        @{
-                                            var race = x.getRace();
-                                            if (race == "Dragonborn")
+                                        int numrepeated = 1;
+                                        int slot = 1;
+                                        for (int i = 0; i < inventory.Length; i++)
+                                        {
+                                            if (i + 1 < inventory.Length && inventory[i] == inventory[i + 1])
                                             {
-                                                <img src="~/Images/dragonborn_male.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Dwarf")
-                                            {
-                                                <img src="~/Images/dwarf.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Elf")
-                                            {
-                                                <img src="~/Images/elf.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Gnome")
-                                            {
-                                                <img src="~/Images/gnome.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Half-Elf")
-                                            {
-                                                <img src="~/Images/half-elf.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Halfing")
-                                            {
-                                                <img src="~/Images/halfing.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Half-Orc")
-                                            {
-                                                <img src="~/Images/half-orc.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Human")
-                                            {
-                                                <img src="~/Images/human.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Tiefling" || race == "Feral Tiefling")
-                                            {
-                                                <img src="~/Images/tiefling.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Orc of Exandria" || race == "Orc of Eberron" || race == "Orc")
-                                            {
+                                                ++numrepeated;
 
                                             }
-                                            else if (race == "Aarakocra")
-                                            {
-                                                <img src="~/Images/arakocra.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Genasi")
-                                            {
-                                                <img src="~/Images/genasi.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Goliath")
-                                            {
-                                                <img src="~/Images/goliath.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Aasimar")
-                                            {
-                                                <img src="~/Images/aasimar.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Bugbear")
+                                            else
                                             {
 
-                                            }
-                                            else if (race == "Firbolg")
-                                            {
-                                                <img src="~/Images/Firbolg.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Goblin")
-                                            {
-                                                <img src="~/Images/goblin.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Hobgoblin")
-                                            {
-                                                <img src="~/Images/hobgoblin.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Kenku")
-                                            {
-                                                <img src="~/Images/Kenku.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Kobold")
-                                            {
-                                                <img src="~/Images/kobold.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Lizardfolk")
-                                            {
-                                                <img src="~/Images/lizardfolk.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Tabaxi")
-                                            {
-                                                <img src="~/Images/tabaxi.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Triton")
-                                            {
-                                                <img src="~/Images/triton.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Yuan-ti Pureblood")
-                                            {
-                                                <img src="~/Images/yuan-ti pureblod.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Tortle")
-                                            {
-                                                <img src="~/Images/tortle.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Changeling")
-                                            {
-                                                <img src="~/Images/Changeling.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Kalashtar")
-                                            {
-                                                <img src="~/Images/kalashtar.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Shifter")
-                                            {
-                                                <img src="~/Images/shifter.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Warforged")
-                                            {
-
-                                                <img src="~/Images/warforged.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Gith")
-                                            {
-                                                <img src="~/Images/gith.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Centaur")
-                                            {
-                                                <img src="~/Images/centaur.jpeg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Loxodon")
-                                            {
-
-                                                <img src="~/Images/loxodon.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Minotaur")
-                                            {
-                                                <img src="~/Images/minotaur.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Simic Hybrid")
-                                            {
-                                                <img src="~/Images/simic hybrid.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Vedalken")
-                                            {
-                                                <img src="~/Images/vedalken.png" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Verdan")
-                                            {
-                                                <img src="~/Images/verdan.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Locathah")
-                                            {
-                                                <img src="~/Images/locathah.jpg" class="img-thumbnail rounded float-left img-fluid" />
-                                            }
-                                            else if (race == "Grung")
-                                            {
-                                                <img src="~/Images/grung.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                <tr>
+                                                    <th scope="row">@slot</th>
+                                                    <td>@inventory[i]</td>
+                                                    <td>@numrepeated</td>
+                                                </tr>
+                                                numrepeated = 1;
+                                                slot += 1;
                                             }
                                         }
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <h4>
-                                            <a href="">@x.getName()</a>
-                                        </h4>
-                                        <cite>
-                                            @x.getRace(), @x.getGender()
-                                        </cite>
-                                        <p>
-                                            Class: @x.getClass()
-                                            <br />
-                                            Level: @x.getLevel()
-                                            <br />
-                                            <div class="mt-2">
-                                                <a href="">Remove</a>
+                                    }
+                                </tbody>
+                            </table>
+                            <form>
+                                <div class="form-row">
+                                    <!--   create popups      -->
+                                    <input class="form-control btn-dark" type="button" id="Add" name="Add" value="Add" data-toggle="modal" data-target="#addModal">
+                                    <input class="form-control btn-dark" type="button" id="Remove" name="Remove" value="Remove" data-toggle="modal" data-target="#removeModal">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--  MEMBERS   -->
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card mt-5">
+                        <div class="card-header" data-toggle="collapse" href="#collapseTwo" aria-expanded="true">
+                            <h2><i class="fas fa-users"></i>&nbspMembers</h2>
+                        </div>
+                        <div class="card-body collapse show" id="collapseTwo">
+                            <div class="form-row">
+                                <br />
+                                <h2 class="text-center">Dungeon Master</h2>
+                                <br />
+                            </div>
+                            <div class="form-row mt-1">
+                                <div class="col-xs-12 card bg-dark">
+                                    <div class="well well-sm">
+                                        <div class="row-cols-sm-1">
+                                            @{
+                                                //get user from database
                                                 <br />
+                                                <h4 class="text-center">@user1.getEmail()</h4>
+                                                <hr class="new5" />
+                                                <br />
+                                            }
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <img src="~/Images/rule-book.png" class="img-thumbnail img-fluid w-75" />
                                             </div>
-                                        </p>
+                                            <div class="col-sm-6">
+                                                <h4>
+                                                    Dungeon Master
+                                                </h4>
+                                                <div class="mt-5">
+                                                    <a href="#" data-toggle="modal" data-target="#settingsModal">Change</a>
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-row mt-3 mb-2">
+                                <br />
+                                <h2 class="text-center">Party Members <small>@users.Length/10</small> </h2>
+                                <br>
+                            </div>
+                            <div class="form-row">
+
+                                <!--  Characters slots  -->
+                                @foreach (var x in characters)
+                                {
+                                    <div class="col-xs-12 card bg-dark mr-2">
+                                        <div class="well well-sm">
+                                            <div class="row-cols-sm-1">
+                                                @{
+                                                    var userId = x.getUser();
+                                                    //get user from database
+                                                    <br />
+                                                    <h4 class="text-center">@user1.getEmail()</h4>
+                                                    <hr class="new5" />
+                                                    <br />
+                                                }
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    @{
+                                                        var race = x.getRace();
+                                                        if (race == "Dragonborn")
+                                                        {
+                                                            <img src="~/Images/dragonborn_male.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Dwarf")
+                                                        {
+                                                            <img src="~/Images/dwarf.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Elf")
+                                                        {
+                                                            <img src="~/Images/elf.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Gnome")
+                                                        {
+                                                            <img src="~/Images/gnome.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Half-Elf")
+                                                        {
+                                                            <img src="~/Images/half-elf.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Halfing")
+                                                        {
+                                                            <img src="~/Images/halfing.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Half-Orc")
+                                                        {
+                                                            <img src="~/Images/half-orc.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Human")
+                                                        {
+                                                            <img src="~/Images/human.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Tiefling" || race == "Feral Tiefling")
+                                                        {
+                                                            <img src="~/Images/tiefling.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Orc of Exandria" || race == "Orc of Eberron" || race == "Orc")
+                                                        {
+
+                                                        }
+                                                        else if (race == "Aarakocra")
+                                                        {
+                                                            <img src="~/Images/arakocra.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Genasi")
+                                                        {
+                                                            <img src="~/Images/genasi.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Goliath")
+                                                        {
+                                                            <img src="~/Images/goliath.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Aasimar")
+                                                        {
+                                                            <img src="~/Images/aasimar.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Bugbear")
+                                                        {
+
+                                                        }
+                                                        else if (race == "Firbolg")
+                                                        {
+                                                            <img src="~/Images/Firbolg.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Goblin")
+                                                        {
+                                                            <img src="~/Images/goblin.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Hobgoblin")
+                                                        {
+                                                            <img src="~/Images/hobgoblin.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Kenku")
+                                                        {
+                                                            <img src="~/Images/Kenku.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Kobold")
+                                                        {
+                                                            <img src="~/Images/kobold.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Lizardfolk")
+                                                        {
+                                                            <img src="~/Images/lizardfolk.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Tabaxi")
+                                                        {
+                                                            <img src="~/Images/tabaxi.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Triton")
+                                                        {
+                                                            <img src="~/Images/triton.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Yuan-ti Pureblood")
+                                                        {
+                                                            <img src="~/Images/yuan-ti pureblod.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Tortle")
+                                                        {
+                                                            <img src="~/Images/tortle.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Changeling")
+                                                        {
+                                                            <img src="~/Images/Changeling.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Kalashtar")
+                                                        {
+                                                            <img src="~/Images/kalashtar.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Shifter")
+                                                        {
+                                                            <img src="~/Images/shifter.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Warforged")
+                                                        {
+
+                                                            <img src="~/Images/warforged.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Gith")
+                                                        {
+                                                            <img src="~/Images/gith.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Centaur")
+                                                        {
+                                                            <img src="~/Images/centaur.jpeg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Loxodon")
+                                                        {
+
+                                                            <img src="~/Images/loxodon.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Minotaur")
+                                                        {
+                                                            <img src="~/Images/minotaur.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Simic Hybrid")
+                                                        {
+                                                            <img src="~/Images/simic hybrid.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Vedalken")
+                                                        {
+                                                            <img src="~/Images/vedalken.png" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Verdan")
+                                                        {
+                                                            <img src="~/Images/verdan.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Locathah")
+                                                        {
+                                                            <img src="~/Images/locathah.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                        else if (race == "Grung")
+                                                        {
+                                                            <img src="~/Images/grung.jpg" class="img-thumbnail rounded float-left img-fluid" />
+                                                        }
+                                                    }
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h4>
+                                                        <a href="~/charcreator.cshtml">@x.getName()</a>
+                                                    </h4>
+                                                    <cite>
+                                                        @x.getRace(), @x.getGender()
+                                                    </cite>
+                                                    <p>
+                                                        Class: @x.getClass()
+                                                        <br />
+                                                        Level: @x.getLevel()
+                                                        <br />
+                                                        <div class="mt-2">
+                                                            <a href="">Remove</a>
+                                                            <br />
+                                                        </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                    }
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
-<!-- Pop-ups -->
-<div id="settingsModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+            <!-- Pop-ups -->
+            <div id="settingsModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close text-left" data-dismiss="modal">&times;</button>
-                <h4 class="col-12 modal-title vertical-center">Configure Party</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="partyname">Party Name</label>
-                    <input type="text" class="form-control" id="partyname" value="@partyName">
-                    <br />
-                    <label for="dungeonmaster">Dungeon Master</label>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close text-left" data-dismiss="modal">&times;</button>
+                            <h4 class="col-12 modal-title vertical-center">Configure Party</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="partyname">Party Name</label>
+                                <input type="text" class="form-control" id="partyname" value="@partyName">
+                                <br />
+                                <label for="dungeonmaster">Dungeon Master</label>
 
-                    <!--       ////////////////// PULL FROM USER VALUES//////////////////      -->
-                    <select class="form-control" id="dungeonmaster" value="@user1.getUserID()">
-                        <option>Select DM...</option>
-                        <option>@user1.getUserID()</option>
-                        <option>@user2.getUserID()</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="w-100 text-center">
-                    <button type="button" class="btn btn-default">Done</button> <!-- Repopulate page  -->
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <!--       ////////////////// PULL FROM USER VALUES//////////////////      -->
+                                <select class="form-control" id="dungeonmaster" value="@user1.getUserID()">
+                                    <option>Select DM...</option>
+                                    <option>@user1.getUserID()</option>
+                                    <option>@user2.getUserID()</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="w-100 text-center">
+                                <button type="button" class="btn btn-default">Done</button> <!-- Repopulate page  -->
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -438,7 +445,6 @@
 </div>
 
 
-
 <!-- CSS -->
 <style>
     .card-header:after {
@@ -466,7 +472,6 @@
 
 
 <!---    Functions        -->
-
 <!--     Razor            -->
 
 @functions{
