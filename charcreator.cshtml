@@ -1,8 +1,18 @@
 ﻿@{
     Layout = "~/_SiteLayout.cshtml";
-   
+
+    //if provided a character id, load character from db
+
+    var name = "";
+
+    //else create new
+    Character character = new Character();
 
 }
+    <div class="jumbotron vertical-center">
+        <h1 class="text-center text-capitalize text-lg-center">Character Sheet</h1>
+        <p class="text-md-center">@name</p>
+    </div>
     <div class="container">
         <form>
             <div class="row">
@@ -11,15 +21,11 @@
                         <div class="card-header" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
                             <h2>Character Info</h2>
                         </div>
-                        <div class="card-body collapse show" id="collapseOne" >
+                        <div class="card-body collapse show" id="collapseOne">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCharacterName">Character Name</label>
                                     <input type="text" class="form-control" id="inputCharacterName" placeholder="Character Name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPlayerName">Player Name</label>
-                                    <input type="text" class="form-control" id="inputPlayerName" placeholder="Player Name">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -27,17 +33,23 @@
                                     <label for="selectClass">Class:</label>
                                     <select class="form-control" id="selectClass" placeholder="Select Class">
                                         <option>Select class...</option>
-                                        <option>Mage</option>
-                                        <option>Warrior</option>
-                                        <option>Paladin</option>
-                                        <option>Druid</option>
-                                        <option>Cleric</option>
+                                        <option>Barbarian</option>
                                         <option>Bard</option>
+                                        <option>Cleric</option>
+                                        <option>Druid</option>
+                                        <option>Fighter</option>
+                                        <option>Monk</option>
+                                        <option>Paladin</option>
+                                        <option>Ranger</option>
+                                        <option>Rogue</option>
+                                        <option>Sorcerer</option>
+                                        <option>Warlock</option>
+                                        <option>Wizard</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputLevel">Level</label>
-                                    <input type="text" class="form-control" id="inputLevel" placeholder="Level">
+                                    <input type="number" min="0" class="form-control" id="inputLevel" placeholder="Level">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -45,12 +57,47 @@
                                     <label for="selectRace">Race:</label>
                                     <select class="form-control" id="selectRace">
                                         <option>Select Race...</option>
-                                        <option>Human</option>
-                                        <option>Orc</option>
-                                        <option>High Elf</option>
-                                        <option>Wood Elf</option>
-                                        <option>Dark Elf</option>
+                                        <option>Aarakocra</option>
+                                        <option>Aasimar</option>
+                                        <option>Bugbear</option>
+                                        <option>Centaur</option>
+                                        <option>Changeling</option>
+                                        <option>Dragonborn</option>
                                         <option>Dwarf</option>
+                                        <option>Elf</option>
+                                        <option>Feral Tiefling</option>
+                                        <option>Firbolg</option>
+                                        <option>Genasi</option>
+                                        <option>Gith</option>
+                                        <option>Gnome</option>
+                                        <option>Goblin</option>
+                                        <option>Goliath</option>
+                                        <option>Grung</option>
+                                        <option>Half-Elf</option>
+                                        <option>Half-Orc</option>
+                                        <option>Halfling</option>
+                                        <option>Hobgoblin</option>
+                                        <option>Human</option>
+                                        <option>Kalashtar</option>
+                                        <option>Kenku</option>
+                                        <option>Kobold</option>
+                                        <option>Lizardfolk</option>
+                                        <option>Locathah</option>
+                                        <option>Loxodon</option>
+                                        <option>Minotaur</option>
+                                        <option>Orc of Eberron</option>
+                                        <option>Orc of Exandria</option>
+                                        <option>Orc</option>
+                                        <option>Shifter</option>
+                                        <option>Simic Hybrid</option>
+                                        <option>Tabaxi</option>
+                                        <option>Tiefling</option>
+                                        <option>Tortle</option>
+                                        <option>Triton</option>
+                                        <option>Vedalken</option>
+                                        <option>Verdan</option>
+                                        <option>Warforged</option>
+                                        <option>Yuan-ti Pureblood</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -70,7 +117,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputExperiencePoints">Experience Points</label>
-                                    <input type="text" class="form-control" id="inputExperiencePoints" placeholder="Experience Points">
+                                    <input type="number" min="0" class="form-control" id="inputExperiencePoints" placeholder="Experience Points">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -78,13 +125,15 @@
                                     <label for="selelectEyeColor">Eye Color:</label>
                                     <select class="form-control" id="selectEyeColor">
                                         <option>Select Eye Color...</option>
+                                        <option>Black</option>
                                         <option>Blue</option>
-                                        <option>Green</option>
                                         <option>Brown</option>
+                                        <option>Green</option>
+                                        <option>Grey</option>
                                         <option>Hazel</option>
+                                        <option>Purple</option>
                                         <option>Red</option>
                                         <option>Yellow</option>
-                                        <option>Black</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -95,26 +144,31 @@
                                     <label for="selelectSkinColor">Skin Color:</label>
                                     <select class="form-control" id="selectSkinColor">
                                         <option>Select Skin Color...</option>
-                                        <option>Blue</option>
-                                        <option>Green</option>
-                                        <option>Brown</option>
-                                        <option>White</option>
-                                        <option>Red</option>
-                                        <option>Yellow</option>
                                         <option>Black</option>
+                                        <option>Blue</option>
+                                        <option>Brown</option>
+                                        <option>Green</option>
+                                        <option>Olive</option>
+                                        <option>Oriental</option>
+                                        <option>Pink</option>
+                                        <option>Red</option>
+                                        <option>Tan</option>
+                                        <option>Yellow</option>
+                                        <option>White</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="selelectHairColor">Hair Color:</label>
                                     <select class="form-control" id="selecthairColor">
                                         <option>Select Hair Color...</option>
-                                        <option>Blue</option>
-                                        <option>Green</option>
-                                        <option>Brown</option>
-                                        <option>White</option>
-                                        <option>Red</option>
-                                        <option>Yellow</option>
                                         <option>Black</option>
+                                        <option>Blonde</option>
+                                        <option>Brunette</option>
+                                        <option>Dirty blonde</option>
+                                        <option>Ginger</option>
+                                        <option>Grey</option>
+                                        <option>Strawberry</option>
+                                        <option>White</option>
                                     </select>
                                 </div>
 
@@ -130,7 +184,7 @@
                         <div class="card-header" data-toggle="collapse" href="#collapseTwo" aria-expanded="true">
                             <h2>Stats</h2>
                         </div>
-                        <div class="card-body collapse show" id="collapseTwo" >
+                        <div class="card-body collapse show" id="collapseTwo">
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="inputStrength">Strength</label>
@@ -167,12 +221,6 @@
                                     <input type="number" min="0" max="100" class="form-control" id="inputCharisma" placeholder="Charisma">
                                 </div>
                             </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <button type="button" id="btnRandom" class="btn btn-primary">Random</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,10 +229,9 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="card mt-3">
-                        <div class="card-header" data-toggle="collapse" href="#collapseFour" aria-expanded="true"
->
+                        <div class="card-header" data-toggle="collapse" href="#collapseFour" aria-expanded="true">
                             <h2>Skills</h2>
-                            
+
                         </div>
                         <div class="card-body collapse show" id="collapseFour">
                             <div class="form-row">
@@ -197,7 +244,7 @@
                                     </label>
                                 </div>
                                 <div class="form-group col-md-3">
-                                  <label for="inputAthletics">Athletics</label>
+                                    <label for="inputAthletics">Athletics</label>
                                     <input type="number" min="0" max="100" class="form-control" id="inputAthletics" placeholder="Athletics">
                                 </div>
                             </div>
@@ -386,9 +433,12 @@
 
 
             <button type="submit" class="btn btn-primary">Create</button>
+            <button type="button" id="btnRandom" class="btn btn-primary">Random</button>
         </form>
 
     </div>
+
+<!--     CSS       -->
  <style>
      .card-header:after {
          font-family: 'FontAwesome';
@@ -402,3 +452,10 @@
      }
 
  </style>
+
+<!--     JS       -->
+<script>
+    $('#btnRandom').on('click', function () {
+        $('#passingtorazor').val('20');
+    });
+</script>

@@ -9,9 +9,9 @@ public class Character
 	private readonly string[] ALIGNMENT = { "Lawful Good", "Lawful Nuetral", "Lawful Evil", "Nuetral Good", "True Nuetral", "Nuetral Evil", "Chaotic Good", "Chaotic Nuetral", "Chaotic Evil" };
 	private readonly string[] CLASS = { "Barbarian", "Fighter", "Paladin", "Bard", "Sorcerer", "Warlock", "Cleric", "Druid", "Monk", "Ranger", "Rogue", "Wizard" };
 	private readonly string[] RACE = { "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Orc of Exandria", "Aarakocra", "Genasi", "Goliath", "Aasimar", "Bugbear", "Firbolg", "Goblin", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Orc", "Tabaxi", "Triton", "Yuan-ti Pureblood", "Feral Tiefling", "Tortle", "Changeling", "Kalashtar", "Orc of Eberron", "Shifter", "Warforged", "Gith", "Centaur", "Loxodon", "Minotaur", "Simic Hybrid", "Vedalken", "Verdan", "Locathah", "Grung" };
-	private readonly string[] EYECOLOR = { "Blue", "Green", "Hazel", "Brown", "Black", "Purple", "Yellow" };
-	private readonly string[] SKINCOLOR = { "White", "Tan", "Olive", "Oriental", "Brown", "Black" };
-	private readonly string[] HAIRCOLOR = { "Blonde", "Dirty blonde", "Brunette", "Black", "Ginger", "Strawberry" };
+	private readonly string[] EYECOLOR = { "Blue", "Green", "Hazel", "Brown", "Black", "Purple", "Yellow", "Red", "Grey"};
+	private readonly string[] SKINCOLOR = { "White", "Tan", "Olive", "Oriental", "Brown", "Black", "Blue", "Pink", "Green", "Red", "Yellow", "Grey"};
+	private readonly string[] HAIRCOLOR = { "Blonde", "Dirty blonde", "Brunette", "Black", "Ginger", "Strawberry", "Grey" };
 
 	// member data
 	private int characterID;
