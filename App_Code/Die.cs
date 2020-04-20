@@ -3,9 +3,9 @@
 public class Die
 {
 	// member functions
+	private static Random rand = new Random();
 	public int roll(int max) 
 	{
-		Random rand = new Random();
 		return rand.Next(0, max + 1); 
 	}
 }

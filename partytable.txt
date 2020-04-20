@@ -1,0 +1,13 @@
+CREATE TABLE "party" (
+	"partyid" INT NOT NULL,
+	"partyname" VARCHAR(50) NOT NULL COLLATE 'SQL_Latin1_General_CP1_CI_AS',
+	"leader" INT NOT NULL,
+	"m1" INT NULL DEFAULT NULL,
+	"m2" INT NULL DEFAULT NULL,
+	"m3" INT NULL DEFAULT NULL,
+	"m4" INT NULL DEFAULT NULL,
+	"m5" INT NULL DEFAULT NULL,
+	"partypassword" VARCHAR(50) NOT NULL COLLATE 'SQL_Latin1_General_CP1_CI_AS',
+	PRIMARY KEY ("partyid")
+)
+;

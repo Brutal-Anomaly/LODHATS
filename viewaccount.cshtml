@@ -1,0 +1,199 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    var db = Database.Open("MySQLDB");
+
+    //Assuming the username is stored in a session
+    //var username = (string)Session["username"];
+
+    //Get userid from the db by using the username
+    var email = "asdf@hotmail.com";
+
+    var userid_query = "SELECT userid FROM users WHERE email ='" + email + "'";
+
+    var userid = db.QueryValue(userid_query);
+
+    var char_query = "SELECT * from character WHERE userid ='" + userid + "'";
+
+    /*  Attempt at AJAX
+    Validation.RequireField("partyid", "Party ID is required.");
+    Validation.RequireField("partypassword", "Password is required.");
+    Validation.Add("partypassword",
+        Validator.StringLength(
+            maxLength: Int32.MaxValue,
+            minLength: 6,
+            errorMessage: "Password must be at least 6 characters"));
+
+
+    <!--jQuery needed for AJAX-->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+            crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("modal_form").submit(function(event) {
+                event.preventDefault();
+                var partyid = $('#partyid').val();
+                var partypassword = $('#partypassword').val();
+                $("form-message").load("validate.cshtml", {
+                    partyid: partyid,
+                    partypassword: partypassword
+                });               
+            });
+        });
+
+    </script>
+
+
+
+    <!-- The Modal -->
+    <div class="modal" id="join_party_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h2 class="modal-title" style="color:white">Join Party</h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" id="modal_verify">
+
+                    <form method="POST" id="modal_form">
+                        @*Html.ValidationSummary("Unable to join the party. Please correct the errors and try again.", excludeFieldErrors: true, htmlAttributes: null)*@
+
+                        <div class="form-group">
+                            <label for="partyid">Party ID:</label>
+                            <input type="text" class="form-control" placeholder="Party ID" id="partyid" name="partyid" value="">
+                            @*Html.ValidationMessage("partyid")*@
+                        </div>
+                        <div class="form-group">
+                            <label for="partypassword">Password:</label>
+                            <input type="password" class="form-control" placeholder="Enter password" id="partypassword" name="partypassword" value="">
+                            @*Html.ValidationMessage("partypassword")*@
+
+                        </div>
+                        <div class="text-right">
+                            <!--Create party currently does nothing.-->
+                            <button type="submit" class="btn btn-danger" name="create_party_submit">Create Party</button>
+                            <button type="submit" class="btn btn-danger" name="join_submit">Join</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Test for post request-->
+    if (IsPost)
+    {
+        var partyid = Request.Form["partyid"];
+        var partypassword = Request.Form["partypassword"];
+        /*
+        if (Validation.IsValid())
+        {
+            <text>
+                You entered: <br />
+                Party ID: @partyid <br />
+                Party Password: @partypassword <br />
+                <br />
+            </text>
+        }
+
+    }
+    */
+
+    //Testing sessions
+    //Session["username"] = username;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account</title>
+</head>
+<body>
+    <h1>&nbsp;</h1>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-dark">
+                <h3 style="color:white">Account Information</h3>
+            </div>
+            <div class="card-body bg-secondary">
+                <div class="row">
+                    <div class="col-sm-10 offset-md-1 col-md-8">
+                        <h5 style="color:white">Email: @email</h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5 style="color:white">UserID: @userid</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-dark">
+                        <h3 style="color:white">Characters</h3>
+                    </div>
+                    <div class="card-body bg-secondary">
+                        <div class="form-row">
+                            <table class="table col-sm-12 table-hover table-dark table-borderless table-striped rounded">
+                                <thead class="">
+                                <td></td>
+                                <td>Name</td>
+                                <td>Gender</td>
+                                <td>Level</td>
+                                <td>Class</td>
+                                <td></td>
+                                </thead>
+                                <tbody class="">
+                                    <!--for loop for character table-->
+                                    @foreach (var row in db.Query(char_query))
+                                    {
+                                    <tr>
+                                        <td></td>
+                                        <td>@row.charactername</td>
+                                        <td>@row.charactergender</td>
+                                        <td>@row.characterlevel</td>
+                                        <td>@row.characterclass</td>
+                                        <td></td>
+                                        <td></td>
+                                        @{
+                                            if (row.partyid != null)
+                                            {
+                                                //change the link to the party view page and pass the partyid
+                                                <td><button type="button" class="btn-sm"><a href="charcreator.cshtml?partyid=@row.partyid">View Party</a></button></td>
+                                            }
+                                            else
+                                            {
+                                                <td><button type="button" class="btn-sm"><a href="partyjoin.cshtml?characterid=@row.characterid">Join Party</a></button></td>                                                
+                                                //<td><button onclick="join_party()" type="button" class="btn-sm">Join Party</button></td>
+
+                                            }
+                                        }
+
+                                        <td><button type="button" class="btn-sm"><a style="color:black" href="charcreator.cshtml?characterid=@row.characterid">View Details</a></button></td>
+
+                                    </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

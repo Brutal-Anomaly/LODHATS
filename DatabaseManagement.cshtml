@@ -34,8 +34,7 @@
         var db = Database.Open("users");
         var commandText = "INSERT INTO users (userid, password, username, firstname, lastname, email, admin)" +
                              "VALUES (@0, @1, @2, @3, @4, @5, @6)";
-        db.Execute(commandText, user.getUserID(), user.getPassword(), user.getUsername(), user.getFirstName(), user.getLastName(),
-                    user.getEmail(), user.isAdmin());
+        db.Execute(commandText, user.getUserID(), user.getPassword(), user.getEmail(), user.isAdmin());
     }
 
     public void addCharacter(Character character)
@@ -92,7 +91,7 @@
             email = row.email;
             admin = row.admin;
         }
-        return new User(userID, password, username, first, last, email, admin);
+        return new User(userID, password, email, admin);
     }
 
     public User[] getUsers()
@@ -112,7 +111,7 @@
             string email = row.email;
             bool admin = row.admin;
 
-            userList.Add(new User(id, password, username, first, last, email, admin));
+            userList.Add(new User(id, password, email, admin));
         }
 
         User[] users = userList.ToArray();
@@ -130,6 +129,7 @@
         string characterClass= "";
         string characterRace= "";
         int characterLevel= 0;
+        int exp = 0;
         string background= "";
         string alignment= "";
         int strength= 0;
@@ -137,6 +137,7 @@
         int constitution= 0;
         int intelligence= 0;
         int wisdom= 0;
+        int speed = 0;
         int charisma= 0;
         int inspiration= 0;
         int skillsAcrobatics= 0;
@@ -171,6 +172,7 @@
             characterClass = row.characterclass;
             characterRace = row.characterrace;
             characterLevel = row.characterlevel;
+            exp = row.exp;
             background = row.background;
             alignment = row.alignment;
             strength = row.strength;
@@ -178,6 +180,7 @@
             constitution = row.constitution;
             intelligence = row.intelligence;
             wisdom = row.wisdom;
+            speed = row.speed;
             charisma = row.charisma;
             inspiration = row.inspiration;
             skillsAcrobatics = row.skillsacrobatics;
@@ -203,7 +206,7 @@
             skinColor = row.skin;
             hairColor = row.hair;
         }
-        return new Character( characterID,  userID,  characterName,  characterGender,  characterClass,  characterRace,  characterLevel,  background,  alignment,  strength,  dex,  constitution,  intelligence,  wisdom,  skillsAcrobatics,  skillsAnimalHandling,  skillsArcana,  skillsAthletics,  skillsDeception,  skillsHistory,  skillsInsight,  skillsIntimidation,  skillsInvestigation,  skillsMedicine,  skillsNature,  skillsPerception,  skillsPerformance,  skillsPersuasion,  skillsReligion,  skillsSleightOfHand,  skillsStealth,  skillsSurvival,  age,  eyeColor,  skinColor, hairColor);
+        return new Character( characterID,  userID,  characterName,  characterGender,  characterClass,  characterRace,  characterLevel, exp, background,  alignment,  strength,  dex,  constitution,  intelligence,  wisdom,  speed, charisma, inspiration, skillsAcrobatics,  skillsAnimalHandling,  skillsArcana,  skillsAthletics,  skillsDeception,  skillsHistory,  skillsInsight,  skillsIntimidation,  skillsInvestigation,  skillsMedicine,  skillsNature,  skillsPerception,  skillsPerformance,  skillsPersuasion,  skillsReligion,  skillsSleightOfHand,  skillsStealth,  skillsSurvival,  age,  eyeColor,  skinColor, hairColor);
     }
 
     public Character[] getCharacters(int userID)
@@ -222,6 +225,7 @@
             string characterClass = row.characterclass;
             string characterRace = row.characterrace;
             int characterLevel = row.characterlevel;
+            int exp = row.exp;
             string background = row.background;
             string alignment = row.alignment;
             int strength = row.strength;
@@ -229,6 +233,7 @@
             int constitution = row.constitution;
             int intelligence = row.intelligence;
             int wisdom = row.wisdom;
+            int speed = row.speed;
             int charisma = row.charisma;
             int inspiration = row.inspiration;
             int skillsAcrobatics = row.skillsacrobatics;
@@ -254,7 +259,7 @@
             string skinColor = row.skin;
             string hairColor = row.hair;
 
-            charList.Add(new Character(characterID, userID, characterName, characterGender, characterClass, characterRace, characterLevel, background, alignment, strength, dex, constitution, intelligence, wisdom, skillsAcrobatics, skillsAnimalHandling, skillsArcana, skillsAthletics, skillsDeception, skillsHistory, skillsInsight, skillsIntimidation, skillsInvestigation, skillsMedicine, skillsNature, skillsPerception, skillsPerformance, skillsPersuasion, skillsReligion, skillsSleightOfHand, skillsStealth, skillsSurvival, age, eyeColor, skinColor, hairColor));
+            charList.Add(new Character(characterID, userID, characterName, characterGender, characterClass, characterRace, characterLevel, exp, background, alignment, strength, dex, constitution, intelligence, wisdom, speed, charisma, inspiration, skillsAcrobatics, skillsAnimalHandling, skillsArcana, skillsAthletics, skillsDeception, skillsHistory, skillsInsight, skillsIntimidation, skillsInvestigation, skillsMedicine, skillsNature, skillsPerception, skillsPerformance, skillsPersuasion, skillsReligion, skillsSleightOfHand, skillsStealth, skillsSurvival, age, eyeColor, skinColor, hairColor)); 
         }
         Character[] characters = charList.ToArray();
         return characters;
@@ -265,6 +270,7 @@
         var db = Database.Open("party");
         var commandText = "SELECT * FROM character WHERE partyid =" + partyID;
 
+        string name = "";
         int DM = 0;
         int[] users = null;
         int[] characters = null;
@@ -273,13 +279,14 @@
         //create party
         foreach (var row in db.Query(commandText))
         {
+            name = row.name;
             DM = row.dm;
             users = row.users;
             characters = row.characters;
             inventory = row.inventory;
         }
 
-        return new Party(partyID, DM, users, characters, inventory);
+        return new Party(partyID, name, DM, users, characters, inventory);
     }
 
     public Party[] getParties(int userID)
@@ -293,11 +300,12 @@
         foreach (var row in db.Query(commandText, userID))
         {
             int id = row.partyid;
+            string name = row.name;
             int DM = row.dm;
             int[] users = row.users;
             int[] characters = row.characters;
             string[] inventory = row.inventory;
-            partyList.Add(new Party(id, DM, users, characters, inventory));
+            partyList.Add(new Party(id, name, DM, users, characters, inventory));
         }
 
         Party[] parties = partyList.ToArray();
@@ -316,9 +324,9 @@
     public void updateParty(Party party)
     {
         var db = Database.Open("party");
-        var commandText = "UPDATE party SET dm = '@0', users = '@1', characters = '@2', inventory = '@3' WHERE partyid = '@4'";
+        var commandText = "UPDATE party SET name = '@0', dm = '@1', users = '@2', characters = '@3', inventory = '@4' WHERE partyid = '@5'";
 
-        db.Execute(commandText, party.getDM(), party.getUsers(), party.getCharacters(), party.getInventory(), party.getPartyID());
+        db.Execute(commandText, party.getDM(), party.getName(), party.getUsers(), party.getCharacters(), party.getInventory(), party.getPartyID());
     }
 
 }

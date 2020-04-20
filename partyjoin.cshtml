@@ -1,0 +1,139 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    var db = Database.Open("MySQLDB");
+    var characterid = Request.QueryString["characterid"];
+
+    Validation.RequireField("partyname", "Party name is a required field.");
+    Validation.RequireField("partypassword", "Party password is a required field.");
+
+    var add_error = false;
+    var leader = 0;
+
+    /*
+     * 
+     * 
+     * Reminder: Add redirect to party view after joining a party
+     * 
+     * 
+     */
+
+    if (IsPost)
+    {
+        if (Validation.IsValid())
+        {
+            var partyname = Request.Form["partyname"];
+            var partypassword = Request.Form["partypassword"];
+
+            var check_members_query = "SELECT * FROM party WHERE partyname ='" + partyname + "'";
+
+            var empty_slot = "";
+
+            //Checks the party for empty slots (max 6 including leader)
+            foreach (var row in db.Query(check_members_query))
+            {
+                leader = row.leader;
+                if (row.m1 == null)
+                {
+                    empty_slot = "m1";
+                }
+                else if (row.m2 == null)
+                {
+                    empty_slot = "m2";
+                }
+                else if (row.m3 == null)
+                {
+                    empty_slot = "m3";
+                }
+                else if (row.m4 == null)
+                {
+                    empty_slot = "m4";
+                }
+                else if (row.m5 == null)
+                {
+                    empty_slot = "m5";
+                }
+                else
+                {
+                    add_error = true;
+                }
+            }            
+
+            //Adds a member to the party
+            //var update_member_query = "UPDATE party SET m1=@0 WHERE partyname=@1";  THIS WORKS
+            var update_member_query = "UPDATE party SET " + empty_slot + "=@0 WHERE partyname=@1"; //I have no clue why this works
+            db.Execute(update_member_query, characterid, partyname);
+
+            //Gets partyid from database
+            var partyid_query = "SELECT partyid FROM party WHERE partyname='" + partyname + "'";
+            var partyid = db.QueryValue(partyid_query);
+
+            //Updates partyid in character database for character
+            var update_char_partyid = "UPDATE character SET partyid='" + partyid + "' WHERE characterid='" + characterid +"'";
+            db.Query(update_char_partyid);
+            
+
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Join a Party</h1>
+    <h3>Use the Party Name and Party Password to join your friends.</h3>
+    <div class="container-fluid">
+        <form method="post" id="party_form">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="partyid">Party Name:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="Party Name" id="partyname" name="partyname" value="" />
+                            @*Html.ValidationMessage("partyname")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="partypassword">Party Password:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="Party Password" id="partypassword" name="partypassword" value="" />
+                            @*Html.ValidationMessage("partypassword")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            @Html.ValidationSummary("Party join or creation was unsuccessful. Please correct the errors and try again.")
+            <br />
+            <div class="form-row">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <button type="button" class="btn-sm"><a href="partycreator.cshtml?characterid=@characterid" class="btn-sm" role="button">Create Party</a></button>
+                            @if(add_error)
+                            {
+                                <p style="color:red">ERROR: Cannot add member.</p>
+                            }
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn-sm" action="partycreator.cshtml?characterid=@characterid">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

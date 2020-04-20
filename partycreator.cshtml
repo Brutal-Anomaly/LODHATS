@@ -1,0 +1,126 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    var db = Database.Open("MySQLDB");
+    var characterid = Request.QueryString["characterid"];
+
+    var partyname = Request.Form["partyname"];
+    var partypassword = Request.Form["partypassword"];
+    var party_error = false;
+    var create_success = false;
+
+    Validation.RequireField("partyname", "Party name is a required field.");
+    Validation.RequireField("partypassword", "Party password is a required field.");
+
+    /* Testing sessions (it worked)
+    if (Session["username"] != null)
+    {
+        var username = (string)Session["username"];
+        <p>@username</p>
+
+    }
+    */
+
+
+    if (IsPost)
+    {
+        if (Validation.IsValid())
+        {
+            //Tests to see if the database already exists
+            var check_party_query = "SELECT partyname FROM party WHERE partyname='" + partyname + "'";
+            var party_check = db.QueryValue(check_party_query);
+
+            //Error if party already exists
+            if (party_check != null)
+            {
+                party_error = true;
+            }
+            //Otherwise create party and check for creation
+            else
+            {
+                var insert_query = "INSERT INTO party (partyname, partypassword, leader)" + "VALUES (@0, @1, @2)";
+                db.Execute(insert_query, partyname, partypassword, characterid);
+
+                var check_party_query2 = "SELECT partyname FROM party WHERE partyname ='" + partyname + "'";
+                var party_check2 = db.Query(check_party_query);
+
+                if (party_check2 != null)
+                {
+                    create_success = true;
+                    //Updates partyid in character database for character
+                    var partyid_query = "SELECT partyid FROM party WHERE partyname='" + partyname + "'";
+                    var partyid = db.QueryValue(partyid_query);
+                    var update_char_partyid = "UPDATE character SET partyid='" + partyid + "' WHERE characterid='" + characterid + "'";
+                    db.Query(update_char_partyid);
+                }
+            }
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    
+
+    <h1>Create a Party</h1>
+    <h3>Use the Party Name and Party Password to create a party for your friends.</h3>
+    <div class="container-fluid">
+        <form method="post" id="party_form">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="partyid">Party Name:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="Party Name" id="partyname" name="partyname" value="" />
+                            @*Html.ValidationMessage("partyname")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="partypassword">Party Password:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="Party Password" id="partypassword" name="partypassword" value="" />
+                            @*Html.ValidationMessage("partypassword")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            @Html.ValidationSummary("Party join or creation was unsuccessful. Please correct the errors and try again.")
+            <br />
+            <div class="form-row">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-5">                            
+                            @if (party_error)
+                            {
+                                <p style="color:red">Party @partyname could not be created.</p>
+                            }
+                            @if (create_success)
+                            {
+                                <p>Party created successfully.</p>
+                            }
+                            <!--<button type="button" class="btn-sm"><a href="partycreator.cshtml?characterid=@*characterid*@">Create Party</a></button>-->
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn-sm">Submit</button>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
