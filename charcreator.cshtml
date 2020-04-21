@@ -48,9 +48,6 @@
     var performance = "";
     var persuasion = "";
 
-    //if provided a character id, load character from db
-
-
     //check user to enable or disable readonly (imitation cookie is created for testing purposes)
     /*if (Session["username"] != null)
     {
@@ -71,6 +68,13 @@
     //if provided a character id, load character from db
 
     var charid = "";
+    try {
+        charid = Request.Params["characterid"];
+    }
+    catch (Exception ex)
+    {
+
+    }
 
     //else create new
     Character character = new Character();
