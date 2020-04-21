@@ -68,12 +68,8 @@
     //if provided a character id, load character from db
 
     var charid = "";
-    try {
+    if(Request.Params["characterid"] != null) {
         charid = Request.Params["characterid"];
-    }
-    catch (Exception ex)
-    {
-
     }
 
     //else create new
