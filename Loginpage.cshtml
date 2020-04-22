@@ -6,7 +6,7 @@
     var email = "";
     var emailerror = "";
     var password = "";
-    var passworderror = "";
+   // var passworderror = "";
 
 
 
@@ -33,11 +33,11 @@
             {
                 ModelState.AddFormError("The user name or password provided is incorrect.");
                 emailerror = "Email and/or password are incorrect";
-                passworderror = "Email and/or password are incorrect";
+                //passworderror = "Email and/or password are incorrect";
             }
             else
             {
-                Session["email"] = email;
+                Session["username"] = email;
             }
 
         }
@@ -56,20 +56,17 @@
                         <h2>Login</h2>
                     </div>
                     <div class="card-body">
+                        <text>@emailerror</text>
                         <div class="form-row">
                             <div class="form-group col-md-6 ">
                                 <label for="email" @if (!ModelState.IsValidField("email")) { <text> class="error-label" </text> }>Email Address:</label>
                                 <input type="text" class="form-control" id="email" name="email" value="" @Validation.For("email") placeholder="">
-                                @* Write any email validation errors to the page *@
-                                <text>@emailerror</text>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="password" @if (!ModelState.IsValidField("password")) { <text> class="error-label" </text> }>Password:</label>
                                 <input type="password" class="form-control" id="password" name="password" value="" @Validation.For("password") placeholder="">
-                                @* Write any password validation errors to the page *@
-                                <text>@passworderror</text>
                             </div>
                         </div>
                         <div class="form-row">
