@@ -118,7 +118,7 @@
         return users;
     }
 
-    public Character getCharacter(int characterID)
+    public static Character getCharacter(int characterID)
     {
         var db = Database.Open("character");
         var commandText = "SELECT * FROM character WHERE characterid ='@0'";
