@@ -265,7 +265,7 @@
         return characters;
     }
 
-    public Party getParty(int partyID)
+    public static Party getParty(int partyID)
     {
         var db = Database.Open("party");
         var commandText = "SELECT * FROM character WHERE partyid =" + partyID;

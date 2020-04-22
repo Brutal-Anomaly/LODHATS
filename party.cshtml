@@ -2,9 +2,11 @@
     Layout = "~/_SiteLayout.cshtml";
 
     //party passed from database party class created for testing purposes
+
+    var dbpart = DatabaseManagement.getParty(Int32.Parse(Request.Params["partyid"]));
     int[] userIds = { 0, 1 };
     int[] charIds = { 0, 1 };
-    string[] inv = { "Weapon-broad sword", "Potion-potion of minor healing I", "Potion-potion of minor healing I", "Potion-potion of speed" , "Armor/Clothing-Leather Tunic"};
+    string[] inv = { "Weapon-broad sword", "Potion-potion of minor healing I", "Potion-potion of minor healing I", "Potion-potion of speed", "Armor/Clothing-Leather Tunic" };
     Party party = new Party(0, "Test Party", 0, userIds, charIds, inv);
 
     //get relavent data from party
@@ -88,40 +90,40 @@
                                             {
                                                 string[] tempstrarr = inventory[i].Split('-');
                                                 <tr>
-                                                                                        <th scope="row">
-                                                                                            @if (tempstrarr[0] == "Armor/Clothing")
-                                                                                            {
-                                                                                                <i class="fas fa-hat-wizard fa-lg"></i>
-                                                                                            }
-                                                                                            else if (tempstrarr[0] == "Coins")
-                                                                                            {
-                                                                                                <i class="fas fa-coins fa-lg"></i>
-                                                                                            }
-                                                                                            else if (tempstrarr[0] == "Consumable")
-                                                                                            {
-                                                                                        <i class="fas fa-apple-alt fa-lg"></i>
+                                                    <th scope="row">
+                                                        @if (tempstrarr[0] == "Armor/Clothing")
+                                                        {
+                                                            <i class="fas fa-hat-wizard fa-lg"></i>
+                                                        }
+                                                        else if (tempstrarr[0] == "Coins")
+                                                        {
+                                                            <i class="fas fa-coins fa-lg"></i>
+                                                        }
+                                                        else if (tempstrarr[0] == "Consumable")
+                                                        {
+                                                            <i class="fas fa-apple-alt fa-lg"></i>
 
-                                                                                            }
-                                                                                            else if (tempstrarr[0] == "Item")
-                                                                                            {
-                                                                                            <i class="fas fa-book-open fa-lg"></i>
-                                                                                            }
-                                                                                            else if (tempstrarr[0] == "Potion")
-                                                                                            {
-                                                                                        <i class="fas fa-flask fa-lg"></i>
+                                                        }
+                                                        else if (tempstrarr[0] == "Item")
+                                                        {
+                                                            <i class="fas fa-book-open fa-lg"></i>
+                                                        }
+                                                        else if (tempstrarr[0] == "Potion")
+                                                        {
+                                                            <i class="fas fa-flask fa-lg"></i>
 
-                                                                                            }
-                                                                                            else if (tempstrarr[0] == "Weapon")
-                                                                                            {
-                                                                                        <i class="fas fa-shield-alt fa-lg"></i>
+                                                        }
+                                                        else if (tempstrarr[0] == "Weapon")
+                                                        {
+                                                            <i class="fas fa-shield-alt fa-lg"></i>
 
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                        <i class="fas fa-archive fa-lg"></i>
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="fas fa-archive fa-lg"></i>
 
-                                                                                            }
-                                                                                        </th>
+                                                        }
+                                                    </th>
                                                     <td>
                                                         @tempstrarr[1]
                                                     </td>
