@@ -162,7 +162,7 @@
                                 <br />
                             </div>
                             <div class="form-row mt-1">
-                                <div class="col-xs-12 card bg-dark">
+                                <div class="col-md-6 card bg-dark">
                                     <div class="well well-sm">
                                         <div class="row-cols-sm-1">
                                             @{
@@ -174,9 +174,8 @@
                                             }
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <!--- <img src="~/Images/rule-book.png" class="img-thumbnail img-fluid" />-->
-                                                <img src="~/Images/rule-book.png" />
+                                            <div class="col-md ml-2 mb-2">
+                                                <img src="~/Images/dm.png" class="img-thumbnail img-fluid" />
                                             </div>
                                             <div class="col-sm-6">
                                                 <h4>
@@ -204,7 +203,7 @@
                                 <!--  Characters slots  -->
                                 @foreach (var x in characters)
                                 {
-                                    <div class="col-xs-12 card bg-dark mr-2">
+                                    <div class="col-md-6 card bg-dark">
                                         <div class="well well-sm">
                                             <div class="row-cols-sm-1">
                                                 @{
@@ -217,7 +216,7 @@
                                                 }
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 ml-1 mb-1">
                                                     @{
                                                         var charclass = x.getClass();
                                                         if (charclass == "Barbarian")
@@ -270,7 +269,7 @@
                                                         }
                                                     }
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-md">
                                                     <h4>
                                                         <a href="~/charcreator.cshtml?characterid=@x.getID()">@x.getName()</a>
                                                     </h4>

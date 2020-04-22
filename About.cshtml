@@ -2,33 +2,83 @@
     Layout = "~/_SiteLayout.cshtml";
     Page.Title = "About";
 }
+    <head>
+        <script src="https://kit.fontawesome.com/39a57a53c2.js" crossorigin="anonymous"></script>
+    </head>
+    <div class="jumbotron vertical-center" style="background-color:darkred">
+        <div class="align-items-md-center">
+        <p class="text-center text-capitalize text-lg-center mt-5 mb-3" style="font-size:60px">About Us</p>
+        <div class="container mt-5">
+            <p class="text-center" style="font-size:30px">
+                What is LODHATS?
+            </p>
+            <p class="text-center">
+                LODHATS, or The League of Dragon Hunters and Treasure Seekers, is a fan-made website dedicated to stream-lining the beginner Dungeon and Dragons experience.
+                We do so by providing players with usefull tools designed to help new players spend less brain energy learning all the nuances of the expansive D&D universe, and more time doing what matters- playing the game.
+            </p>
+        </div>
+            </div>
+    </div>
+    <div class="jumbotron vertical-center" style="background-color:black">
+            <p class="text-center mt-5 mb-3" style="font-size:60px">Tools</p>
+            <div class="container mt-5">
+                <p class="text-center">
+                    Our tools include the following:
+                </p>
 
-<hgroup class="title">
-    <h1>@Page.Title.</h1>
-    <h2>What is LODHATS?</h2>
-</hgroup>
+            <div class="row mt-5 mb-5">
+                <div class="col-md-4">
+                    <div class="row d-flex justify-content-center">
+                        <p class="text-center">
 
-<article>
-    <p>
-        LODHATS, or The  oLeaguef Dragon Hunters and Treasure Seekers, is a fan-made website dedicated to stream-lining the beginner Dungeon and Dragons experience.
-        We do so by providing players with usefull tools designed to help new players spend less brain energy learning all the nuances of the expansive D&D universe, and more time doing what matters- playing the game.
-    </p>
-    '
-    
-    '
-    <p>
-        Our tools include the following
-        <ul>
-            <li><a href="~/">Character Creator</a></li>
-            <li><a href="~/About">Party Manager</a></li>
-            <li><a href="~/Contact">Dice Generator</a></li>
-        </ul>
-    </p>
-</article>
+                            <i class="fas fa-flask" style="font-size:60px;color:lightgrey"></i>
+                        </p>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <p class="text-center">
 
-<aside>
-    <h3>Contact</h3>
-    <p>
-        We know that D&D can be a difficult hobby to get into- let alone master. If you have any questions, concerns, or suggestions directed towards our website please feel free to contact us <a href="~/Contact">here</a>
-    </p>
-</aside>
+                            <a href="~/charcreator.cshtml">Character Creator</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row d-flex justify-content-center">
+                        <p class="text-center">
+
+                            <i class="fas fa-users" style="font-size:60px;color:lightgrey"></i>
+                        </p>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <p class="text-center">
+
+                            <a href="~/party.cshtml">Party Manager</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row d-flex justify-content-center">
+                        <p class="text-center">
+
+                            <i class="fas fa-dice-d20" style="font-size:60px;color:lightgrey"></i>
+                        </p>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <p class="text-center">
+                            <a href="~/dice.cshtml">Dice Generator</a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron vertical-center">
+        <div class="align-items-md-center">
+            <p class="text-center text-capitalize text-lg-center mt-5 mb-3" style="font-size:60px">Contact</p>
+            <div class="container mt-5">
+                <p class="text-center">
+                    We know that D&D can be a difficult hobby to get into- let alone master. If you have any questions, concerns, or suggestions directed towards our website please feel free to contact us <a href="~/Contact">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>

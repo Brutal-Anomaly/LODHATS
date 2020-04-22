@@ -26,13 +26,13 @@
             <div class="mr-2">
                 <button name="D-20" id="D-20" class="btn-img">
                     <div class="img-wrap">
-                        <img src="~/Images/dice-twenty-faces-twenty.png" class="img-thumbnail rounded" alt="D-20" />
+                        <img src="~/Images/dice-twenty-faces-twenty1.png" class="img-thumbnail rounded" alt="D-20" />
                     </div>
                 </button>
             </div>
             <button name="D-12" id="D-12" class="btn-img">
                 <div class="img-wrap">
-                    <img src="~/Images/d12.png" class="img-thumbnail rounded" alt="D-12" />
+                    <img src="~/Images/d121.png" class="img-thumbnail rounded" alt="D-12" />
                 </div>
             </button>
         </div>
@@ -42,13 +42,13 @@
             <div class="mr-2">
                 <button name="D-10" id="D-10" class="btn-img">
                     <div class="img-wrap">
-                        <img src="~/Images/d10.png" class="img-thumbnail rounded" alt="D-10" />
+                        <img src="~/Images/d101.png" class="img-thumbnail rounded" alt="D-10" />
                     </div>
                 </button>
             </div>
             <button name="D-8" id="D-8" class="btn-img">
                 <div class="img-wrap">
-                    <img src="~/Images/dice-eight-faces-eight.png" class="img-thumbnail rounded" alt="D-8" />
+                    <img src="~/Images/dice-eight-faces-eight2.png" class="img-thumbnail rounded" alt="D-8" />
                 </div>
             </button>
         </div>
@@ -64,6 +64,12 @@
             <input type="hidden" name="passingtorazor" id="passingtorazor">
         </label>
     </div>
+    @if (IsPost)
+    {
+        <div class="d-flex justify-content-center">
+            <p>Roll Generated!</p>
+        </div>
+    }
 </form>
 
 <!---    JS          -->
