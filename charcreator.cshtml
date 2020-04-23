@@ -53,7 +53,7 @@
     if (Session["username"] != null)
     {
         username = (string)Session["username"];
-        userid= Int32.Parse(Session["userid"].ToString());
+        userid= Int32.Parse(Session["userID"].ToString());
     }
     else
     {
@@ -6298,131 +6298,131 @@
                                 }
                                 else
                                 {
-                            <select class="form-control" id="selectEyeColor">
-                                <option>Select Eye Color...</option>
-                                @if (eyes == "Black")
-                                {
-                                    <option selected>Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Grey</option>
-                                    <option>Hazel</option>
-                                    <option>Purple</option>
-                                    <option>Red</option>
-                                    <option>Yellow</option>
-                                }
-                                else if (eyes == "Blue")
-                                {
-                                    <option>Black</option>
-                                    <option selected>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Grey</option>
-                                    <option>Hazel</option>
-                                    <option>Purple</option>
-                                    <option>Red</option>
-                                    <option>Yellow</option>
-                                }
-                                else if (eyes == "Brown")
-                                {
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option selected>Brown</option>
-                                    <option>Green</option>
-                                    <option>Grey</option>
-                                    <option>Hazel</option>
-                                    <option>Purple</option>
-                                    <option>Red</option>
-                                    <option>Yellow</option>
-                                }
-                                else if (eyes == "Green")
-                                {
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option selected>Green</option>
-                                    <option>Grey</option>
-                                    <option>Hazel</option>
-                                    <option>Purple</option>
-                                    <option>Red</option>
-                                    <option>Yellow</option>
-                                }
-                                else if (eyes == "Grey")
-                                {
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option selected>Grey</option>
-                                    <option>Hazel</option>
-                                    <option>Purple</option>
-                                    <option>Red</option>
-                                    <option>Yellow</option>
-                                }
+                                    <select class="form-control" id="selectEyeColor">
+                                        <option>Select Eye Color...</option>
+                                        @if (eyes == "Black")
+                                        {
+                                            <option selected>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Green</option>
+                                            <option>Grey</option>
+                                            <option>Hazel</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option>Yellow</option>
+                                        }
+                                        else if (eyes == "Blue")
+                                        {
+                                            <option>Black</option>
+                                            <option selected>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Green</option>
+                                            <option>Grey</option>
+                                            <option>Hazel</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option>Yellow</option>
+                                        }
+                                        else if (eyes == "Brown")
+                                        {
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option selected>Brown</option>
+                                            <option>Green</option>
+                                            <option>Grey</option>
+                                            <option>Hazel</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option>Yellow</option>
+                                        }
+                                        else if (eyes == "Green")
+                                        {
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option selected>Green</option>
+                                            <option>Grey</option>
+                                            <option>Hazel</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option>Yellow</option>
+                                        }
+                                        else if (eyes == "Grey")
+                                        {
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Green</option>
+                                            <option selected>Grey</option>
+                                            <option>Hazel</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option>Yellow</option>
+                                        }
 
-                                else if (eyes == "Hazel")
-                                {
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Grey</option>
-                                    <option selected>Hazel</option>
-                                    <option>Purple</option>
-                                    <option>Red</option>
-                                    <option>Yellow</option>
-                                }
+                                        else if (eyes == "Hazel")
+                                        {
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Green</option>
+                                            <option>Grey</option>
+                                            <option selected>Hazel</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option>Yellow</option>
+                                        }
 
-                                else if (eyes == "Purple")
-                                {
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Grey</option>
-                                    <option>Hazel</option>
-                                    <option selected>Purple</option>
-                                    <option>Red</option>
-                                    <option>Yellow</option>
-                                }
-                                else if (eyes == "Red")
-                                {
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Grey</option>
-                                    <option>Hazel</option>
-                                    <option>Purple</option>
-                                    <option selected>Red</option>
-                                    <option>Yellow</option>
-                                }
-                                else if (eyes == "Yellow")
-                                {
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Grey</option>
-                                    <option>Hazel</option>
-                                    <option>Purple</option>
-                                    <option>Red</option>
-                                    <option selected>Yellow</option>
-                                }
-                                else
-                                {
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Grey</option>
-                                    <option>Hazel</option>
-                                    <option>Purple</option>
-                                    <option>Red</option>
-                                    <option>Yellow</option>
-                                }
-                            </select>
+                                        else if (eyes == "Purple")
+                                        {
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Green</option>
+                                            <option>Grey</option>
+                                            <option>Hazel</option>
+                                            <option selected>Purple</option>
+                                            <option>Red</option>
+                                            <option>Yellow</option>
+                                        }
+                                        else if (eyes == "Red")
+                                        {
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Green</option>
+                                            <option>Grey</option>
+                                            <option>Hazel</option>
+                                            <option>Purple</option>
+                                            <option selected>Red</option>
+                                            <option>Yellow</option>
+                                        }
+                                        else if (eyes == "Yellow")
+                                        {
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Green</option>
+                                            <option>Grey</option>
+                                            <option>Hazel</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option selected>Yellow</option>
+                                        }
+                                        else
+                                        {
+                                            <option>Black</option>
+                                            <option>Blue</option>
+                                            <option>Brown</option>
+                                            <option>Green</option>
+                                            <option>Grey</option>
+                                            <option>Hazel</option>
+                                            <option>Purple</option>
+                                            <option>Red</option>
+                                            <option>Yellow</option>
+                                        }
+                                    </select>
                                 }
                             </div>
                             <div class="form-group col-md-3">
@@ -7658,23 +7658,18 @@
                 </div>
             </div>
         </div>
-        
+
         @if (!readon && charid == "")
         {
-            <a href="~/charupdate?characterid=@charid&charactername=@charname&charactersex=@sex&characterclass=@charclass&characterrace=@race&alignment=@alignment&background=@background&level=@level&
-               =@exp&age=@age&eyes=@eyes&skin=@skin&hair=@hair&strength=@strength&dex=@dex&intelligence=@intelligence&speed=@speed&inspiration=@inspiration&constution=@constitution&wisdom=@wisdom&charisma=@charisma&
-               athletics=@athletics&arcana=@arcana&history=@history&investigation=@investigation&nature=@nature&religion=@religion&acrobatics=@acrobatics&sleightofhand=@sleightofhand&slealth=@stealth&animalhandling=@animalhandling&insight=@insight&medicine=@medicine&perception=@perception&survival=@survival&deception=@deception&intimidation=@intimidation&performance=@performance&persuasion=@persuasion"
-               id="createbutton" class="btn btn-primary" role="button">Create</a><!--redirect to characters page-->
-            <button type="submit" id="btnRandom" class="btn btn-primary">Random</button> <!--reload page with random attribute-->
+            <button type="button" id="createbutton" name="createbutton" class="btn btn-primary">Create</button><!--redirect to characters page-->
+            <button type="submit" name="btnRandom" id="btnRandom" class="btn btn-primary">Random</button> <!--reload page with random attribute-->
             <input type="hidden" name="passingtorazor" id="passingtorazor">
+            <input type="hidden" name="passingfromrazor" id="passingfromrazor" value="@charid">
 
         }
         else if (!readon)
         {
-            <a href="~/charupdate?characterid=@charid&charactername=@charname&charactersex=@sex&characterclass=@charclass&characterrace=@race&alignment=@alignment&background=@background&level=@level&
-               =@exp&age=@age&eyes=@eyes&skin=@skin&hair=@hair&strength=@strength&dex=@dex&intelligence=@intelligence&speed=@speed&inspiration=@inspiration&constution=@constitution&wisdom=@wisdom&charisma=@charisma&
-               athletics=@athletics&arcana=@arcana&history=@history&investigation=@investigation&nature=@nature&religion=@religion&acrobatics=@acrobatics&sleightofhand=@sleightofhand&slealth=@stealth&animalhandling=@animalhandling&insight=@insight&medicine=@medicine&perception=@perception&survival=@survival&deception=@deception&intimidation=@intimidation&performance=@performance&persuasion=@persuasion"
-               id="createbutton" class="btn btn-primary" role="button">Update</a>
+            <button id="createbutton" name="createbutton" class="btn btn-primary" role="button">Update</button>
         }
     </form>
 
@@ -7696,325 +7691,61 @@
 
 <!--     JS       -->
 <script>
+    
+    $('#createbutton').on('click', function () {
+
+        var charid = $('#passingfromrazor').val();
+        var charname = $('#inputCharacterName').val();
+        var charclass = $('#selectClass').find(":selected").text();
+        var race = $('#selectRace').find(":selected").text();
+        var sex = $('#selectSex').find(":selected").text();
+        var alignment = $('#selectAlignment').find(":selected").text();
+        var background = $('#selectBackground').find(":selected").text()
+        var level = $('#inputLevel').val();
+        var exp = $('#inputExperiencePoints').val();
+        var age = $('#inputAge').val();
+
+        var eyes = $('#inputAge').val();
+        var skin = $('#selectSkinColor').find(":selected").text();
+
+        var hair = $('#selectSkinColor').find(":selected").text();
+
+
+        var strength = $('#inputStrength').val();
+        var dex = $('#inputDexterity').val();
+        var intelligence = $('#inputIntelligence').val();
+        var speed = $('#inputSpeed').val();
+        var inspiration = $('#inputInspiration').val();
+        var constitution = $('#inputConstitution').val();
+        var wisdom = $('#inputWisdom').val();
+        var charisma = $('#inputCharisma').val();
+
+        var athletics = $('#inputAthletics').val();
+        var arcana = $('#inputAthletics').val();
+        var history = $('#inputHistory').val();
+        var investigation = $('#inputInvestigation').val();
+        var nature = $('#inputNature').val();
+
+        var religion = $('#inputReligion').val();
+        var acrobatics = $('#inputAcrobatics').val();
+        var sleightofhand = $('#inputSleightofHand').val();
+        var stealth = $('#inputStealth').val();
+        var animalhandling = $('#inputAnimalHandling').val();
+        var insight = $('#inputInsight').val();
+        var medicine = $('#inputMedicine').val();
+        var perception = $('#inputPerception').val();
+        var survival = $('#inputSurvival').val();
+        var deception = $('#inputDeception').val();
+        var intimidation = $('#inputIntimidation').val();
+        var performance = $('#inputPerformance').val();
+        var persuasion = $('#inputPersuasion').val();
+        window.location.replace("charupdate.cshtml?characterid="+charid+"&charactername="+charname+"&charactersex="+sex+"&characterclass="+charclass+"&characterrace="+race+"&alignment="+alignment+"&background="+background+"&level="+level+"&exp="+exp+"&age="+age+"&eyes="+eyes+"&skin="+skin+"&hair="+hair+"&strength="+strength+"&dex="+dex+"&intelligence="+intelligence+"&speed="+speed+"&inspiration="+inspiration+"&constitution="+constitution+"&wisdom="+wisdom+"&charisma="+charisma+"&athletics="+athletics+"&arcana="+arcana+"&history="+history+"&investigation="+investigation+"&nature="+nature+"&religion="+religion+"&acrobatics="+acrobatics+"&sleightofhand="+sleightofhand+"&stealth="+stealth+"&animalhandling="+animalhandling+"&insight="+insight+"&medicine="+medicine+"&perception="+perception+"&survival="+survival+"&deception="+deception+"&intimidation="+intimidation+"&performance="+performance+"&persuasion="+persuasion);
+        //window.location.href = "charupdate.cshtml?charactername=" + charname + "&age=" +age ;
+
+    });
     $('#btnRandom').on('click', function () {
         $('#passingtorazor').val('set');
     });
-
-
-    /**/
-     $('#inputCharacterName').on('change', function () {
-         @charname = $('#inputCharacterName').val();
-    });
-    $('#selectClass').on('change', function () {
-       @charclass = $('#selectClass').find(":selected").text();
-    });
-    $('#selectRace').on('change', function () {
-       @race = $('#selectRace').find(":selected").text();
-    });
-    $('#selectSex').on('change', function () {
-       @sex = $('#selectSex').find(":selected").text();
-    });
-    $('#selectAlignment').on('change', function () {
-       @alignment = $('#selectAlignment').find(":selected").text();
-    });
-    $('#selectBackground').on('change', function () {
-       @background = $('#selectBackground').find(":selected").text();
-    });
-    $('#inputAge').on('change', function () {
-         @age = $('#inputAge').val();
-    });
-    $('#selectEyeColor').on('change', function () {
-       @eyes = $('#selectEyeColor').find(":selected").text();
-    });
-    $('#selectSkinColor').on('change', function () {
-       @skin = $('#selectSkinColor').find(":selected").text();
-    });
-    $('#selecthairColor').on('change', function () {
-       @hair = $('#selecthairColor').find(":selected").text();
-    });
-    $('#inputStrength').on('change', function () {
-         @strength = $('#inputStrength').val();
-    });
-    $('#inputDexterity').on('change', function () {
-         @dex = $('#inputDexterity').val();
-    });
-    $('#inputIntelligence').on('change', function () {
-         @intelligence = $('#inputIntelligence').val();
-    });
-    $('#inputSpeed').on('change', function () {
-         @speed = $('#inputSpeed').val();
-    });
-    $('#inputInspiration').on('change', function () {
-         @inspiration = $('#inputInspiration').val();
-    });
-    $('#inputConstitution').on('change', function () {
-         @constitution = $('#inputConstitution').val();
-    });
-    $('#inputWisdom').on('change', function () {
-         @wisdom = $('#inputWisdom').val();
-    });
-    $('#inputCharisma').on('change', function () {
-         @charisma = $('#inputCharisma').val();
-    });
-
-    $('#chkAthletics').change(function () {
-        if (this.checked) {
-            @athletics =  $('#inputAthletics').val();
-        } else {
-            @athletics = 0;
-        }
-    });
-    $('#inputAthletics').on('change', function () {
-        if ($('#chkAthletics').checked) {
-         @athletics = $('#inputAthletics').val();
-        } else {
-            @athletics = 0;
-        }
-    });
-     $('#chkArcana').change(function () {
-        if (this.checked) {
-            @arcana =  $('#inputArcana').val();
-        } else {
-            @arcana = 0;
-        }
-    });
-    $('#inputArcana').on('change', function () {
-        if ($('#chkArcana').checked) {
-         @arcana = $('#inputArcana').val();
-        } else {
-            @arcana = 0;
-            }
-    });
-    $('#chkHistory').change(function () {
-        if (this.checked) {
-            @history =  $('#inputHistory').val();
-        } else {
-            @history = 0;
-        }
-    });
-    $('#inputHistory').on('change', function () {
-        if ($('#chkHistory').checked) {
-         @history = $('#inputHistory').val();
-        } else {
-            @history = 0;
-        }
-    });
-    $('#chkInvestigation').change(function () {
-        if (this.checked) {
-            @investigation =  $('#inputInvestigation').val();
-        } else {
-            @investigation = 0;
-        }
-    });
-    $('#inputInvestigation').on('change', function () {
-         if ($('#chkInvestigation').checked) {
-            @investigation =  $('#inputInvestigation').val();
-        } else {
-            @investigation = 0;
-        }
-    });
-    $('#chkNature').change(function () {
-        if (this.checked) {
-            @nature =  $('#inputNature').val();
-        } else {
-            @nature = 0;
-        }
-    });
-    $('#inputNature').on('change', function () {
-         if ($('#chkNature').checked) {
-            @nature =  $('#inputNature').val();
-        } else {
-            @nature = 0;
-        }
-    });
-    $('#chkReligion').change(function () {
-        if (this.checked) {
-            @religion =  $('#inputReligion').val();
-        } else {
-            @religion = 0;
-        }
-    });
-    $('#inputReligion').on('change', function () {
-         if ($('#chkReligion').checked) {
-            @religion =  $('#inputReligion').val();
-        } else {
-            @religion = 0;
-        }
-    });
-    $('#chkAcrobatics').change(function () {
-        if (this.checked) {
-            @acrobatics =  $('#inputArcobatics').val();
-        } else {
-            @acrobatics = 0;
-        }
-    });
-     $('#inputAcrobatics').on('change', function () {
-         if ($('#inputAcrobatics').checked) {
-            @acrobatics =  $('#inputArcobatics').val();
-        } else {
-            @acrobatics = 0;
-        }
-     });
-    $('#chkSleightofHand').change(function () {
-        if (this.checked) {
-            @sleightofhand =  $('#inputSleightofHand').val();
-        } else {
-            @sleightofhand = 0;
-        }
-    });
-     $('#inputSleightofHand').on('change', function () {
-         if ($('#chkSleightofHand').checked) {
-            @sleightofhand =  $('#inputSleightofHand').val();
-        } else {
-            @sleightofhand = 0;
-        }
-     });
-    $('#chkStealth').change(function () {
-        if (this.checked) {
-            @stealth =  $('#inputStealth').val();
-        } else {
-            @stealth = 0;
-        }
-    });
-     $('#inputStealth').on('change', function () {
-         if ($('#chkStealth').checked) {
-            @stealth =  $('#inputStealth').val();
-        } else {
-            @stealth = 0;
-        }
-     });
-    $('#chkAnimalHandling').change(function () {
-        if (this.checked) {
-            @animalhandling =  $('#inputAnimalHandling').val();
-        } else {
-            @animalhandling = 0;
-        }
-    });
-     $('#inputAnimalHandling').on('change', function () {
-        if ($('#chkAnimalHandling').checked) {
-            @animalhandling =  $('#inputAnimalHandling').val();
-        } else {
-            @animalhandling = 0;
-        }
-     });
-    $('#chkInsight').change(function () {
-        if (this.checked) {
-            @insight =  $('#inputInsight').val();
-        } else {
-            @insight = 0;
-        }
-    });
-    $('#inputInsight').on('change', function () {
-         if ($('#chkInsight').checked) {
-            @insight =  $('#inputInsight').val();
-        } else {
-            @insight = 0;
-        }
-    });
-    $('#chkMedicine').change(function () {
-        if (this.checked) {
-            @medicine =  $('#inputMedicine').val();
-        } else {
-            @medicine = 0;
-        }
-    });
-    $('#inputMedicine').on('change', function () {
-        if ($('#chkMedicine').checked) {
-            @medicine =  $('#inputMedicine').val();
-        } else {
-            @medicine = 0;
-        }
-    });
-    $('#chkPerception').change(function () {
-        if (this.checked) {
-            @perception =  $('#inputPerception').val();
-        } else {
-            @perception = 0;
-        }
-    });
-    $('#inputPerception').on('change', function () {
-         if ($('#chkPerception').checked) {
-            @perception =  $('#inputPerception').val();
-        } else {
-            @perception = 0;
-        }
-    });
-    $('#chkSurvival').change(function () {
-        if (this.checked) {
-            @survival =  $('#inputSurvival').val();
-        } else {
-            @survival = 0;
-        }
-    });
-    $('#inputSurvival').on('change', function () {
-         if ($('#chkSurvival').checked) {
-            @survival =  $('#inputSurvival').val();
-        } else {
-            @survival = 0;
-        }
-    });
-    $('#chkDeception').change(function () {
-        if (this.checked) {
-            @deception =  $('#inputDeception').val();
-        } else {
-            @deception = 0;
-        }
-    });
-     $('#inputDeception').on('change', function () {
-         if ($('#chkDeception').checked) {
-            @deception =  $('#inputDeception').val();
-        } else {
-            @deception = 0;
-        }
-     });
-    $('#chkIntimidation').change(function () {
-        if (this.checked) {
-            @intimidation =  $('#inputIntimidation').val();
-        } else {
-            @intimidation = 0;
-        }
-    });
-     $('#inputIntimidation').on('change', function () {
-         if ($('#chkIntimidation').checked) {
-            @intimidation =  $('#inputIntimidation').val();
-        } else {
-            @intimidation = 0;
-        }
-     });
-    $('#chkPerformance').change(function () {
-        if (this.checked) {
-            @performance =  $('#inputPerformance').val();
-        } else {
-            @performance = 0;
-        }
-    });
-     $('#inputPerformance').on('change', function () {
-         if ($('#chkPerformance').checked) {
-            @performance =  $('#inputPerformance').val();
-        } else {
-            @performance = 0;
-        }
-     });
-    $('#chkPersuasion').change(function () {
-        if (this.checked) {
-            @persuasion =  $('#inputPersuasion').val();
-        } else {
-            @persuasion = 0;
-        }
-    });
-    $('#inputPersuasion').on('change', function () {
-         if ($('#chkPersuasion').checked) {
-            @persuasion =  $('#inputPersuasion').val();
-        } else {
-            @persuasion = 0;
-        }
-    });
-
-    //update values on change
-
-    //skills check on change
-
-    //require fields
 
     //prevent accidental submitssions on enter button
     $(document).ready(function () {
@@ -8028,7 +7759,7 @@
     });
 
     //link level and exp feilds
-    $('#inputLevel').on('change',function () {
+    $('#inputLevel').change(function () {
         var x = $('#inputLevel').val();
         var exp = "";
 
@@ -8094,12 +7825,10 @@
                 exp = "355000";
                 break;
         }
-        @level = x;
-        @exp = exp;
         $('#inputExperiencePoints').val(exp);
     });
 
-    $('#inputExperiencePoints').on('change',function () {
+    $('#inputExperiencePoints').change(function () {
         var x = parseInt($('#inputExperiencePoints').val());
         var level = "";
 
@@ -8144,8 +7873,93 @@
         } else if (355000 <= x) {
             level = "20";
         }
-        @exp = x;
-        @level = level;
         $('#inputLevel').val(level);
     });
+
+    $('#chkAthletics').change(function () {
+        if (!this.checked) {
+            $('#inputAthletics').val(0);
+        }
+    });
+     $('#chkArcana').change(function () {
+        if (!this.checked) {
+           $('#inputArcana').val(0);
+        } 
+    });
+    $('#chkHistory').change(function () {
+        if (!this.checked) {
+            $('#inputHistory').val(0);
+        } 
+    });
+    $('#chkInvestigation').change(function () {
+        if (!this.checked) {
+            $('#inputInvestigation').val(0);
+        } 
+    });
+    $('#chkNature').change(function () {
+        if (!this.checked) {
+            $('#inputNature').val(0);
+        } 
+    });
+    $('#chkReligion').change(function () {
+        if (!this.checked) {
+           $('#inputReligion').val(0);
+        } 
+    });
+    $('#chkAcrobatics').change(function () {
+        if (!this.checked) {
+            $('#inputArcobatics').val(0);
+        } 
+    });
+    $('#chkSleightofHand').change(function () {
+        if (!this.checked) {
+            $('#inputSleightofHand').val(0);
+        }
+    });
+    $('#chkStealth').change(function () {
+        if (!this.checked) {
+            $('#inputStealth').val(0);
+        } 
+    });
+    $('#chkAnimalHandling').change(function () {
+        if (!this.checked) {
+            $('#inputAnimalHandling').val(0);
+        } 
+    });
+    $('#chkInsight').change(function () {
+        if (!this.checked) {
+            $('#inputInsight').val(0);
+        } 
+    });
+    $('#chkMedicine').change(function () {
+        if (!this.checked) {
+            $('#inputMedicine').val(0);
+        }
+    });
+    $('#chkSurvival').change(function () {
+        if (!this.checked) {
+            $('#inputSurvival').val(0);
+        }
+    });
+    $('#chkDeception').change(function () {
+        if (!this.checked) {
+            $('#inputDeception').val(0);
+        } 
+    });
+    $('#chkIntimidation').change(function () {
+        if (!this.checked) {
+            $('#inputIntimidation').val(0);
+        } 
+    });
+    $('#chkPerformance').change(function () {
+        if (!this.checked) {
+            $('#inputPerformance').val(0);
+        } 
+    });
+    $('#chkPersuasion').change(function () {
+        if (!this.checked) {
+            $('#inputPersuasion').val(0);
+        }
+    });
+
 </script>
