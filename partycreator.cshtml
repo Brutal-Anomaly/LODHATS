@@ -51,6 +51,8 @@
                     var partyid = db.QueryValue(partyid_query);
                     var update_char_partyid = "UPDATE character SET partyid='" + partyid + "' WHERE characterid='" + characterid + "'";
                     db.Query(update_char_partyid);
+
+                    Response.Redirect(@Href("~/viewaccount.cshtml"));
                 }
             }
         }
@@ -63,62 +65,71 @@
     <title></title>
 </head>
 <body>
-    
-
-    <h1>Create a Party</h1>
-    <h3>Use the Party Name and Party Password to create a party for your friends.</h3>
-    <div class="container-fluid">
+    <br />
+    <br />
+    <br />    
+    <div class="container">
         <form method="post" id="party_form">
             <div class="row">
                 <div class="col-sm-8">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <label for="partyid">Party Name:</label>
+                    <div class="card mt-6">
+                        <div class="card-header">
+                            <h1>Create a Party</h1>
+                            <h3>Use the Party Name and Party Password to create a party for your friends.</h3>
                         </div>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="Party Name" id="partyname" name="partyname" value="" />
-                            @*Html.ValidationMessage("partyname")*@
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label for="partyid">Party Name:</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Party Name" id="partyname" name="partyname" value="" />
+                                    @*Html.ValidationMessage("partyname")*@
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label for="partypassword">Party Password:</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Party Password" id="partypassword" name="partypassword" value="" />
+                                    @*Html.ValidationMessage("partypassword")*@
+                                </div>
+                            </div>
                         </div>
+                        <br />
+                        <br />
+                        <div class="form-row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        @if (party_error)
+                                        {
+                                            <p style="color:red">Party @partyname could not be created.</p>
+                                        }
+                                        @if (create_success)
+                                        {
+                                            <p>Party created successfully.</p>
+                                            Response.Redirect(@Href("~/party.cshtml"));
+                                        }
+                                        <!--<button type="button" class="btn-sm"><a href="partycreator.cshtml?characterid=@*characterid*@">Create Party</a></button>-->
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn-sm">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        @Html.ValidationSummary()
+                        
                     </div>
                 </div>
             </div>
-            <br />
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <label for="partypassword">Party Password:</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="Party Password" id="partypassword" name="partypassword" value="" />
-                            @*Html.ValidationMessage("partypassword")*@
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            @Html.ValidationSummary("Party join or creation was unsuccessful. Please correct the errors and try again.")
-            <br />
-            <div class="form-row">
-                <div class="col-sm-8">
-                    <div class="row">
-                        <div class="col-sm-5">                            
-                            @if (party_error)
-                            {
-                                <p style="color:red">Party @partyname could not be created.</p>
-                            }
-                            @if (create_success)
-                            {
-                                <p>Party created successfully.</p>
-                            }
-                            <!--<button type="button" class="btn-sm"><a href="partycreator.cshtml?characterid=@*characterid*@">Create Party</a></button>-->
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="submit" class="btn-sm">Submit</button>                            
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+
+
         </form>
     </div>
 
