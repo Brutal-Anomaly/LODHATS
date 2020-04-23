@@ -1,6 +1,8 @@
 ﻿@{
 
     // get request paramaters
+    var userid = Session["userID"].ToString();
+
     var charid = Request.Params["characterid"];
     var charname = Request.Params["charactername"];
     var charclass = Request.Params["caracterclass"];
@@ -45,17 +47,172 @@
     var performance = Request.Params["performance"];
     var persuasion = Request.Params["persuasion"];
 
+    if(charname == "" || charname == null)
+    {
+        charname = "Anonymous";
+    }
+    if (charclass == "" || charclass == null)
+    {
+        charclass = "Barbarian";
+    }
+    if (background == "" || background == null)
+    {
+        background = "Other";
+    }
+    if (alignment == "" || alignment == null)
+    {
+        alignment = "True Neutral";
+    }
+    if (race == "" || race == null)
+    {
+        race = "Other";
+    }
+    if (sex == "" || sex == null)
+    {
+        sex = "Other";
+    }
+    if (eyes == "" || eyes == null)
+    {
+        eyes = "N/A";
+    }
+    if (skin == "" || skin == null)
+    {
+        skin = "N/A";
+    }
+    if (hair == "" || hair == null)
+    {
+        hair = "N/A";
+    }
+    if (level == "" || level == null)
+    {
+        level = "1";
+    }
+    if (age == "" || age == null)
+    {
+        age = "1";
+    }
+    if (exp == "" || exp == null)
+    {
+        exp = "0";
+    }
+    if (strength == "" || strength == null)
+    {
+        strength = "0";
+    }
+    if (dex == "" || dex == null)
+    {
+        dex = "0";
+    }
+    if (intelligence == "" || intelligence == null)
+    {
+        intelligence = "0";
+    }
+    if (speed == "" || speed == null)
+    {
+        speed = "0";
+    }
+    if (inspiration == "" || inspiration == null)
+    {
+        inspiration = "0";
+    }
+    if (constitution == "" || constitution == null)
+    {
+        constitution = "0";
+    }
+    if (wisdom == "" || wisdom == null)
+    {
+        wisdom = "0";
+    }
+    if (charisma == "" || charisma == null)
+    {
+        charisma = "0";
+    }
+    if (athletics == "" || athletics == null)
+    {
+        athletics = "0";
+    }
+    if (arcana == "" || arcana == null)
+    {
+        arcana = "0";
+    }
+    if (history == "" || history == null)
+    {
+        history = "0";
+    }
+    if (investigation == "" || investigation == null)
+    {
+        investigation = "0";
+    }
+    if (nature == "" || nature == null)
+    {
+        nature = "0";
+    }
+    if (religion == "" || religion == null)
+    {
+        religion = "0";
+    }
+    if (acrobatics == "" || acrobatics == null)
+    {
+        acrobatics = "0";
+    }
+    if (sleightofhand == "" || sleightofhand == null)
+    {
+        sleightofhand = "0";
+    }
+    if (stealth == "" || stealth == null)
+    {
+        stealth = "0";
+    }
+    if (animalhandling == "" || animalhandling == null)
+    {
+        animalhandling = "0";
+    }
+    if (insight == "" || insight == null)
+    {
+        insight = "0";
+    }
+    if (medicine == "" || medicine == null)
+    {
+        medicine = "0";
+    }
+    if (perception == "" || perception == null)
+    {
+        perception = "0";
+    }
+    if (survival == "" || survival == null)
+    {
+        survival = "0";
+    }
+    if (deception == "" || deception == null)
+    {
+        deception = "0";
+    }
+    if (intimidation == "" || intimidation == null)
+    {
+        intimidation = "0";
+    }
+    if (performance == "" || performance == null)
+    {
+        performance = "0";
+    }
+    if (persuasion == "" || persuasion == null)
+    {
+        persuasion = "0";
+    }
+
+
     //create new party class with party id from parameters
 
     //call and store into database
-    if(charid != null){
+    if (charid != ""){
         DatabaseManagement.updateCharacter(new Character(Int32.Parse(charid),  Int32.Parse(Session["userID"].ToString()), charname, sex,  charclass,  race, Int32.Parse(level), Int32.Parse(exp), background,  alignment,  Int32.Parse(strength),  Int32.Parse(dex),  Int32.Parse(constitution),  Int32.Parse(intelligence), Int32.Parse(wisdom),  Int32.Parse(speed), Int32.Parse(charisma), Int32.Parse(inspiration), Int32.Parse(acrobatics),  Int32.Parse(animalhandling),  Int32.Parse(arcana),  Int32.Parse(athletics),  Int32.Parse(deception),  Int32.Parse(history),  Int32.Parse(insight),  Int32.Parse(intimidation),  Int32.Parse(investigation),  Int32.Parse(medicine),  Int32.Parse(nature),  Int32.Parse(perception),  Int32.Parse(performance),  Int32.Parse(persuasion),  Int32.Parse(religion),  Int32.Parse(sleightofhand),  Int32.Parse(stealth),  Int32.Parse(survival),  Int32.Parse(age),  eyes,  skin, hair));
     }
     else {
-        DatabaseManagement.addCharacter(new Character(-1,  Int32.Parse(Session["userID"].ToString()),  charname, sex,  charclass,  race, Int32.Parse(level), Int32.Parse(exp), background,  alignment,  Int32.Parse(strength),  Int32.Parse(dex),  Int32.Parse(constitution),  Int32.Parse(intelligence), Int32.Parse(wisdom),  Int32.Parse(speed), Int32.Parse(charisma), Int32.Parse(inspiration), Int32.Parse(acrobatics),  Int32.Parse(animalhandling),  Int32.Parse(arcana),  Int32.Parse(athletics),  Int32.Parse(deception),  Int32.Parse(history),  Int32.Parse(insight),  Int32.Parse(intimidation),  Int32.Parse(investigation),  Int32.Parse(medicine),  Int32.Parse(nature),  Int32.Parse(perception),  Int32.Parse(performance),  Int32.Parse(persuasion),  Int32.Parse(religion),  Int32.Parse(sleightofhand),  Int32.Parse(stealth),  Int32.Parse(survival),  Int32.Parse(age),  eyes,  skin, hair));
+        DatabaseManagement.addCharacter(new Character(0,  Int32.Parse(userid),  charname, sex,  charclass,  race, Int32.Parse(level), Int32.Parse(exp), background,  alignment,  Int32.Parse(strength),  Int32.Parse(dex),  Int32.Parse(constitution),  Int32.Parse(intelligence), Int32.Parse(wisdom),  Int32.Parse(speed), Int32.Parse(charisma), Int32.Parse(inspiration), Int32.Parse(acrobatics),  Int32.Parse(animalhandling),  Int32.Parse(arcana),  Int32.Parse(athletics),  Int32.Parse(deception),  Int32.Parse(history),  Int32.Parse(insight),  Int32.Parse(intimidation),  Int32.Parse(investigation),  Int32.Parse(medicine),  Int32.Parse(nature),  Int32.Parse(perception),  Int32.Parse(performance),  Int32.Parse(persuasion),  Int32.Parse(religion),  Int32.Parse(sleightofhand),  Int32.Parse(stealth),  Int32.Parse(survival),  Int32.Parse(age),  eyes,  skin, hair));
+        charid = DatabaseManagement.getRecentEntry().ToString();
     }
 
-    
+
     //redirect to party page with party id parameter
-    Response.Redirect(@Href("~/charcreator?characterid=@charid"));
+    Response.Redirect(@Href("~/charcreator?characterid="+charid));
   }

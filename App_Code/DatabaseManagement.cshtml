@@ -3,51 +3,50 @@
 
     /////////////////REMOVE////////////////////
 
-    public void deleteUser(int userID)
+    public static void deleteUser(int userID)
     {
-        var db = Database.Open("users");
+        var db = Database.Open("MySQLDB");
         var commandText = "DELETE userid FROM users WHERE userid = '@0'";
         db.Execute(commandText, userID);
     }
 
 
-    public void deleteCharacter(int characterID)
+    public static void deleteCharacter(int characterID)
     {
 
-        var db = Database.Open("character");
+        var db = Database.Open("MySQLDB");
         var commandText = "DELETE characterid FROM character WHERE characterid = '@0'";
         db.Execute(commandText, characterID);
 
     }
 
-    public void deleteParty(int partyID)
+    public static void deleteParty(int partyID)
     {
-        var db = Database.Open("party");
+        var db = Database.Open("MySQLDB");
         var commandText = "DELETE partyid FROM party WHERE partyid = '@0'";
         db.Execute(commandText, partyID);
     }
 
     /////////////////ADD//////////////////////
 
-    public void addUser(User user)
+    public static void addUser(User user)
     {
-        var db = Database.Open("users");
+        var db = Database.Open("MySQLDB");
         var commandText = "INSERT INTO users (userid, password, username, firstname, lastname, email, admin)" +
                              "VALUES (@0, @1, @2, @3, @4, @5, @6)";
         db.Execute(commandText, user.getUserID(), user.getPassword(), user.getEmail(), user.isAdmin());
     }
 
-    public void addCharacter(Character character)
+    public static void addCharacter(Character character)
     {
-        var db = Database.Open("character");
-        var commandText = "INSERT INTO character (characterid, userid, charactername, charactergender, characterclass, characterrace, characterlevel, background, alignment, strength, dex, constitution, intelligence, wisdom, charisma, inspiration, skillsacrobatics, skillsanimalhandling, skillsarcana, skillsathletics, skillsdeception, skillshistory, skillsinsight, skillsintimidation, skillsinvestigation, skillsmedicine, skillsnature, skillsperception, skillsperformance, skillspersuasion, skillsreligion, skillssleightofhand, skillsstealth, skillssurvival, age, eyes, skin, hair)" +
-                             "VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26, @27, @28, @29, @30, @31, @32, @33, @34, @35, @36, @37)";
-        db.Execute(commandText, character.getID(), character.getUser(), character.getName(), character.getGender(), character.getClass(), character.getRace(), character.getLevel(), character.getBackground(), character.getAlignment(), character.getStrength(), character.getDex(), character.getConstitution(), character.getIntelligence(), character.getWisdom(), character.getCharisma(), character.getInspiration(), character.getAcrobatics(), character.getAnimalHandling(), character.getArcana(), character.getAthletics(), character.getDeception(), character.getHistory(), character.getInsight(), character.getIntimidation(), character.getInspiration(), character.getMedicine(), character.getNature(), character.getPerception(), character.getPerformance(), character.getPersuasion(), character.getReligion(), character.getSleightOfHand(), character.getStealth(), character.getSurvival(), character.getAge(), character.getEyes(), character.getSkin(), character.getHair());
+        var db = Database.Open("MySQLDB");
+        var commandText = "INSERT INTO `character` (`userid`, `charactername`, `charactergender`, `characterclass`, `characterrace`, `characterlevel`, `exp`, `background`, `alignment`, `strength`, `dex`, `constitution`, `intelligence`, `wisdom`, `speed`, `charisma`, `inspiration`, `skillsacrobatics`, `skillsanimalhandling`, `skillsarcana`, `skillsathletics`, `skillsdeception`, `skillshistory`, `skillsinsight`, `skillsintimidation`, `skillsinvestigation`, `skillsmedicine`, `skillsnature`, `skillsperception`, `skillsperformance`, `skillspersuasion`, `skillsreligion`, `skillssleightofhand`, `skillsstealth`, `skillssurvival`, `age`, `eyes`, `skin`, `hair`) VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26, @27, @28, @29, @30, @31, @32, @33, @34, @35, @36, @37, @38)";
+        db.Execute(commandText, character.getUser(), character.getName(), character.getGender(), character.getClass(), character.getRace(), character.getLevel().ToString(), character.getEXP().ToString(), character.getBackground(), character.getAlignment(), character.getStrength().ToString(), character.getDex().ToString(), character.getConstitution().ToString(), character.getIntelligence(), character.getWisdom(), character.getSpeed().ToString(), character.getCharisma().ToString(), character.getInspiration().ToString(), character.getAcrobatics().ToString(), character.getAnimalHandling().ToString(), character.getArcana().ToString(), character.getAthletics().ToString(), character.getDeception().ToString(), character.getHistory().ToString(), character.getInsight().ToString(), character.getIntimidation().ToString(), character.getInspiration().ToString(), character.getMedicine().ToString(), character.getNature().ToString(), character.getPerception().ToString(), character.getPerformance().ToString(), character.getPersuasion().ToString(), character.getReligion().ToString(), character.getSleightOfHand().ToString(), character.getStealth().ToString(), character.getSurvival().ToString(), character.getAge().ToString(), character.getEyes().ToString(), character.getSkin().ToString(), character.getHair().ToString());
     }
 
-    public void addParty(Party party)
+    public static void addParty(Party party)
     {
-        var db = Database.Open("party");
+        var db = Database.Open("MySQLDB");
         var commandText = "INSERT INTO party (partyid, dm, users, characters, inventory)" +
                              "VALUES (@0, @1, @2, @3, @4)";
         db.Execute(commandText, party.getPartyID(), party.getDM(), party.getUsers(), party.getCharacters(), party.getInventory());
@@ -55,48 +54,43 @@
 
     /////////////////PARTY////////////////////
 
-    public void removeUserFromParty(int partyID, int userID)
+    public static void removeUserFromParty(int partyID, int userID)
     {
-        var db = Database.Open("party");
+        var db = Database.Open("MySQLDB");
         var commandText = "DELETE userid FROM party WHERE partyid = '@0', userid = '@1'";
         db.Execute(commandText, partyID, userID);
     }
 
-    public void addUserToParty(int partyID, int userID, int characterID)
+    public static void addUserToParty(int partyID, int userID, int characterID)
     {
-        var db = Database.Open("party");
+        var db = Database.Open("MySQLDB");
         var commandText = "INSERT INTO party (userid, characterid) VALUES (@0, @1) WHERE partyid = '@2'";
         db.Execute(commandText, userID, characterID, partyID);
     }
 
     /////////////////GET////////////////////
 
-    public User getUser(int userID)
+    public static User getUser(string email)
     {
-        var db = Database.Open("users");
-        var commandText = "SELECT * FROM users WHERE userid ='@0'";
+        var db = Database.Open("MySQLDB");
+        var commandText = "SELECT * FROM users WHERE email ='@0'";
 
+        int userID = 0;
         string password = "";
-        string username = "";
-        string first = "";
-        string last = "";
-        string email = "";
         bool admin = false;
-        foreach (var row in db.Query(commandText, userID))
+        foreach (var row in db.Query(commandText, email))
         {
+            userID = row.userid;
             password = row.password;
-            username = row.username;
-            first = row.firstname;
-            last = row.lastname;
             email = row.email;
             admin = row.admin;
         }
         return new User(userID, password, email, admin);
     }
 
-    public User[] getUsers()
+    public static User[] getUsers()
     {
-        var db = Database.Open("users");
+        var db = Database.Open("MySQLDB");
         var commandText = "SELECT * FROM users";
 
         List<User> userList = new List<User>();
@@ -120,8 +114,8 @@
 
     public static Character getCharacter(int characterID)
     {
-        var db = Database.Open("character");
-        var commandText = "SELECT * FROM character WHERE characterid ='@0'";
+        var db = Database.Open("MySQLDB");
+        var commandText = "SELECT * FROM `character` WHERE `characterid` =@0";
 
         int userID = 0;
         string characterName = "";
@@ -209,9 +203,9 @@
         return new Character( characterID,  userID,  characterName,  characterGender,  characterClass,  characterRace,  characterLevel, exp, background,  alignment,  strength,  dex,  constitution,  intelligence,  wisdom,  speed, charisma, inspiration, skillsAcrobatics,  skillsAnimalHandling,  skillsArcana,  skillsAthletics,  skillsDeception,  skillsHistory,  skillsInsight,  skillsIntimidation,  skillsInvestigation,  skillsMedicine,  skillsNature,  skillsPerception,  skillsPerformance,  skillsPersuasion,  skillsReligion,  skillsSleightOfHand,  skillsStealth,  skillsSurvival,  age,  eyeColor,  skinColor, hairColor);
     }
 
-    public Character[] getCharacters(int userID)
+    public static Character[] getCharacters(int userID)
     {
-        var db = Database.Open("character");
+        var db = Database.Open("MySQLDB");
         var commandText = "SELECT * FROM character WHERE userid ='@0'";
 
         List<Character> charList = new List<Character>();
@@ -259,16 +253,23 @@
             string skinColor = row.skin;
             string hairColor = row.hair;
 
-            charList.Add(new Character(characterID, userID, characterName, characterGender, characterClass, characterRace, characterLevel, exp, background, alignment, strength, dex, constitution, intelligence, wisdom, speed, charisma, inspiration, skillsAcrobatics, skillsAnimalHandling, skillsArcana, skillsAthletics, skillsDeception, skillsHistory, skillsInsight, skillsIntimidation, skillsInvestigation, skillsMedicine, skillsNature, skillsPerception, skillsPerformance, skillsPersuasion, skillsReligion, skillsSleightOfHand, skillsStealth, skillsSurvival, age, eyeColor, skinColor, hairColor)); 
+            charList.Add(new Character(characterID, userID, characterName, characterGender, characterClass, characterRace, characterLevel, exp, background, alignment, strength, dex, constitution, intelligence, wisdom, speed, charisma, inspiration, skillsAcrobatics, skillsAnimalHandling, skillsArcana, skillsAthletics, skillsDeception, skillsHistory, skillsInsight, skillsIntimidation, skillsInvestigation, skillsMedicine, skillsNature, skillsPerception, skillsPerformance, skillsPersuasion, skillsReligion, skillsSleightOfHand, skillsStealth, skillsSurvival, age, eyeColor, skinColor, hairColor));
         }
         Character[] characters = charList.ToArray();
         return characters;
     }
 
+    public static int getRecentEntry()
+    {
+        var db = Database.Open("MySQLDB");
+        var row = db.QuerySingle("SELECT MAX(`characterid`) AS id FROM `character`");
+        return row.id;
+    }
+
     public static Party getParty(int partyID)
     {
-        var db = Database.Open("party");
-        var commandText = "SELECT * FROM character WHERE partyid =" + partyID;
+        var db = Database.Open("MySQLDB");
+        var commandText = "SELECT * FROM party WHERE partyid =" + partyID;
 
         string name = "";
         int DM = 0;
@@ -289,9 +290,9 @@
         return new Party(partyID, name, DM, users, characters, inventory);
     }
 
-    public Party[] getParties(int userID)
+    public static Party[] getParties(int userID)
     {
-        var db = Database.Open("party");
+        var db = Database.Open("MySQLDB");
         var commandText = "SELECT * FROM party WHERE userid ='@'";
 
         List<Party> partyList = new List<Party>();
@@ -314,16 +315,16 @@
 
     //////////////////UPDATE//////////////////////
 
-    public void updateCharacter(Character character)
+    public static void updateCharacter(Character character)
     {
-        var db = Database.Open("character");
-        var commandText = "UPDATE character Set userid = '@0', charactername = '@1', charactergender = '@2', characterclass = '@3', characterrace = '@4', characterlevel = '@5', background = '@6', alignment = '@7', strength = '@8', dex = '@9', constitution = '@10', intelligence = '@11', wisdom = '@12', charisma = '@13', inspiration = '@14', skillsacrobatics = '@15', skillsanimalhandling = '@16', skillsarcana = '@17', skillsathletics = '@18', skillsdeception = '@19', skillshistory = '@20', skillsinsight = '@21', skillsintimidation = '@22', skillsinvestigation = '@23', skillsmedicine = '@24', skillsnature = '@25', skillsperception = '@26', skillsperformance = '@27', skillspersuasion = '@28', skillsreligion = '@29', skillssleightofhand = '@30', skillsstealth = '@31', skillssurvival = '@32', age = '@33', eyes = '@34', skin = '@35', hair = '@36' WHERE characterid = '@37'";
+        var db = Database.Open("MySQLDB");
+        var commandText = "UPDATE character Set userid = '@0', charactername = '@1', charactergender = '@2', characterclass = '@3', characterrace = '@4', characterlevel = '@5', exp = '@6', background = '@7', alignment = '@8', strength = '@9', dex = '@10', constitution = '@11', intelligence = '@12', wisdom = '@13', speed = '@14', charisma = '@15', inspiration = '@16', skillsacrobatics = '@17', skillsanimalhandling = '@18', skillsarcana = '@19', skillsathletics = '@20', skillsdeception = '@21', skillshistory = '@22', skillsinsight = '@23', skillsintimidation = '@24', skillsinvestigation = '@25', skillsmedicine = '@26', skillsnature = '@27', skillsperception = '@28', skillsperformance = '@29', skillspersuasion = '@30', skillsreligion = '@31', skillssleightofhand = '@32', skillsstealth = '@33', skillssurvival = '@34', age = '@35', eyes = '@36', skin = '@37', hair = '@38' WHERE characterid = '@39'";
         db.Execute(commandText, character.getUser(), character.getName(), character.getGender(), character.getClass(), character.getRace(), character.getLevel(), character.getBackground(), character.getAlignment(), character.getStrength(), character.getDex(), character.getConstitution(), character.getIntelligence(), character.getWisdom(), character.getCharisma(), character.getInspiration(), character.getAcrobatics(), character.getAnimalHandling(), character.getArcana(), character.getAthletics(), character.getDeception(), character.getHistory(), character.getInsight(), character.getIntimidation(), character.getInspiration(), character.getMedicine(), character.getNature(), character.getPerception(), character.getPerformance(), character.getPersuasion(), character.getReligion(), character.getSleightOfHand(), character.getStealth(), character.getSurvival(), character.getAge(), character.getEyes(), character.getSkin(), character.getHair(), character.getID());
     }
 
-    public void updateParty(Party party)
+    public static void updateParty(Party party)
     {
-        var db = Database.Open("party");
+        var db = Database.Open("MySQLDB");
         var commandText = "UPDATE party SET name = '@0', dm = '@1', users = '@2', characters = '@3', inventory = '@4' WHERE partyid = '@5'";
 
         db.Execute(commandText, party.getDM(), party.getName(), party.getUsers(), party.getCharacters(), party.getInventory(), party.getPartyID());
