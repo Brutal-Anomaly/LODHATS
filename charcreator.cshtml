@@ -4,7 +4,7 @@
     var random = "";
     var readon = false;
     var username = "";
-    var userid = Int32.Parse(Session["userid"].ToString());
+    var userid = 0;
 
 
     //values passed into page
@@ -53,6 +53,7 @@
     if (Session["username"] != null)
     {
         username = (string)Session["username"];
+        userid= Int32.Parse(Session["userid"].ToString());
     }
     else
     {
