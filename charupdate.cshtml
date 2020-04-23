@@ -1,0 +1,61 @@
+﻿@{
+
+    // get request paramaters
+    var charid = Request.Params["characterid"];
+    var charname = Request.Params["charactername"];
+    var charclass = Request.Params["caracterclass"];
+    var race = Request.Params["characterrace"];
+    var sex =     Request.Params["charactersex"];
+
+    var alignment =     Request.Params["alignment"];
+
+    var background =     Request.Params["background"];
+
+    var level = Request.Params["level"];
+    var exp = Request.Params["exp"];
+    var age = Request.Params["age"];
+    var eyes = Request.Params["eyes"];
+    var skin = Request.Params["skin"];
+    var hair = Request.Params["hair"];
+    var strength = Request.Params["strength"];
+    var dex = Request.Params["dex"];
+    var intelligence = Request.Params["intelligence"];
+    var speed = Request.Params["speed"];
+    var inspiration = Request.Params["inspiration"];
+    var constitution = Request.Params["consititution"];
+    var wisdom = Request.Params["wisdom"];
+    var charisma = Request.Params["charisma"];
+
+    var athletics = Request.Params["athletics"];
+    var arcana = Request.Params["arcana"];
+    var history = Request.Params["history"];
+    var investigation = Request.Params["investigation"];
+    var nature = Request.Params["nature"];
+    var religion = Request.Params["religion"];
+    var acrobatics = Request.Params["acrobatics"];
+    var sleightofhand = Request.Params["sleightofhand"];
+    var stealth = Request.Params["stealth"];
+    var animalhandling = Request.Params["animalhandling"];
+    var insight = Request.Params["insight"];
+    var medicine = Request.Params["medicine"];
+    var perception = Request.Params["perception"];
+    var survival = Request.Params["survival"];
+    var deception = Request.Params["deception"];
+    var intimidation = Request.Params["intimidation"];
+    var performance = Request.Params["performance"];
+    var persuasion = Request.Params["persuasion"];
+
+    //create new party class with party id from parameters
+
+    //call and store into database
+    if(charid != null){
+        DatabaseManagement.updateCharacter(new Character(Int32.Parse(charid),  Int32.Parse(Session["userID"].ToString()), charname, sex,  charclass,  race, Int32.Parse(level), Int32.Parse(exp), background,  alignment,  Int32.Parse(strength),  Int32.Parse(dex),  Int32.Parse(constitution),  Int32.Parse(intelligence), Int32.Parse(wisdom),  Int32.Parse(speed), Int32.Parse(charisma), Int32.Parse(inspiration), Int32.Parse(acrobatics),  Int32.Parse(animalhandling),  Int32.Parse(arcana),  Int32.Parse(athletics),  Int32.Parse(deception),  Int32.Parse(history),  Int32.Parse(insight),  Int32.Parse(intimidation),  Int32.Parse(investigation),  Int32.Parse(medicine),  Int32.Parse(nature),  Int32.Parse(perception),  Int32.Parse(performance),  Int32.Parse(persuasion),  Int32.Parse(religion),  Int32.Parse(sleightofhand),  Int32.Parse(stealth),  Int32.Parse(survival),  Int32.Parse(age),  eyes,  skin, hair));
+    }
+    else {
+        DatabaseManagement.addCharacter(new Character(-1,  Int32.Parse(Session["userID"].ToString()),  charname, sex,  charclass,  race, Int32.Parse(level), Int32.Parse(exp), background,  alignment,  Int32.Parse(strength),  Int32.Parse(dex),  Int32.Parse(constitution),  Int32.Parse(intelligence), Int32.Parse(wisdom),  Int32.Parse(speed), Int32.Parse(charisma), Int32.Parse(inspiration), Int32.Parse(acrobatics),  Int32.Parse(animalhandling),  Int32.Parse(arcana),  Int32.Parse(athletics),  Int32.Parse(deception),  Int32.Parse(history),  Int32.Parse(insight),  Int32.Parse(intimidation),  Int32.Parse(investigation),  Int32.Parse(medicine),  Int32.Parse(nature),  Int32.Parse(perception),  Int32.Parse(performance),  Int32.Parse(persuasion),  Int32.Parse(religion),  Int32.Parse(sleightofhand),  Int32.Parse(stealth),  Int32.Parse(survival),  Int32.Parse(age),  eyes,  skin, hair));
+    }
+
+    
+    //redirect to party page with party id parameter
+    Response.Redirect(@Href("~/charcreator?characterid=@charid"));
+  }
