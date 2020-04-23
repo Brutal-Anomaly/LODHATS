@@ -6,7 +6,7 @@
     var email = "";
     var emailerror = "";
     var password = "";
-   // var passworderror = "";
+    // var passworderror = "";
 
 
 
@@ -37,7 +37,11 @@
             }
             else
             {
+                var row  = db.QuerySingle("SELECT userid FROM users WHERE email = @0", email);
+                
+                Session["userID"] = row.userid;
                 Session["username"] = email;
+                Response.Redirect(@Href("~/Default"));
             }
 
         }
