@@ -20,7 +20,7 @@
     <h1 class="text-center">DICE</h1>
     <p class="text-center">For official dice rules and regulations click <a href="https://dnd.wizards.com/rules-introduction">here</a></p>
 </div>
-<form class="form-group" method="post">
+<form class="form-group container-fluid" method="post">
     <div class="form-row d-flex justify-content-center mb-2">
         <div class="form-inline">
             <div class="mr-2">
@@ -66,8 +66,15 @@
     </div>
     @if (IsPost)
     {
-        <div class="d-flex justify-content-center">
+        var overall = Int32.Parse(modifier) + Int32.Parse(rollnum);
+        <div class="d-flex justify-content-center row">
+            <h1>@overall</h1>
+
+        </div>
+        <div class="d-flex justify-content-center row">
+            <br />
             <p>Roll Generated!</p>
+
         </div>
     }
 </form>
