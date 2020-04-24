@@ -1,17 +1,18 @@
 ﻿using System;
 
 public class Party
-{	
+{
 	//member data
 	private int partyID;
+	private string password;
 	private string name;
 	private int DM;
-	private int[] users;
-	private int[] characters;
+	private int?[] users;
+	private int?[] characters;
 	private string[] inventory;
 
 	//constructor
-	public Party(int ID, string _name, int dmID, int[] userIDs, int[] characterIDs, string[] inv)
+	public Party(int ID, string password, string _name, int dmID, int?[] userIDs, int?[] characterIDs, string[] inv)
 	{
 		partyID = ID;
 		name = _name;
@@ -22,26 +23,26 @@ public class Party
 	}
 
 	//mutators
-	public int getPartyID() 
+	public int getPartyID()
 	{
 		return partyID;
 	}
 
-	public string getName() 
+	public string getName()
 	{
 		return name;
 	}
 
-	public int getDM() 
+	public int getDM()
 	{
 		return DM;
 	}
 
-	public int[] getUsers() 
+	public int?[] getUsers()
 	{
 		return users;
 	}
-	public int[] getCharacters()
+	public int?[] getCharacters()
 	{
 		return characters;
 	}
@@ -52,90 +53,121 @@ public class Party
 	}
 
 	//member functions
-	public void Add(int userID, int characterID) 
+	public void Add(int userID, int characterID)
 	{
-		int[] _users = new int[users.Length + 1];
-		for(int i = 0; i < users.Length; i++) 
+		
+		for (int i = 0; i < users.Length; i++)
 		{
-			_users[i] = users[i];
+			if (users[i] == null)
+			{
+				users[i] = userID;
+				break;
+			}
 		}
 
-		_users[_users.Length - 1] = userID;
-		users = _users;
-
-		int[] _characters = new int[characters.Length + 1];
 		for (int i = 0; i < characters.Length; i++)
 		{
-			_characters[i] = characters[i];
+			if(characters[i] == null) {
+				characters[i] = characterID;
+			}
 		}
-
-		_characters[_characters.Length - 1] = characterID;
-		characters = _characters;
 	}
 
-	public void Remove(int userID, int characterID) 
+	public void Remove(int userID, int characterID)
 	{
-		int[] _users = new int[users.Length - 1];
-		for (int i = 0; i < _users.Length; i++)
+		for (int i = 0; i < users.Length; i++)
 		{
 			if (users[i] == userID)
 			{
-				continue;
-			}
-			else
-			{
-				_users[i] = users[i];
+				users[i] = null;
 			}
 		}
-		Array.Sort(_users);
-		users = _users;
 
-		int[] _characters = new int[characters.Length - 1];
-		for (int i = 0; i < _characters.Length; i++)
+		for (int i = 0; i < characters.Length; i++)
 		{
 			if (characters[i] == characterID)
 			{
-				continue;
-			}
-			else
-			{
-				_characters[i] = characters[i];
+				characters[i] = null;
 			}
 		}
-		Array.Sort(_characters);
-		characters = _characters;
 	}
 
-	public void DeleteInventory(string itemName, int itemQty) 
+	public void DeleteInventory(string itemName, int itemQty = 1)
 	{
-		string[] _inventory = new string[inventory.Length - itemQty];
+		string[] _inventory;
+		int quantity = 0;
 		int index = 0;
-		for (int i = 0; i < _inventory.Length; i++)
+
+
+		if (inventory.Length - itemQty > 1)
 		{
-			if(inventory[i] == itemName && index != itemQty) 
+			_inventory = new string[inventory.Length - itemQty];
+			for (int i = 0; i < _inventory.Length; i++)
 			{
-				index++;
-			} else {
+				if (inventory[i] == itemName && quantity != itemQty)
+				{
+					quantity++;
+				}
+				else
+				{
+					_inventory[index] = inventory[i];
+					index ++;
+				}
+			}
+			inventory = _inventory;
+		}
+		else if(inventory.Length - itemQty == 1)
+		{
+			_inventory = new string[] { inventory[0]};
+			inventory = _inventory;
+		}
+		else
+		{
+			inventory = new string[] {""};
+		}
+	}
+
+	public void AddInventory(string itemName, int itemQty)
+	{
+		string[] _inventory;
+		if (inventory[0] != "")
+		{
+			_inventory = new string[inventory.Length + itemQty];
+			for (int i = 0; i < inventory.Length; i++)
+			{
 				_inventory[i] = inventory[i];
 			}
-		}
-		Array.Sort(_inventory);
-		inventory = _inventory;
-	}
-
-	public void AddInventory(string itemName, int itemQty) 
-	{
-		string[] _inventory = new string[inventory.Length + itemQty]; 
-		for(int i = 0; i < itemQty; ++i) 
+			for (int i = 0; i < itemQty; ++i)
+			{
+				_inventory[inventory.Length + i] = itemName;
+			}
+		} else
 		{
-			_inventory[inventory.Length + i] = itemName;
+			_inventory = new string[itemQty];
+			for (int i = 0; i < itemQty; ++i)
+			{
+				_inventory[i] = itemName;
+			}
 		}
 		Array.Sort(_inventory);
 		inventory = _inventory;
 	}
 
-	public void AssignDm(int userID) 
+	public void AssignDm(int userID)
 	{
 		DM = userID;
+	}
+
+	public void ChangeName(string partyname)
+	{
+		name = partyname;
+	}
+
+	public bool checkPassword(string pass)
+	{
+		if (pass == password)
+			return true;
+		else
+			return false;
 	}
 }

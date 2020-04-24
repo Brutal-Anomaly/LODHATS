@@ -4,8 +4,63 @@
 
     //create new party class with party id from parameters
 
+
+    // get request paramaters
+
+    var partyid = Request.Params["partyid"];
+    var removeditems = Request.Params["removeditems"];
+    var item = Request.Params["item"];
+    var amount = Request.Params["amount"];
+
+    var partyname = Request.Params["partyname"];
+    var dmid = Request.Params["dmid"];
+
+    var userremoved = Request.Params["userremoved"];
+    var charremoved = Request.Params["charremoved"];
+
+    Party party = DatabaseManagement.getParty(Int32.Parse(partyid));
+
+    if(removeditems != null)
+    {
+        var strarr = removeditems.Split(new string[] { "::" }, StringSplitOptions.None);
+        foreach (var x in strarr) {
+
+            party.DeleteInventory(x);
+        }
+    }
+
+    if(item != null)
+    {
+        party.AddInventory(item, Int32.Parse(amount));
+    }
+
+    if(userremoved != null)
+    {
+        party.Remove(Int32.Parse(userremoved), Int32.Parse(charremoved));
+    }
+
+    if(dmid != null)
+    {
+        party.AssignDm(Int32.Parse(dmid));
+    }
+
+    if (partyname != null)
+    {
+        party.ChangeName(partyname);
+    }
+
+
+    //create new party class with party id from parameters
+
     //call and store into database
+    if (partyid != "" && partyid != null)
+    {
+        DatabaseManagement.updateParty(party);
+    }
+
 
     //redirect to party page with party id parameter
+    Response.Redirect(@Href("~/party?partyid=" + 3)); //partyid
+
 
 }

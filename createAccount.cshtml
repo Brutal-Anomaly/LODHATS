@@ -4,13 +4,15 @@
 
     var email = "";
     var password = "";
+    var password1 = "";
     var emailerror = "";
 
-    
+
 
 
     Validation.RequireField("email", "You must specify an email address.");
     Validation.RequireField("password", "Password cannot be blank.");
+    Validation.RequireField("password1", "Please confirm password.");
 
 
 
@@ -19,26 +21,35 @@
         AntiForgery.Validate();
         email = Request.Form["email"];
         password = Request.Form["password"];
+        password1 = Request.Form["password1"];
 
 
         if (Validation.IsValid())
         {
-            var db = Database.Open("MySQLDB");
-
-            // Check if user already exists
-            var user = db.QuerySingle("SELECT email FROM users WHERE LOWER(email) = LOWER(@0)", email);
-
-            if(user == null)
-            {
-                // Insert email into the profile table
-                db.Execute("INSERT INTO users (email, password) VALUES (@0, @1) ", email, password);
-
+            if (password != password1) {
+                
             }
-            else
-            {
-                // User already exists
-                ModelState.AddFormError("Email address is already in use.");
-                emailerror = "This email already exists!";
+            else {
+                var db = Database.Open("MySQLDB");
+                // Check if user already exists
+                var user = db.QuerySingle("SELECT email FROM users WHERE LOWER(email) = LOWER(@0)", email);
+
+                if (user == null)
+                {
+                    // Insert email into the profile table
+                    db.Execute("INSERT INTO users (email, password) VALUES (@0, @1) ", email, password);
+                    var row = db.QuerySingle("SELECT userid FROM users WHERE email = @0", email);
+
+                    Session["userID"] = row.userid;
+                    Session["username"] = email;
+                    Response.Redirect(@Href("~/Default"));
+                }
+                else
+                {
+                    // User already exists
+                    ModelState.AddFormError("Email address is already in use.");
+                    emailerror = "This email already exists!";
+                }
             }
 
         }
@@ -47,13 +58,13 @@
 }
 
 
-    
+
 <div class=" container">
     <form asp-page-handler="Create" method="POST" action="">
         @AntiForgery.GetHtml()
         @* If at least one validation error exists, notify the user *@
         @Html.ValidationSummary("Account creation was unsuccessful. Please correct the errors and try again.", excludeFieldErrors: false, htmlAttributes: null)
-        <div class=" row">
+        <div class=" row mt-5">
             <div class="col-sm">
                 <div class="card mt-5">
                     <div class="card-header">
@@ -71,7 +82,9 @@
                             <div class="form-group col-md-6">
                                 <label for="password" @if (!ModelState.IsValidField("password")) { <text> class="error-label" </text> }>Password:</label>
                                 <input type="password" class="form-control" id="password" name="password" value="" @Validation.For("password") placeholder="">
-                                
+                                <br />
+                                <label for="password" @if (password != password1) { <text> class="error-label" </text> }>Confirm Password:</label>
+                                <input type="password" class="form-control" id="password1" name="password1" value="" placeholder="">
                             </div>
                         </div>
                         <div class=" form-row">

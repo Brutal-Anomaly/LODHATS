@@ -169,11 +169,19 @@
         }
     }
 }
-<div class="jumbotron vertical-center">
-    <h1 class="text-center text-capitalize text-lg-center">Character Sheet</h1>
-    <p class="text-md-center">@username</p>
-</div>
-<div class="container">
+
+    <div class="jumbotron vertical-center">
+        @if (readon || charid != "")
+        {
+            <h1 class="text-center text-capitalize text-lg-center">@charname</h1>
+        }
+        else
+        {
+            <h1 class="text-center text-capitalize text-lg-center">Character Sheet</h1>
+        }
+        <p class="text-md-center">@username</p>
+    </div>
+<div class="container mb-4">
     <form method="post">
         <div class="row">
             <div class="col-sm">
@@ -7660,19 +7668,22 @@
         </div>
 
         @if (!readon && charid == "")
-        {
+        {<div class="mb-5">
             <button type="button" id="createbutton" name="createbutton" class="btn btn-primary">Create</button><!--redirect to characters page-->
             <button type="submit" name="btnRandom" id="btnRandom" class="btn btn-primary">Random</button> <!--reload page with random attribute-->
             <input type="hidden" name="passingtorazor" id="passingtorazor">
             <input type="hidden" name="passingfromrazor" id="passingfromrazor" value="@charid">
-
+        </div>
         }
         else if (!readon)
         {
+            <div class="mb-5">
             <button id="createbutton" name="createbutton" class="btn btn-primary" role="button">Update</button>
+            <input type="hidden" name="passingfromrazor" id="passingfromrazor" value="@charid">
+            </div>
         }
     </form>
-
+   
 </div>
 
 <!--     CSS       -->

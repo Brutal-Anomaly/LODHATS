@@ -36,14 +36,11 @@
                             <a class="nav-link" href="~/charcreator.cshtml">Character Creator</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/party.cshtml">Party</a>
+                            <a class="nav-link" href="~/party.cshtml?partyid=3">Party</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="~/dice.cshtml">Dice</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/WebPage3.cshtml">test</a>
-                        </li>                        
                     </ul>
                     <div class="float-right">
                         @{
@@ -58,8 +55,7 @@
 
                             if (username != null)
                             {
-                                <a href="~/viewaccount.cshtml" class="btn btn-danger" role="button">Account</a>
-                                <a href="~/Logoutpage.cshtml" class="btn btn-danger" role="button">Logout</a>
+                                <a href="~/Logoutpage.cshtml">Logout</a>
                             }
                             else
                             {
@@ -67,7 +63,6 @@
                             }
 
                         }
-                        @*<a href="~/Loginpage.cshtml" class="btn btn-danger" role="button">Login</a>*@
                     </div>
 
                 </div>
@@ -80,13 +75,13 @@
             @RenderBody()
         </section>
     </div>
-    <footer>
+    <div id="footer">
         <div class="content-wrapper">
             <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Web Page</p>
+                <p>&copy; @DateTime.Now.Year - LODHATS</p>
             </div>
         </div>
-    </footer>
+    </div>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
@@ -102,3 +97,14 @@
 
 
 </script>
+<style>
+    #footer {
+        position: fixed;
+        padding: 10px 10px 0px 10px;
+        bottom: 0;
+        width: 100%;
+        /* Height of the footer*/
+        height: 40px;
+        background-color: rgba(0,0,0,0.5)
+    }
+</style> 

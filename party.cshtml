@@ -1,52 +1,59 @@
 ﻿@{
     Layout = "~/_SiteLayout.cshtml";
 
+    if (Session["username"] == null)
+    {
+        Response.Redirect(@Href("~/Loginpage.cshtml"));
+    } else if (Request.Params["partyid"] == null)
+    {
+        Response.Redirect(@Href("~/pagejoin.cshtml"));
+    }
+
     //party passed from database party class created for testing purposes
 
-    var dbpart = DatabaseManagement.getParty(Int32.Parse(Request.Params["partyid"]));
-    int[] userIds = { 0, 1 };
-    int[] charIds = { 0, 1 };
-    string[] inv = { "Weapon-broad sword", "Potion-potion of minor healing I", "Potion-potion of minor healing I", "Potion-potion of speed", "Armor/Clothing-Leather Tunic" };
-    Party party = new Party(0, "Test Party", 0, userIds, charIds, inv);
+    var party = DatabaseManagement.getParty(Int32.Parse(Request.Params["partyid"]));
 
     //get relavent data from party
     var partyName = party.getName();
     var inventory = party.getInventory();
+    int?[] usersids = party.getUsers();
+    int?[] characterids = party.getCharacters();
 
     //get users from database will create users here for now
-    User user1 = new User(0, "123", "TestUser@gmail.com", false);
-    User user2 = new User(1, "123", "TestUser2@gmail.com", false);
+    User dmobj = DatabaseManagement.getUser(party.getDM());
 
-    User[] users = { user1, user2 };
+    User[] users = new User[usersids.Length];
+    var partynum = 0;
+
+    for (int j = 0; j < users.Length; j++) {
+        if (usersids[j] != null)
+        {
+            users[j] = DatabaseManagement.getUser(usersids[j].Value);
+            partynum++;
+        }
+
+    }
 
     //get characters from database. will create characters here for now
-    Character char1 = new Character();
-    Character char2 = new Character();
-    char1.generateRandomAttributes();
-    char2.generateRandomAttributes();
+    Character[] characters = new Character[characterids.Length];
 
-    Character[] characters = { char1, char2 };
+    for (int j = 0; j < characters.Length; j++)
+    {
+        if (characterids[j] != null)
+        {
+            characters[j] = DatabaseManagement.getCharacter(characterids[j].Value);
+        }
+
+    }
+
 
     //get userid from session
     //if user id=dmid
     var dm = false;
-    /*if (Session["username"] != null)
-    {
-        var username = (string)Session["username"];
-        <p>@username</p>
-
-    }
-    */
-    var testuserid = 0;
-    if (testuserid == party.getDM())
+    if (Int32.Parse(Session["userID"].ToString()) == party.getDM())
     {
         dm = true;
     }
-    else
-    {
-        dm = false;
-    }
-
 }
 <head>
     <script src="https://kit.fontawesome.com/39a57a53c2.js" crossorigin="anonymous"></script>
@@ -79,16 +86,18 @@
                                 <tbody>
                                     @{
                                         int numrepeated = 1;
-                                        for (int i = 0; i < inventory.Length; i++)
-                                        {
-                                            if (i + 1 < inventory.Length && inventory[i] == inventory[i + 1])
+                                        if (inventory[0]!="") {
+                                            for (int j = 0; j < inventory.Length; j++)
                                             {
-                                                ++numrepeated;
 
-                                            }
-                                            else
-                                            {
-                                                string[] tempstrarr = inventory[i].Split('-');
+                                                if (j + 1 < inventory.Length && inventory[j] == inventory[j + 1])
+                                                {
+                                                    ++numrepeated;
+
+                                                }
+                                                else
+                                                {
+                                                    string[] tempstrarr = inventory[j].Split('-');
                                                 <tr>
                                                     <th scope="row">
                                                         @if (tempstrarr[0] == "Armor/Clothing")
@@ -129,10 +138,12 @@
                                                     </td>
                                                     <td>@numrepeated</td>
                                                 </tr>
-                                                numrepeated = 1;
+                                                        numrepeated = 1;
+                                                    }
+                                                }
+
                                             }
                                         }
-                                    }
                                 </tbody>
                             </table>
                             <form>
@@ -170,7 +181,7 @@
                                             @{
                                                 //get user from database
                                                 <br />
-                                                <h4 class="text-center">@user1.getEmail()</h4>
+                                                <h4 class="text-center">@dmobj.getEmail()</h4>
                                                 <hr class="new5" />
                                                 <br />
                                             }
@@ -197,25 +208,28 @@
                             </div>
                             <div class="form-row mt-3 mb-2">
                                 <br />
-                                <h2 class="text-center">Party Members <small>@(users.Length -1)/10</small> </h2>
+                                <h2 class="text-center">Party Members <small>@partynum/10</small> </h2>
                                 <br>
                             </div>
                             <div class="form-row">
 
-                                <!--  Characters slots  -->
-                                @foreach (var x in characters)
+                                @for (int i = 0; i < characters.Length; i++)
                                 {
+                                    Character x = characters[i];
+                                    if (x != null)
+                                    {
+                                        if (users[i].getUserID() != party.getDM())
+                                        {
                                     <div class="col-md-6 card bg-dark">
                                         <div class="well well-sm">
                                             <div class="row-cols-sm-1">
-                                                @{
-                                                    var userId = x.getUser();
-                                                    //get user from database
+                                                
+                                                    
                                                     <br />
-                                                    <h4 class="text-center">@user1.getEmail()</h4>
+                                                    <h4 class="text-center">@users[i].getEmail()</h4>
                                                     <hr class="new5" />
                                                     <br />
-                                                }
+                                                
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-6 ml-1 mb-1">
@@ -286,7 +300,7 @@
                                                         <div class="mt-2">
                                                             @if (dm)
                                                             {
-                                                                <a href="">Remove</a>
+                                                                <a href="~/partyupdate.cshtml?partyid=@party.getPartyID()&userremoved=@users[i].getUserID()&charremoved=@x.getID()">Remove</a>
                                                             }
                                                             <br />
                                                         </div>
@@ -295,7 +309,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                }
+                                                                }
+                                                            }
+                                                        }
+
                             </div>
                         </div>
                     </div>
@@ -320,16 +337,20 @@
                                 <label for="dungeonmaster">Dungeon Master</label>
 
                                 <!--       ////////////////// PULL FROM USER VALUES//////////////////      -->
-                                <select class="form-control" id="dungeonmaster" value="@user1.getUserID()">
+                                <select class="form-control" id="dungeonmaster" value="@dmobj.getUserID()">
                                     <option>Select DM...</option>
-                                    <option>@user1.getUserID()</option>
-                                    <option>@user2.getUserID()</option>
+                                    @foreach(User x in users) {
+                                        if (x != null)
+                                        {
+                                    <option>@x.getUserID()</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <div class="w-100 text-center">
-                                <button type="button" class="btn btn-default">Done</button> <!-- Repopulate page  -->
+                                <button type="button" id="settingsbutton" class="btn btn-default">Done</button> <!-- Repopulate page  -->
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -403,7 +424,7 @@
                     @foreach (var x in inventory)
                     {
                         string[] tempstrarr = x.Split('-');
-                        <div class="list-group-item bg-dark">&nbsp;<label><input type="checkbox"><span class="list-group-item-text">&nbsp;@tempstrarr[1]</span></label></div>
+                        <div class="list-group-item bg-dark overflow-auto">&nbsp;<label><input type="checkbox" id="@x"><span class="list-group-item-text">&nbsp;@x</span></label></div>
                     }
                 </div>
             </div>
@@ -416,6 +437,7 @@
         </div>
 
     </div>
+    <input type="hidden" name="passingfromrazor" id="passingfromrazor" value="@party.getPartyID()">
 </div>
 
 
@@ -474,8 +496,35 @@
         }
     });
 
+    $('#settingsbutton').on('click', function () {
+        var partyid = $('#passingfromrazor').val();
+        var dm = $('#dungeonmaster').find(":selected").text();
+        var name =$('#partyname').val();
+        window.location.replace("partyupdate.cshtml?partyid=" + partyid + "&dmid=" + dm + "&partyname=" + name);
+    });
+
     $('#plusbutton').on('click', function () {
-        //send params to update database
+        var partyid = $('#passingfromrazor').val();
+        var category = $('#category').find(":selected").text();
+        if (category == null) {
+            category = "Other";
+        }
+        var item = category + "-"+ $('#item').val();
+        var amount = $('#amount').val();
+        if (amount == "" || amount ==null) {
+            amount = 1;
+        }
+        window.location.replace("partyupdate.cshtml?partyid=" + partyid +"&item="+item+"&amount="+amount);
+    });
+
+    $('#trashbutton').on('click', function () {
+        var partyid = $('#passingfromrazor').val();
+        var selected = [];
+        $.each($("input:checked"), function () {
+            selected.push($(this).attr('id'));
+        });
+        var removeditems = selected.join("::");
+        window.location.replace("partyupdate.cshtml?partyid=" + partyid + "&removeditems=" + removeditems);
     });
 </script>
 
