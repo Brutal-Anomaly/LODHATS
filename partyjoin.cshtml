@@ -7,7 +7,7 @@
     Validation.RequireField("partypassword", "Party password is a required field.");
 
     var add_error = false;
-    var leader = 0;
+    //var leader = 0;
 
     /*
      * 
@@ -27,55 +27,61 @@
 
             var check_members_query = "SELECT * FROM party WHERE partyname ='" + partyname + "'";
 
-            var empty_slot = "";
+            var empty_slot1 = "";
+            var empty_slot2 = "";
 
             //Checks the party for empty slots (max 10 including leader)
-            foreach (var row in db.Query(check_members_query))
+            foreach (var row in db.Query(check_members_query))  //to lazy for string concatenation
             {
-                leader = row.leader;
-                if (row.m1 == null)
+                if (row.m2 == null) //m1 and c1 are for dm
                 {
-                    empty_slot = "m1";
-                }
-                else if (row.m2 == null)
-                {
-                    empty_slot = "m2";
+                    empty_slot1 = "m2";
+                    empty_slot2 = "c2";
                 }
                 else if (row.m3 == null)
                 {
-                    empty_slot = "m3";
+                    empty_slot1 = "m3";
+                    empty_slot2 = "c3";
                 }
                 else if (row.m4 == null)
                 {
-                    empty_slot = "m4";
+                    empty_slot1 = "m4";
+                    empty_slot2 = "c4";
                 }
                 else if (row.m5 == null)
                 {
-                    empty_slot = "m5";
+                    empty_slot1 = "m5";
+                    empty_slot2 = "c5";
                 }
                 else if (row.m6 == null)
                 {
-                    empty_slot = "m6";
+                    empty_slot1 = "m6";
+                    empty_slot2 = "c6";
                 }
                 else if (row.m7 == null)
                 {
-                    empty_slot = "m7";
+                    empty_slot1 = "m7";
+                    empty_slot2 = "c7";
                 }
                 else if (row.m8 == null)
                 {
-                    empty_slot = "m8";
+                    empty_slot1 = "m8";
+                    empty_slot2 = "c8";
                 }
                 else if (row.m9 == null)
                 {
-                    empty_slot = "m9";
+                    empty_slot1 = "m9";
+                    empty_slot2 = "c9";
                 }
                 else if (row.m10 == null)
                 {
-                    empty_slot = "m10";
+                    empty_slot1 = "m10";
+                    empty_slot2 = "c10";
                 }
                 else if (row.m11 == null)
                 {
-                    empty_slot = "m11";
+                    empty_slot1 = "m11";
+                    empty_slot2 = "c11";
                 }
                 else
                 {
@@ -85,16 +91,22 @@
 
             //Adds a member to the party
             //var update_member_query = "UPDATE party SET m1=@0 WHERE partyname=@1";  THIS WORKS
-            var update_member_query = "UPDATE party SET " + empty_slot + "=@0 WHERE partyname=@1"; //I have no clue why this works
-            db.Execute(update_member_query, characterid, partyname);
+            var update_member_query = "UPDATE party SET " + empty_slot1 + "=@0 WHERE partyname=@1"; //I have no clue why this works
+            db.Execute(update_member_query, Session["UserID"], partyname);
 
+            var update_character_query = "UPDATE party SET " + empty_slot2 + "=@0 WHERE partyname=@1";
+            db.Execute(update_character_query, characterid, partyname);
+
+
+            /*Changed due to changes in character and party tables
             //Gets partyid from database
-            var partyid_query = "SELECT partyid FROM party WHERE partyname='" + partyname + "'";
+            var partyid_query = "UPDATE party SET " + empty_slot + "=@0 WHERE partyname=@1";
             var partyid = db.QueryValue(partyid_query);
 
             //Updates partyid in character database for character
             var update_char_partyid = "UPDATE character SET partyid='" + partyid + "' WHERE characterid='" + characterid +"'";
             db.Query(update_char_partyid);
+            */
 
             Response.Redirect(@Href("~/viewaccount.cshtml"));
 

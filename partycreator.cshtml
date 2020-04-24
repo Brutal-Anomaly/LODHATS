@@ -4,12 +4,12 @@
     var characterid = Request.QueryString["characterid"];
 
     var partyname = Request.Form["partyname"];
-    var partypassword = Request.Form["partypassword"];
+    var password = Request.Form["password"];
     var party_error = false;
     var create_success = false;
 
     Validation.RequireField("partyname", "Party name is a required field.");
-    Validation.RequireField("partypassword", "Party password is a required field.");
+    Validation.RequireField("password", "Party password is a required field.");
 
     /* Testing sessions (it worked)
     if (Session["username"] != null)
@@ -37,8 +37,8 @@
             //Otherwise create party and check for creation
             else
             {
-                var insert_query = "INSERT INTO party (partyname, partypassword, leader)" + "VALUES (@0, @1, @2)";
-                db.Execute(insert_query, partyname, partypassword, characterid);
+                var insert_query = "INSERT INTO party (partyname, password, dm)" + "VALUES (@0, @1, @2)";
+                db.Execute(insert_query, partyname, password, characterid);
 
                 var check_party_query2 = "SELECT partyname FROM party WHERE partyname ='" + partyname + "'";
                 var party_check2 = db.Query(check_party_query);
@@ -46,11 +46,24 @@
                 if (party_check2 != null)
                 {
                     create_success = true;
+
+                    /* Changed due to changed character and party databases
                     //Updates partyid in character database for character
                     var partyid_query = "SELECT partyid FROM party WHERE partyname='" + partyname + "'";
                     var partyid = db.QueryValue(partyid_query);
                     var update_char_partyid = "UPDATE character SET partyid='" + partyid + "' WHERE characterid='" + characterid + "'";
                     db.Query(update_char_partyid);
+                    */
+
+                    //Whoever creates the party is the dm
+                    var add_dm_userid_query1 = "UPDATE party SET dm='" + Session["UserID"] + "'";
+                    db.Execute(add_dm_userid_query1);
+
+                    //dm also becomes member 1 because there's no slot for dm charid
+                    var add_dm_userid_query2 = "UPDATE party SET m1='" + Session["UserID"] + "'";
+                    db.Execute(add_dm_userid_query2);
+                    var add_dm_charid_query = "UPDATE party SET c1='" + characterid + "'";
+                    db.Execute(add_dm_charid_query);
 
                     Response.Redirect(@Href("~/viewaccount.cshtml"));
                 }
@@ -90,11 +103,11 @@
                             <br />
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label for="partypassword">Party Password:</label>
+                                    <label for="password">Party Password:</label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Party Password" id="partypassword" name="partypassword" value="" />
-                                    @*Html.ValidationMessage("partypassword")*@
+                                    <input type="text" class="form-control" placeholder="Party Password" id="password" name="password" value="" />
+                                    @*Html.ValidationMessage("password")*@
                                 </div>
                             </div>
                         </div>
