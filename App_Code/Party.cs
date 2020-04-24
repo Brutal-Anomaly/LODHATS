@@ -102,7 +102,7 @@ public class Party
 		if (inventory.Length - itemQty > 1)
 		{
 			_inventory = new string[inventory.Length - itemQty];
-			for (int i = 0; i < _inventory.Length; i++)
+			for (int i = 0; i <= _inventory.Length; i++)
 			{
 				if (inventory[i] == itemName && quantity != itemQty)
 				{
