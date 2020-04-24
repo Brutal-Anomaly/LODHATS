@@ -1,0 +1,10 @@
+﻿@{ 
+    var removeduser = Request.Params["removeduser"];
+    if(removeduser != null || removeduser != "")
+    {
+        DatabaseManagement.deleteUser(Int32.Parse(removeduser));
+    }
+
+    Response.Redirect("~/viewaccount.cshtml");
+
+}

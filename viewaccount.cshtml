@@ -4,6 +4,7 @@
 
     var email = "";
 
+
     //Get userid from the db by using the username
     if (Session["username"] != null)
     {
@@ -11,14 +12,17 @@
     }
     else
     {
-        email = "Account not logged in!";
+        Response.Redirect(@Href("~/Loginpage.cshtml"));
     }
 
-    var userid_query = "SELECT userid FROM users WHERE email ='" + email + "'";
 
-    var userid = db.QueryValue(userid_query);
+    var userid = Int32.Parse(Session["userID"].ToString());
 
-    var char_query = "SELECT * from character WHERE userid ='" + userid + "'";
+    User user = DatabaseManagement.getUser(userid);
+
+    var admin = user.isAdmin();
+
+    var char_query = "SELECT * from `character` WHERE `userid` =@0";
 
 }
 
@@ -47,96 +51,139 @@
         </div>
 
         <br />
+        @if (admin) {
+            User[] users = DatabaseManagement.getUsers();
+            <div class="card">
+                <div class="card-header bg-dark">
+                    <h3 style="color:white">Admin Functions</h3>
+                </div>
+                <div class="card-body bg-secondary">
+                    <div class="container">
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Users
+                                        </button>
+                                    </h5>
+                                </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header bg-dark">
-                        <h3 style="color:white">Characters</h3>
-                    </div>
-                    <div class="card-body bg-secondary">
-                        <div class="form-row">
-                            <table class="table col-sm-12 table-hover table-dark table-borderless table-striped rounded">
-                                <thead class="">
-                                <td></td>
-                                <td>Name</td>
-                                <td>Gender</td>
-                                <td>Level</td>
-                                <td>Class</td>
-                                <td></td>
-                                </thead>
-                                <tbody class="">
-                                    <!--for loop for character table-->
-                                    @foreach (var row in db.Query(char_query))
-                                    {
-                                    <tr>
-                                        <td></td>
-                                        <td>@row.charactername</td>
-                                        <td>@row.charactergender</td>
-                                        <td>@row.characterlevel</td>
-                                        <td>@row.characterclass</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><button type="button" class="btn-sm"><a style="color:black" href="charcreator.cshtml?characterid=@row.characterid">View Details</a></button></td>
-                                        @{
-
-                                            //Checks if characters are in a party
-                                            var check_party_query = "";
-                                            int? check_party = 0;   //The ? allows for the variable to be null because int's can't normally be null, but in the database, they can be
-                                            var in_party = false;
-                                            int? partyid = 0;
-                                            for (var c = 1; c < 11; c++)    //c refers to the c# columns in the party table
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <table class="table col-sm-12 table-hover table-dark table-borderless table-striped rounded">
+                                            <thead class="">
+                                                <tr>
+                                                    <td></td>
+                                                    <td>Email</td>
+                                                    <td>ID</td>
+                                                    <td>Admin</td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            @foreach (var x in users)
                                             {
-
-                                                check_party_query = "SELECT partyid FROM party WHERE c" + c + " = '" + row.characterid + "'";
-                                                check_party = db.QueryValue(check_party_query);
-
-                                                if (check_party != null)
+                                                if (x.getUserID() != user.getUserID())
                                                 {
-                                                    in_party = true;
-                                                    partyid = (int)check_party;
+                                                <tr>
+                                                    <td></td>
+                                                    <td>@x.getEmail()</td>
+                                                    <td>@x.getUserID()</td>
+                                                    <td>@x.isAdmin().ToString()</td>
+                                                    <td><a href="~/updateaccount.cshtml?removeduser=@x.getUserID()">Remove</a></td>
+                                                </tr>
+                                                }
+                                            }
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <br />
+        }
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header bg-dark">
+                            <h3 style="color:white">Characters</h3>
+                        </div>
+                        <div class="card-body bg-secondary">
+                            <div class="form-row">
+                                <table class="table col-sm-12 table-hover table-dark table-borderless table-striped rounded">
+                                    <thead class="">
+                                        <tr>
+                                            <td></td>
+                                            <td>Name</td>
+                                            <td>Gender</td>
+                                            <td>Level</td>
+                                            <td>Class</td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!--for loop for character table-->
+                                        @foreach (var row in db.Query(char_query, userid))
+                                        {
+                                            <tr>
+                                                <td></td>
+                                                <td>@row.charactername</td>
+                                                <td>@row.charactergender</td>
+                                                <td>@row.characterlevel</td>
+                                                <td>@row.characterclass</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><button type="button" class="btn btn-primary"><a href="charcreator.cshtml?characterid=@row.characterid">View Details</a></button></td>
+                                                @{
+
+                                                    //Checks if characters are in a party
+                                                    var check_party_query = "";
+                                                    int? check_party = 0;   //The ? allows for the variable to be null because int's can't normally be null, but in the database, they can be
+                                                    var in_party = false;
+                                                    int? partyid = 0;
+                                                    for (var c = 1; c < 11; c++)    //c refers to the c# columns in the party table
+                                                    {
+
+                                                        check_party_query = "SELECT `partyid` FROM `party` WHERE `c" + c + "` =@0";
+                                                        check_party = db.QueryValue(check_party_query, row.characterid);
+
+                                                        if (check_party != null)
+                                                        {
+                                                            in_party = true;
+                                                            partyid = (int)check_party;
+                                                        }
+
+                                                    }
+
+                                                    if (in_party == true)
+                                                    {
+                                                        <td><button type="button" class="btn btn-primary"><a href="party.cshtml?partyid=@partyid">View Party</a></button></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td><button type="button" class="btn btn-primary"><a  href="partyjoin.cshtml?characterid=@row.characterid">Join Party</a></button></td>
+                                                    }
                                                 }
 
-                                            }
-
-                                            if (in_party == true)
-                                            {
-                                                <td><button type="button" class="btn-sm"><a style="color:black" href="party.cshtml?partyid=@partyid">View Party</a></button></td>
-                                            }
-                                            else
-                                            {
-                                                <td><button type="button" class="btn-sm"><a style="color:black" href="partyjoin.cshtml?characterid=@row.characterid">Join Party</a></button></td>
-                                            }
 
 
-                                            /*Changed due to character and party table changes
-                                            if (row.partyid != null)
-                                            {
-                                                //change the link to the party view page and pass the partyid
-                                                <td><button type="button" class="btn-sm"><a style="color:black" href="party.cshtml?partyid=@row.partyid">View Party</a></button></td>
-                                            }
-                                            else
-                                            {
-                                                <td><button type="button" class="btn-sm"><a style="color:black" href="partyjoin.cshtml?characterid=@row.characterid">Join Party</a></button></td>
-
-                                            }
-                                            */
+                                            </tr>
                                         }
 
-
-
-                                    </tr>
-                                    }
-
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
 </body>
 
 </html>

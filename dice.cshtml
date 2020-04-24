@@ -66,6 +66,10 @@
     </div>
     @if (IsPost)
     {
+        if(modifier == "")
+        {
+            modifier = "0";
+        }
         var overall = Int32.Parse(modifier) + Int32.Parse(rollnum);
         <div class="d-flex justify-content-center row">
             <h1>@overall</h1>
