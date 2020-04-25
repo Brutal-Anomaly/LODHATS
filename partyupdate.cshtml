@@ -39,7 +39,7 @@
         party.Remove(Int32.Parse(userremoved), Int32.Parse(charremoved));
     }
 
-    if(dmid != null)
+    if(dmid != null && dmid != "Select DM...")
     {
         party.AssignDm(Int32.Parse(dmid));
     }
@@ -60,7 +60,7 @@
 
 
     //redirect to party page with party id parameter
-    Response.Redirect(@Href("~/party?partyid=" + 3)); //partyid
+    Response.Redirect(@Href("~/party?partyid=" + partyid)); //partyid
 
 
 }

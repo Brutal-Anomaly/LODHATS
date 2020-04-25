@@ -26,8 +26,8 @@
         if (Validation.IsValid())
         {
             //Tests to see if the database already exists
-            var check_party_query = "SELECT partyname FROM party WHERE partyname='" + partyname + "'";
-            var party_check = db.QueryValue(check_party_query);
+            var check_party_query = "SELECT `partyname` FROM `party` WHERE `partyname`=@0";
+            var party_check = db.QueryValue(check_party_query, partyname);
 
             //Error if party already exists
             if (party_check != null)
@@ -37,11 +37,11 @@
             //Otherwise create party and check for creation
             else
             {
-                var insert_query = "INSERT INTO party (partyname, password, dm)" + "VALUES (@0, @1, @2)";
-                db.Execute(insert_query, partyname, password, characterid);
+                var insert_query = "INSERT INTO `party` (`partyname`, `password`)" + "VALUES (@0, @1)";
+                db.Execute(insert_query, partyname, password);
 
-                var check_party_query2 = "SELECT partyname FROM party WHERE partyname ='" + partyname + "'";
-                var party_check2 = db.Query(check_party_query);
+                var check_party_query2 = "SELECT `partyname` FROM `party` WHERE `partyname` =@0";
+                var party_check2 = db.Query(check_party_query, partyname);
 
                 if (party_check2 != null)
                 {
@@ -56,14 +56,14 @@
                     */
 
                     //Whoever creates the party is the dm
-                    var add_dm_userid_query1 = "UPDATE party SET dm='" + Session["UserID"] + "'";
-                    db.Execute(add_dm_userid_query1);
+                    var add_dm_userid_query1 = "UPDATE `party` SET `dm`=@0";
+                    db.Execute(add_dm_userid_query1, Session["UserID"]);
 
                     //dm also becomes member 1 because there's no slot for dm charid
-                    var add_dm_userid_query2 = "UPDATE party SET m1='" + Session["UserID"] + "'";
-                    db.Execute(add_dm_userid_query2);
-                    var add_dm_charid_query = "UPDATE party SET c1='" + characterid + "'";
-                    db.Execute(add_dm_charid_query);
+                    var add_dm_userid_query2 = "UPDATE `party` SET `m1`=@0";
+                    db.Execute(add_dm_userid_query2, Session["UserID"]);
+                    var add_dm_charid_query = "UPDATE `party` SET `c1`=@0";
+                    db.Execute(add_dm_charid_query, characterid);
 
                     Response.Redirect(@Href("~/viewaccount.cshtml"));
                 }

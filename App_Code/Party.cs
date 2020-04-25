@@ -12,9 +12,10 @@ public class Party
 	private string[] inventory;
 
 	//constructor
-	public Party(int ID, string password, string _name, int dmID, int?[] userIDs, int?[] characterIDs, string[] inv)
+	public Party(int ID, string _password, string _name, int dmID, int?[] userIDs, int?[] characterIDs, string[] inv)
 	{
 		partyID = ID;
+		password = _password;
 		name = _name;
 		DM = dmID;
 		users = userIDs;
@@ -55,21 +56,21 @@ public class Party
 	//member functions
 	public void Add(int userID, int characterID)
 	{
-		
-		for (int i = 0; i < users.Length; i++)
+		if (userID != DM)
 		{
-			if (users[i] == null)
-			{
-				users[i] = userID;
-				break;
-			}
-		}
 
-		for (int i = 0; i < characters.Length; i++)
-		{
-			if(characters[i] == null) {
-				characters[i] = characterID;
+			for (int i = 0; i < users.Length; i++)
+			{
+				if (users[i] == null)
+				{
+					users[i] = userID;
+					characters[i] = characterID;
+					break;
+				}
 			}
+		} else
+		{
+			characters[0] = characterID;
 		}
 	}
 
@@ -167,6 +168,24 @@ public class Party
 	{
 		if (pass == password)
 			return true;
+		else
+			return false;
+	}
+
+	public bool isFull()
+	{
+		int full = 0;
+		foreach(var x in users)
+		{
+			if (x != null)
+			{
+				full += 1;
+			}
+		}
+		if (full == 11)
+		{
+			return true;
+		}
 		else
 			return false;
 	}
