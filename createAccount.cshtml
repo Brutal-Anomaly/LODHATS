@@ -6,6 +6,7 @@
     var password = "";
     var password1 = "";
     var emailerror = "";
+    var passworderror = "";
 
 
 
@@ -27,7 +28,9 @@
         if (Validation.IsValid())
         {
             if (password != password1) {
-                
+
+                passworderror = "Password does not match!";
+
             }
             else {
                 var db = Database.Open("MySQLDB");
@@ -85,6 +88,7 @@
                                 <br />
                                 <label for="password" @if (password != password1) { <text> class="error-label" </text> }>Confirm Password:</label>
                                 <input type="password" class="form-control" id="password1" name="password1" value="" placeholder="">
+                                <text style="color:red">@passworderror</text>
                             </div>
                         </div>
                         <div class=" form-row">
